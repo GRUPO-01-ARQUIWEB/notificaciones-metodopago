@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class TiendaController {
     @Autowired
     private ITiendaService iS;
-
+ //GETMPAPPIN SIRVE PARA TALLLLLL
     @GetMapping
     public List<TiendaDTO> listar(){
         return iS.list().stream().map(i ->{
