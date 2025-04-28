@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
-import pe.edu.upc.arquiweb.servicesinerfaces.IMetodoPagoService;
+import pe.edu.upc.arquiweb.servicesinterfaces.IMetodoPagoService;
 
 import java.util.List;
 import java.util.stream.Collectors;

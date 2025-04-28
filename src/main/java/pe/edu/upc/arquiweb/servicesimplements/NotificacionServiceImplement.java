@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.Notificaciones;
 import pe.edu.upc.arquiweb.repositories.INotificacionesRepository;
-import pe.edu.upc.arquiweb.servicesinerfaces.INotificacionService;
+import pe.edu.upc.arquiweb.servicesinterfaces.INotificacionService;
 
 import java.util.List;
 
