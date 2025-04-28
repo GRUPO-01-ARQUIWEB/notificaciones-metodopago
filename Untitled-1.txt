@@ -1,0 +1,2 @@
+//no repetir parametros en diferentes clasesç
+//Heredar propiedades de otras clases sin necesidad de repetir
