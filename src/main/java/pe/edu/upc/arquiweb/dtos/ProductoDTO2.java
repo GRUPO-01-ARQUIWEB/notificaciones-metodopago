@@ -2,7 +2,7 @@ package pe.edu.upc.arquiweb.dtos;
 
 import java.time.LocalDate;
 
-public class ProductoDTO {
+public class ProductoDTO2 {
 
     private int idProducto;
     private String nombreProducto;
@@ -11,6 +11,8 @@ public class ProductoDTO {
     private int stock;
     private String categoria;
     private LocalDate fechaCreacion;
+
+    private int idTienda;
 
     public int getIdProducto() {
         return idProducto;
@@ -68,4 +70,11 @@ public class ProductoDTO {
         this.fechaCreacion = fechaCreacion;
     }
 
+    public int getIdTienda() {
+        return idTienda;
+    }
+
+    public void setIdTienda(int idTienda) {
+        this.idTienda = idTienda;
+    }
 }
