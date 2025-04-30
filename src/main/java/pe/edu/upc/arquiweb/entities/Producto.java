@@ -1,7 +1,6 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -122,13 +121,5 @@ public class Producto {
 
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
-    }
-
-    public int getId() {
-        return idProducto;
-    }
-
-    public void setId(int id) {
-        this.idProducto = id;
     }
 }
