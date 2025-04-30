@@ -1,7 +1,5 @@
 package pe.edu.upc.arquiweb.dtos;
 
-
-
 import java.time.LocalDateTime;
 
 public class NotificacionDTO {
