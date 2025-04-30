@@ -2,7 +2,7 @@ package pe.edu.upc.arquiweb.servicesimplements;
 
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
-import pe.edu.upc.arquiweb.repositories.IMetodopagoRepository;
+import pe.edu.upc.arquiweb.repositories.IMetodoPagoRepository;
 import pe.edu.upc.arquiweb.servicesinterfaces.IMetodoPagoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class MetodoPagoServiceImplement implements IMetodoPagoService {
 
     @Autowired
-    private IMetodopagoRepository mR;
+    private IMetodoPagoRepository mR;
 
     @Override
     public List<MetodoPago> list() {
