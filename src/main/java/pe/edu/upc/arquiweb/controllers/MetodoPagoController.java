@@ -16,6 +16,8 @@ public class MetodoPagoController {
     @Autowired
     private IMetodoPagoService mS;
 
+    //mdasindasbi
+
     @GetMapping
     public List<MetodoPagoDTO> listar() {
         return mS.list().stream().map(x -> {
