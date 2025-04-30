@@ -9,9 +9,6 @@ import java.util.List;
 @Repository
 public interface ICarritoCompraRepository extends JpaRepository <CarritoCompra,Integer>{
 
-
-    @Repository
-    public interface ICarritCompraRepository extends JpaRepository <CarritoCompra,Integer>{
         @Query(value = " SELECT \n" +
                 "  cc.id_carrito,\n" +
                 "  cc.id_usuario,\n" +
@@ -40,6 +37,3 @@ public interface ICarritoCompraRepository extends JpaRepository <CarritoCompra,I
                 " ORDER BY c.fecha_creacion DESC",nativeQuery = true)
         public List<String[]> ordenarCarritoCompraUsuarioxFechaCreacion();
     }
-
-
-}

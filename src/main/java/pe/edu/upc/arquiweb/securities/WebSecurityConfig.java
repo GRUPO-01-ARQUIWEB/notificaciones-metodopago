@@ -33,8 +33,8 @@ public class WebSecurityConfig {
     @Autowired
     private UserDetailsService jwtUserDetailsService;
 
-    @Autowired
-    private JwtRequestFilter jwtRequestFilter;
+    //@Autowired
+   //private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
     @Qualifier("handlerExceptionResolver")
@@ -55,20 +55,20 @@ public class WebSecurityConfig {
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    //@Bean
+    //public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         //Desde Spring Boot 3.1+
-        httpSecurity
-                .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(req -> req
-                        .requestMatchers(antMatcher("/login")).permitAll()
-                        .anyRequest().authenticated()
-                )
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(AbstractHttpConfigurer::disable)
-                .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
-                .sessionManagement(Customizer.withDefaults());
-        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-        return httpSecurity.build();
-    }
+        //httpSecurity
+                //.csrf(AbstractHttpConfigurer::disable)
+                //.authorizeHttpRequests(req -> req
+                        //.requestMatchers(antMatcher("/login")).permitAll()
+                        //.anyRequest().authenticated()
+                //)
+                //.httpBasic(Customizer.withDefaults())
+                //.formLogin(AbstractHttpConfigurer::disable)
+                //.exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthenticationEntryPoint))
+                //.sessionManagement(Customizer.withDefaults());
+        //httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+        //return httpSecurity.build();
+    //}
 }
