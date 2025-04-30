@@ -1,16 +1,12 @@
 package pe.edu.upc.arquiweb.dtos;
 
-import java.time.LocalDate;
-
-public class ProductoDTO {
+public class ProductoComparaDTO {
 
     private int idProducto;
     private String nombreProducto;
-    private String descripcion;
     private double precioBase;
-    private int stock;
+    private String nombreTienda;
     private String categoria;
-    private LocalDate fechaCreacion;
 
     public int getIdProducto() {
         return idProducto;
@@ -28,14 +24,6 @@ public class ProductoDTO {
         this.nombreProducto = nombreProducto;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public double getPrecioBase() {
         return precioBase;
     }
@@ -44,12 +32,12 @@ public class ProductoDTO {
         this.precioBase = precioBase;
     }
 
-    public int getStock() {
-        return stock;
+    public String getNombreTienda() {
+        return nombreTienda;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setNombreTienda(String nombreTienda) {
+        this.nombreTienda = nombreTienda;
     }
 
     public String getCategoria() {
@@ -59,13 +47,4 @@ public class ProductoDTO {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
 }

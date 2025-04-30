@@ -1,26 +1,22 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "Producto")
+
 public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProducto;
 
-    @Column(name = "idTienda", nullable = false)
-    private int idTienda;
+    @Column(name = "nombreProducto", nullable = false, length = 20)
+    private String nombreProducto;
 
-    @Column(name = "idTipoCategoria", nullable = false)
-    private int idTipoCategoria;
-
-    @Column(name = "nombre", nullable = false, length = 100)
-    private String nombre;
-
-    @Column(name = "descripcion", length = 500)
+    @Column(name = "descripcion", nullable = false, length = 50)
     private String descripcion;
 
     @Column(name = "precioBase", nullable = false)
@@ -29,28 +25,42 @@ public class Producto {
     @Column(name = "stock", nullable = false)
     private int stock;
 
-    @Column(name = "categoria", nullable = false, length = 100)
+    @Column(name = "categoria", nullable = false, length = 50)
     private String categoria;
 
     @Column(name = "fechaCreacion", nullable = false)
     private LocalDate fechaCreacion;
 
+    //CLAVES FORANEAS
+    @ManyToOne
+    @JoinColumn(name = "idTienda")
+    private Tienda tienda;
+
+    @ManyToOne
+    @JoinColumn(name = "idTipoCategoria")
+    private TipoCategoria tipoCategoria;
+
+    @ManyToOne
+    @JoinColumn(name = "idResena")
+    private Resena resena;
+
+
     public Producto() {
     }
 
-    public Producto(int idProducto, int idTienda, int idTipoCategoria, String nombre, String descripcion, double precioBase, int stock, String categoria, LocalDate fechaCreacion) {
+    public Producto(int idProducto, String nombreProducto, String descripcion, double precioBase, int stock, String categoria, LocalDate fechaCreacion, Tienda tienda, TipoCategoria tipoCategoria, Resena resena) {
         this.idProducto = idProducto;
-        this.idTienda = idTienda;
-        this.idTipoCategoria = idTipoCategoria;
-        this.nombre = nombre;
+        this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
         this.precioBase = precioBase;
         this.stock = stock;
         this.categoria = categoria;
         this.fechaCreacion = fechaCreacion;
+        this.tienda = tienda;
+        this.tipoCategoria = tipoCategoria;
+        this.resena = resena;
     }
 
-    // Getters y Setters
     public int getIdProducto() {
         return idProducto;
     }
@@ -59,28 +69,12 @@ public class Producto {
         this.idProducto = idProducto;
     }
 
-    public int getIdTienda() {
-        return idTienda;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    public void setIdTienda(int idTienda) {
-        this.idTienda = idTienda;
-    }
-
-    public int getIdTipoCategoria() {
-        return idTipoCategoria;
-    }
-
-    public void setIdTipoCategoria(int idTipoCategoria) {
-        this.idTipoCategoria = idTipoCategoria;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
     public String getDescripcion() {
@@ -122,4 +116,29 @@ public class Producto {
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
+    public Tienda getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
+    }
+
+    public TipoCategoria getTipoCategoria() {
+        return tipoCategoria;
+    }
+
+    public void setTipoCategoria(TipoCategoria tipoCategoria) {
+        this.tipoCategoria = tipoCategoria;
+    }
+
+    public Resena getResena() {
+        return resena;
+    }
+
+    public void setResena(Resena resena) {
+        this.resena = resena;
+    }
+
 }
