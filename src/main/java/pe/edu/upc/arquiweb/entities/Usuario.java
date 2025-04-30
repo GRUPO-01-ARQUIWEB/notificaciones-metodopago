@@ -15,8 +15,8 @@ public class Usuario {
     @Column(name = "correo", nullable = false, length = 100)
     private String correo;
 
-    @Column(name = "contrasenahash", nullable = false, length = 100)
-    private String contrasenahash;
+    @Column(name = "contrasena", nullable = false, length = 100)
+    private String contrasena;
 
     @Column(name = "direccion", nullable = false, length = 100)
     private String direccion;
@@ -33,7 +33,26 @@ public class Usuario {
     @Column(name = "longitud", nullable = false)
     private double longitud;
 
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
+
     //FK
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
     /*
     @ManyToOne
     @JoinColumn(name = "idRol")
@@ -59,7 +78,7 @@ public class Usuario {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.correo = correo;
-        this.contrasenahash = contrasenahash;
+        this.contrasena = contrasena;
         this.direccion = direccion;
         this.telefono = telefono;
         this.rolClAd = rolClAd;
@@ -90,14 +109,6 @@ public class Usuario {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getContrasenahash() {
-        return contrasenahash;
-    }
-
-    public void setContrasenahash(String contrasenahash) {
-        this.contrasenahash = contrasenahash;
     }
 
     public String getDireccion() {

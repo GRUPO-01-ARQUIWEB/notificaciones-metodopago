@@ -6,4 +6,6 @@ import pe.edu.upc.arquiweb.entities.Usuario;
 
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
+
+        public Usuario findOneByUsername(String username);
 }
