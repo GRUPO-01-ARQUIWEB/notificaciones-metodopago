@@ -1,4 +1,4 @@
-package pe.edu.upc.arquiweb.servicesinerfaces;
+package pe.edu.upc.arquiweb.servicesinterfaces;
 
 import pe.edu.upc.arquiweb.entities.MetodoPago;
 
