@@ -1,7 +1,6 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -87,13 +86,5 @@ public class CarritoCompra {
 
     public void setIdMontototal(int idMontototal) {
         this.idMontototal = idMontototal;
-    }
-
-    public int getId() {
-        return idCarrito;
-    }
-
-    public void setId(int id) {
-        this.idCarrito = id;
     }
 }

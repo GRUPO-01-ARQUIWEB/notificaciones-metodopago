@@ -1,0 +1,92 @@
+package pe.edu.upc.arquiweb.entities;
+import jakarta.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "Descuento")
+public class Descuento {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idDescuento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Producto producto;
+
+    @Column(name = "porcentaje", nullable = false)
+    private double porcentaje;
+
+    @Column(name = "cod_descuento", nullable = false, length = 20)
+    private String codDescuento;
+
+    @Column(name = "fecha_inicio", nullable = false)
+    private LocalDate fechaInicio;
+
+    @Column(name = "fecha_fin", nullable = false)
+    private LocalDate fechaFin;
+
+    // Constructor vacío
+    public Descuento() {
+    }
+
+    // Constructor con parámetros
+    public Descuento(int idDescuento, Producto producto, double porcentaje, String codDescuento, LocalDate fechaInicio, LocalDate fechaFin) {
+        this.idDescuento = idDescuento;
+        this.producto = producto;
+        this.porcentaje = porcentaje;
+        this.codDescuento = codDescuento;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+    }
+
+    // Getters y Setters
+
+    public int getIdDescuento() {
+        return idDescuento;
+    }
+
+    public void setIdDescuento(int idDescuento) {
+        this.idDescuento = idDescuento;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public double getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(double porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+
+    public String getCodDescuento() {
+        return codDescuento;
+    }
+
+    public void setCodDescuento(String codDescuento) {
+        this.codDescuento = codDescuento;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+}
