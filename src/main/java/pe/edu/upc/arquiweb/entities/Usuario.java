@@ -2,6 +2,7 @@ package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "Usuario")
 public class Usuario {
@@ -19,7 +20,7 @@ public class Usuario {
     private String contrasenahash;
 
     @Column(name = "direccion", nullable = false, length = 100)
-    private String direccion;
+    private String direccion;;
 
     @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
@@ -32,25 +33,6 @@ public class Usuario {
 
     @Column(name = "longitud", nullable = false)
     private double longitud;
-
-    //FK
-    /*
-    @ManyToOne
-    @JoinColumn(name = "idRol")
-    private Rol rol;
-
-    public Usuario(Rol rol) {
-        this.rol = rol;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
-    }
-    */
 
     public Usuario() {
     }
@@ -139,4 +121,6 @@ public class Usuario {
     public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
+
 }
+
