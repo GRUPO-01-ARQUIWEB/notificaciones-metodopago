@@ -2,21 +2,27 @@ package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.List;
+
 @Entity
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
-    @Column(name = "nombre", nullable = false, length = 20)
-    private String nombre;
+    @Column(name = "username", nullable = false, length = 20)
+    private String username;
+
+    @Column(name = "password", nullable = false, length = 100)
+    private String password;
+
+    @Column(length = 200)
+    private Boolean enabled;
 
     @Column(name = "correo", nullable = false, length = 100)
     private String correo;
-
-    @Column(name = "contrasenahash", nullable = false, length = 100)
-    private String contrasenahash;
 
     @Column(name = "direccion", nullable = false, length = 100)
     private String direccion;
@@ -34,32 +40,35 @@ public class Usuario {
     private double longitud;
 
     //FK
-    /*
-    @ManyToOne
-    @JoinColumn(name = "idRol")
-    private Rol rol;
 
-    public Usuario(Rol rol) {
-        this.rol = rol;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "idUsuario")
+    private List<Rol> roles;
+
+    public List<Rol> getRol() {
+        return roles;
     }
 
-    public Rol getRol() {
-        return rol;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
-    */
+
+    public void setRol(List<Rol> rol) {
+        this.roles = rol;
+    }
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombre, String correo, String contrasenahash, String direccion, String telefono, String rolClAd, double latitud, double longitud) {
+    public Usuario(int idUsuario, String username, String correo, String password, String direccion, String telefono, String rolClAd, double latitud, double longitud) {
         this.idUsuario = idUsuario;
-        this.nombre = nombre;
+        this.username = username;
         this.correo = correo;
-        this.contrasenahash = contrasenahash;
+        this.password = password;
         this.direccion = direccion;
         this.telefono = telefono;
         this.rolClAd = rolClAd;
@@ -76,12 +85,12 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getCorreo() {
@@ -92,12 +101,12 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getContrasenahash() {
-        return contrasenahash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContrasenahash(String contrasenahash) {
-        this.contrasenahash = contrasenahash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDireccion() {

@@ -8,8 +8,8 @@ public interface ICarritoCompraServices {
     public void insert(CarritoCompra carritoCompra);
     public void delete(int idProducto);
     public void update(CarritoCompra a);
-    public List<String[]> ordenarCarritoCompra();
-    public List<String[]> ordenarCarritoCompraUsuarioxFechaCreacion();
+    public List<String[]> orderCartPurchase();
+    public List<String[]> orderCartPurchaseUserdateCreaction();
 
 }
 
