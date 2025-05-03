@@ -21,22 +21,21 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private IUsuarioRepository repo;
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario user = repo.findOneByUsername(username);
+        Usuario usuario = repo.findOneByUsername(username);
 
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("User not exists", username));
+        if (usuario == null) {
+            throw new UsernameNotFoundException(String.format("Usuario no existe", username));
         }
 
         List<GrantedAuthority> roles = new ArrayList<>();
 
-        usuario.getRoles().forEach(rol -> {
-            roles.add(new SimpleGrantedAuthority(rol.getRol()));
+        usuario.getRol().forEach(rol -> {
+            roles.add(new SimpleGrantedAuthority(rol.getNombre_rol()));
         });
 
-        UserDetails ud = new org.springframework.security.core.userdetails.User(user.getNombre(), user.getcontrasena(), u(), true, true, true, roles);
+        UserDetails ud = new org.springframework.security.core.userdetails.User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true, roles);
 
         return ud;
     }
