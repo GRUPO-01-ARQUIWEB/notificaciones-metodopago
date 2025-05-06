@@ -5,12 +5,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.arquiweb.dtos.CantidadProductoDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoComparaDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoDTO2;
+import pe.edu.upc.arquiweb.dtos.*;
 import pe.edu.upc.arquiweb.entities.Producto;
-import pe.edu.upc.arquiweb.servicesinerfaces.IProductoService;
+import pe.edu.upc.arquiweb.servicesinterfaces.IProductoService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +35,13 @@ public class ProductoController {
         ModelMapper m = new ModelMapper();
         Producto p = m.map(dto, Producto.class);
         pS.insert(p);
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody ProductoDTO2 dto) {
+        ModelMapper m = new ModelMapper();
+        Producto p = m.map(dto, Producto.class);
+        pS.update(p);
     }
 
     @DeleteMapping("/eliminar{id}")
