@@ -15,7 +15,7 @@ public class Rol implements Serializable {
     @Column(name = "nombre_rol", nullable = false, length = 25)
     private String nombre_rol;
 
-    @Column(name = "descripcion", nullable = false, length = 25)
+    @Column(name = "descripcion", nullable = false, length = 150)
     private String descripcion;
 
     @ManyToOne
