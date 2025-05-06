@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.Resena;
 import pe.edu.upc.arquiweb.repositories.IResenaRepository;
-import pe.edu.upc.arquiweb.servicesinerfaces.IResenaService;
+import pe.edu.upc.arquiweb.servicesinterfaces.IResenaService;
 
 import java.util.List;
 

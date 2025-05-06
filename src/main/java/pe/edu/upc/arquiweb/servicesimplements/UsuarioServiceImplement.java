@@ -2,6 +2,7 @@ package pe.edu.upc.arquiweb.servicesimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.arquiweb.entities.Producto;
 import pe.edu.upc.arquiweb.entities.Usuario;
 import pe.edu.upc.arquiweb.repositories.IUsuarioRepository;
 import pe.edu.upc.arquiweb.servicesinterfaces.IUsuarioService;
@@ -16,6 +17,21 @@ public class UsuarioServiceImplement implements IUsuarioService {
     @Override
     public List<Usuario> list() {
         return uR.findAll();
+    }
+
+    @Override
+    public void insert(Usuario u) {
+        uR.save(u);
+    }
+
+    @Override
+    public void update(Usuario u) {
+        uR.save(u);
+    }
+
+    @Override
+    public void delete(int id) {
+        uR.deleteById(id);
     }
 
 }
