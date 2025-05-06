@@ -16,4 +16,5 @@ public interface IProductoService {
     public List<Producto> searchFilters(Double precioBase, String categoria);
     public List<Producto> compareProduct(int id1, int id2);
     public List<String[]> qualitybyStore();
+    List<Producto> productsWithLowStock();
 }

@@ -50,6 +50,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public ProductoDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         ProductoDTO dto = m.map(pS.searchId(id), ProductoDTO.class);
@@ -95,5 +96,11 @@ public class ProductoController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/stockbajo")
+    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
+    public List<Producto> listarProductosConStockBajo() {
+        return pS.productsWithLowStock();
     }
 }

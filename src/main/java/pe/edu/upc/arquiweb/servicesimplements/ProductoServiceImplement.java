@@ -61,4 +61,9 @@ public class ProductoServiceImplement implements IProductoService {
     public List<String[]> qualitybyStore() {
         return pR.cantidadProductos();
     }
+
+    @Override
+    public List<Producto> productsWithLowStock() {
+        return pR.productosConStockBajo();
+    }
 }
