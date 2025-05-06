@@ -3,6 +3,7 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.CantidadProductoDTO;
 import pe.edu.upc.arquiweb.dtos.ProductoComparaDTO;
@@ -23,6 +24,7 @@ public class ProductoController {
     private IProductoService pS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE')")
     public List<ProductoDTO> listar() {
         return pS.list().stream().map(p -> {
             ModelMapper m = new ModelMapper();
@@ -31,6 +33,7 @@ public class ProductoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('PRESIDENTE')")
     public void insertar(@RequestBody ProductoDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Producto p = m.map(dto, Producto.class);

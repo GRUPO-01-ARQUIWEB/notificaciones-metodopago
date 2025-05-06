@@ -10,13 +10,13 @@ public class Tienda {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTienda;
 
-    @Column(name = "nombre", nullable = false, length = 30)
+    @Column(name = "nombre", nullable = false, length = 70)
     private String nombre;
 
     @Column(name = "descripcion", nullable = false, length = 100)
     private String descripcion;
 
-    @Column(name = "ubicacion", nullable = false, length = 50)
+    @Column(name = "ubicacion", nullable = false, length = 70)
     private String ubicacion;
 
     @Column(name = "telefono", nullable = false, length = 7)

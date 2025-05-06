@@ -47,7 +47,7 @@ public class CarritoCompraController {
     }
     @GetMapping("/carrito-ordenado")
     public List<OrdenarCarritoCompraPRecioBaseDTO> listarCarritoOrdenado() {
-        List<String[]> filaLista = cS.ordenarCarritoCompra();
+        List<String[]> filaLista = cS.orderCartPurchase();
         List<OrdenarCarritoCompraPRecioBaseDTO> dtoLista = new ArrayList<>();
 
         for (String[] columna : filaLista) {
@@ -64,7 +64,7 @@ public class CarritoCompraController {
     }
     @GetMapping("/CarritoPorFechaOrden")
     public List<OrdenarProductosFechaCreacionDTO> listarCarritoPorFechaOrden() {
-        List<String[]> filaLista = cS.ordenarCarritoCompraUsuarioxFechaCreacion();
+        List<String[]> filaLista = cS.orderCartPurchaseUserdateCreaction();
         List<OrdenarProductosFechaCreacionDTO> dtoLista=new ArrayList<>();
         for (String[] columna : filaLista) {
             OrdenarProductosFechaCreacionDTO dto = new OrdenarProductosFechaCreacionDTO();
