@@ -32,7 +32,7 @@ public class DescuentoController {
         Descuento a =m.map(dto, Descuento.class);
         uS.insert(a);
     }
-    @DeleteMapping("/{Descuento}")
+    @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") int idDescuento)
     {
         uS.delete(idDescuento);
