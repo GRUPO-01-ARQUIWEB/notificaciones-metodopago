@@ -12,5 +12,3 @@ public interface ICarritoCompraServices {
     public List<String[]> ordenarCarritoCompraUsuarioxFechaCreacion();
 
 }
-
-

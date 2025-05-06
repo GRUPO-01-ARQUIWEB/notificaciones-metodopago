@@ -3,13 +3,11 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.arquiweb.dtos.CantidadProductoDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoComparaDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoDTO2;
+import pe.edu.upc.arquiweb.dtos.*;
 import pe.edu.upc.arquiweb.entities.Producto;
-import pe.edu.upc.arquiweb.servicesinerfaces.IProductoService;
+import pe.edu.upc.arquiweb.servicesinterfaces.IProductoService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +21,7 @@ public class ProductoController {
     private IProductoService pS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE')")
     public List<ProductoDTO> listar() {
         return pS.list().stream().map(p -> {
             ModelMapper m = new ModelMapper();
@@ -31,10 +30,18 @@ public class ProductoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('PRESIDENTE')")
     public void insertar(@RequestBody ProductoDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Producto p = m.map(dto, Producto.class);
         pS.insert(p);
+    }
+
+    @PutMapping
+    public void modificar(@RequestBody ProductoDTO2 dto) {
+        ModelMapper m = new ModelMapper();
+        Producto p = m.map(dto, Producto.class);
+        pS.update(p);
     }
 
     @DeleteMapping("/eliminar{id}")
@@ -43,6 +50,7 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public ProductoDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         ProductoDTO dto = m.map(pS.searchId(id), ProductoDTO.class);
@@ -88,5 +96,11 @@ public class ProductoController {
             dtoLista.add(dto);
         }
         return dtoLista;
+    }
+
+    @GetMapping("/stockbajo")
+    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
+    public List<Producto> listarProductosConStockBajo() {
+        return pS.productsWithLowStock();
     }
 }

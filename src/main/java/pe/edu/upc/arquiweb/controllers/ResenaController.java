@@ -2,12 +2,13 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.Resena2DTO;
 import pe.edu.upc.arquiweb.dtos.ResenaCalificaDTO;
 import pe.edu.upc.arquiweb.dtos.ResenaDTO;
 import pe.edu.upc.arquiweb.entities.Resena;
-import pe.edu.upc.arquiweb.servicesinerfaces.IResenaService;
+import pe.edu.upc.arquiweb.servicesinterfaces.IResenaService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,7 @@ public class ResenaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('PRESIDENTE')")
     public void insertar (@RequestBody ResenaDTO dto) {
         ModelMapper m = new ModelMapper();
         Resena r = m.map(dto, Resena.class);

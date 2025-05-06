@@ -1,6 +1,13 @@
 package pe.edu.upc.arquiweb.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 
@@ -13,10 +20,10 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProducto;
 
-    @Column(name = "nombreProducto", nullable = false, length = 20)
+    @Column(name = "nombreProducto", nullable = false, length = 40)
     private String nombreProducto;
 
-    @Column(name = "descripcion", nullable = false, length = 50)
+    @Column(name = "descripcion", nullable = false, length = 300)
     private String descripcion;
 
     @Column(name = "precioBase", nullable = false)

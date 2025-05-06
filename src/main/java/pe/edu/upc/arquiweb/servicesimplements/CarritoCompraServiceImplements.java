@@ -1,5 +1,6 @@
 package pe.edu.upc.arquiweb.servicesimplements;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
@@ -12,6 +13,10 @@ import java.util.List;
 public class CarritoCompraServiceImplements implements ICarritoCompraServices {
     @Autowired
     private ICarritoCompraRepository ccR;
+    @Autowired
+    private ModelMapper modelMapper;
+
+
     @Override
     public List<CarritoCompra> list(){
         return ccR.findAll();
@@ -42,3 +47,4 @@ public class CarritoCompraServiceImplements implements ICarritoCompraServices {
         return ccR.ordenarCarritoCompraUsuarioxFechaCreacion();
     }
 }
+

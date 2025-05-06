@@ -20,6 +20,9 @@ public class UsuarioDTO {
 
     private double longitud;
 
+
+    private boolean enabled;
+
     /*
     private Rol rol;
 
@@ -102,5 +105,13 @@ public class UsuarioDTO {
 
     public void setLongitud(double longitud) {
         this.longitud = longitud;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

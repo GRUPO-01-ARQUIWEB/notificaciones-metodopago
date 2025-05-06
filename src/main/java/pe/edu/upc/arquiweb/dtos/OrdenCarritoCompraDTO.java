@@ -2,7 +2,7 @@ package pe.edu.upc.arquiweb.dtos;
 
 import java.time.LocalDate;
 
-public class OrdenarCarritoCompraPRecioBaseDTO {
+public class OrdenCarritoCompraDTO {
     private int idUsuario;
     private int idCarrito;
     private int idProducto;
