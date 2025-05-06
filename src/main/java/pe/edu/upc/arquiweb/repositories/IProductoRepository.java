@@ -22,5 +22,9 @@ public interface IProductoRepository extends JpaRepository<Producto, Integer> {
             "from tienda t inner join producto p \n" +
             "on t.id_tienda = p.id_tienda   \n" +
             "group by t.nombre", nativeQuery = true)
-    List<String[]> cantidadProductos();
+    public List<String[]> cantidadProductos();
+
+    @Query(value = "SELECT * FROM producto WHERE stock < 10", nativeQuery = true)
+    public List<Producto> productosConStockBajo();
+
 }
