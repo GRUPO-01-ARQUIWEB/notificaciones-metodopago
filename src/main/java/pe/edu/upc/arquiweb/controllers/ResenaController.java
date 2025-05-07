@@ -21,6 +21,7 @@ public class ResenaController {
     private IResenaService rS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE')")
     public List<Resena2DTO> listar() {
         return rS.list().stream().map(r->{
             ModelMapper m = new ModelMapper();
