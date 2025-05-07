@@ -30,7 +30,6 @@ public class ProductoController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('PRESIDENTE')")
     public void insertar(@RequestBody ProductoDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Producto p = m.map(dto, Producto.class);
