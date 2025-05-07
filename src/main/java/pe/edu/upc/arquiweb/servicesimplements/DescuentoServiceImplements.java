@@ -24,6 +24,13 @@ public class DescuentoServiceImplements implements DescuentoService {
     public void delete(int idDescuento) {
         dR.deleteById(idDescuento);
     }
-
+    @Override
+    public List<String[]> ListarDescVigentes() {
+        return dR.ListarDescVigentes();
+    }
+    @Override
+    public List<Descuento> obtenerDescuentosOrdenados() {
+        return dR.listarDescuentosOrdenadosPorPorcentaje();
+    }
 
 }
