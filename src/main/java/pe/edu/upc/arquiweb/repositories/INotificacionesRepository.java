@@ -12,4 +12,7 @@ import java.util.List;
 public interface INotificacionesRepository extends JpaRepository<Notificaciones, Integer> {
    @Query("select a from Notificaciones a where a.mensaje like %:mensaje")
    public List<Notificaciones> buscar(@Param("mensaje")String mensaje);
+
+   @Query(value = "SELECT * FROM notificaciones WHERE fecha_envio >= CURRENT_DATE - INTERVAL :intervalo", nativeQuery = true)
+   List<Notificaciones> buscarNotificacionesPorIntervalo(@Param("intervalo") String intervalo);
 }
