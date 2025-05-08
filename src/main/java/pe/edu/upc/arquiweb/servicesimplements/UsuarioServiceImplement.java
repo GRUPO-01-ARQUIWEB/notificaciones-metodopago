@@ -18,4 +18,19 @@ public class UsuarioServiceImplement implements IUsuarioService {
         return uR.findAll();
     }
 
+    @Override
+    public void insert(Usuario u) {
+        uR.save(u);
+    }
+
+    @Override
+    public void update(Usuario u) {
+        uR.save(u);
+    }
+
+    @Override
+    public void delete(int id) {
+        uR.deleteById(id);
+    }
+
 }

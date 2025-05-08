@@ -1,14 +1,6 @@
 package pe.edu.upc.arquiweb.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -26,26 +18,27 @@ public class CarritoCompra {
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
+    @JoinColumn(name = "id_preciobase")
+    private double precioBase;
 
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDate fechaCreacion;
 
-    @Column(name = "id_metodo", nullable = false)
-    private int idMetodo; // Si después tienes una entidad MetodoPago, puedes relacionarla igual con @ManyToOne
+    @ManyToOne
+    @JoinColumn(name = "id_metodopago", nullable = false)
+    private MetodoPago idMetodo; // Si después tienes una entidad MetodoPago, puedes relacionarla igual con @ManyToOne
 
-    @Column(name = "id_montototal", nullable = false)
-    private int idMontototal;
 
     public CarritoCompra() {
     }
 
-    public CarritoCompra(int idCarrito, Usuario usuario, Producto producto, LocalDate fechaCreacion, int idMetodo, int idMontototal) {
+    public CarritoCompra(int idCarrito, MetodoPago idMetodo, LocalDate fechaCreacion, double precioBase, Producto producto, Usuario usuario) {
         this.idCarrito = idCarrito;
-        this.usuario = usuario;
-        this.producto = producto;
-        this.fechaCreacion = fechaCreacion;
         this.idMetodo = idMetodo;
-        this.idMontototal = idMontototal;
+        this.fechaCreacion = fechaCreacion;
+        this.precioBase = precioBase;
+        this.producto = producto;
+        this.usuario = usuario;
     }
 
     public int getIdCarrito() {
@@ -56,20 +49,12 @@ public class CarritoCompra {
         this.idCarrito = idCarrito;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public MetodoPago getIdMetodo() {
+        return idMetodo;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setIdMetodo(MetodoPago idMetodo) {
+        this.idMetodo = idMetodo;
     }
 
     public LocalDate getFechaCreacion() {
@@ -80,19 +65,27 @@ public class CarritoCompra {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public int getIdMetodo() {
-        return idMetodo;
+    public double getPrecioBase() {
+        return precioBase;
     }
 
-    public void setIdMetodo(int idMetodo) {
-        this.idMetodo = idMetodo;
+    public void setPrecioBase(double precioBase) {
+        this.precioBase = precioBase;
     }
 
-    public int getIdMontototal() {
-        return idMontototal;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdMontototal(int idMontototal) {
-        this.idMontototal = idMontototal;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -23,33 +23,19 @@ public class ChatProveedor {
     @JoinColumn(name = "idTienda")
     private Tienda tienda;
 
-
-    /*
-    public Chat getChat() {
-        return chat;
-    }
-
-    public void setChat(Chat chat) {
-        this.chat = chat;
-    }
-
     @ManyToOne
-    @JoinColumn(name = "idChat")
-    private Chat chat;
-
-    public ChatProveedor(Chat chat) {
-        this.chat = chat;
-    }
-    */
+    @JoinColumn(name="idMensaje")
+    private MensajeChat mensaje;
 
     public ChatProveedor() {
     }
 
-    public ChatProveedor(int idChat, LocalDate fechainicio, Usuario usuario, Tienda tienda) {
+    public ChatProveedor(int idChat, LocalDate fechainicio, Usuario usuario, Tienda tienda, MensajeChat mensaje) {
         this.idChat = idChat;
         this.fechainicio = fechainicio;
         this.usuario = usuario;
         this.tienda = tienda;
+        this.mensaje = mensaje;
     }
 
     public int getIdChat() {
@@ -82,5 +68,13 @@ public class ChatProveedor {
 
     public void setTienda(Tienda tienda) {
         this.tienda = tienda;
+    }
+
+    public MensajeChat getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(MensajeChat mensaje) {
+        this.mensaje = mensaje;
     }
 }
