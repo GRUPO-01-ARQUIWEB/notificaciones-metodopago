@@ -17,4 +17,19 @@ public class TiendaServiceImplement implements ITiendaService {
     public List<Tienda> list() {
         return tR.findAll();
     }
+
+    @Override
+    public void insert(Tienda t) {
+        tR.save(t);
+    }
+
+    @Override
+    public void delete(int id) {
+        tR.deleteById(id);
+    }
+
+    @Override
+    public Tienda searchId(int id) {
+        return tR.findById(id).orElse(new Tienda());
+    }
 }

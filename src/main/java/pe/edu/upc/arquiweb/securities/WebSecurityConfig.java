@@ -19,6 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
+
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
 
@@ -61,7 +62,12 @@ public class WebSecurityConfig {
         httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers(antMatcher("/login")).permitAll()
+                        .requestMatchers(antMatcher("/login"),
+                                antMatcher("/v3/api-docs/**"),
+                                antMatcher("/swagger-ui/**"),
+                                antMatcher("/swagger-ui.html"),
+                                antMatcher("/swagger-resources/**"),
+                                antMatcher("/webjars/**")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
@@ -70,5 +76,7 @@ public class WebSecurityConfig {
                 .sessionManagement(Customizer.withDefaults());
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
+
     }
+
 }

@@ -34,11 +34,11 @@ public class CarritoCompraServiceImplements implements ICarritoCompraServices {
     }
 
     @Override
-    public List<String[]> ordenarCarritoCompra() {
+    public List<String[]> orderCartPurchase() {
         return ccR.ordenarCarritoCompra();
     }
     @Override
-    public List<String[]> ordenarCarritoCompraUsuarioxFechaCreacion() {
+    public List<String[]> orderCartPurchaseUserdateCreaction() {
         return ccR.ordenarCarritoCompraUsuarioxFechaCreacion();
     }
 }

@@ -3,7 +3,7 @@ package pe.edu.upc.arquiweb.servicesimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.repositories.IProductoRepository;
-import pe.edu.upc.arquiweb.servicesinerfaces.IProductoService;
+import pe.edu.upc.arquiweb.servicesinterfaces.IProductoService;
 import pe.edu.upc.arquiweb.entities.Producto;
 
 import java.util.Arrays;
@@ -22,6 +22,11 @@ public class ProductoServiceImplement implements IProductoService {
 
     @Override
     public void insert(Producto p) {
+        pR.save(p);
+    }
+
+    @Override
+    public void update(Producto p) {
         pR.save(p);
     }
 
@@ -55,5 +60,10 @@ public class ProductoServiceImplement implements IProductoService {
     @Override
     public List<String[]> qualitybyStore() {
         return pR.cantidadProductos();
+    }
+
+    @Override
+    public List<Producto> productsWithLowStock() {
+        return pR.productosConStockBajo();
     }
 }
