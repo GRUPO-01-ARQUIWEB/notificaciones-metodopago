@@ -24,14 +24,12 @@ public class TiendaController {
         }).collect(Collectors.toList());
     }
 
-
     @PostMapping
     public void insertar(@RequestBody TiendaDTO dto) {
         ModelMapper m = new ModelMapper();
         Tienda t = m.map(dto, Tienda.class);
         iS.insert(t);
     }
-
 
     @DeleteMapping("/eliminar{id}")
     public void eliminar(@PathVariable("id") int id) {
