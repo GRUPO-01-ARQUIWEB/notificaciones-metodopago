@@ -45,5 +45,12 @@ public class NotificacionServiceImplement implements INotificacionService {
     public List<Notificaciones> search(String name) {
         return nR.buscar(name);
     }
+
+    @Override
+    public void sendNotificacion(String correo, String mensaje) {
+            System.out.println("Enviando notificación a " + correo + ": " + mensaje);
+
+
+    }
 }
 
