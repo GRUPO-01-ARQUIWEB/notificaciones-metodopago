@@ -26,8 +26,8 @@ public class CarritoCompraProductoController {
             dto.setId(x.getId());
             dto.setCantidad(x.getCantidad());
             dto.setStatus(x.getStatus());
-            dto.setIdProducto(x.getProducto().getId());
-            dto.setIdCarrito(x.getCarrito().getId());
+            dto.setIdProducto(x.getProducto().getIdProducto());
+            dto.setIdCarrito(x.getCarrito().getIdCarrito());
             dto.setMontoTotal(x.getMontoTotal());
             return dto;
         }).collect(Collectors.toList());
@@ -40,11 +40,11 @@ public class CarritoCompraProductoController {
         producto.setStatus(dto.getStatus());
 
         Producto p = new Producto();
-        p.setId(dto.getIdProducto());
+        p.setIdProducto(dto.getIdProducto());
         producto.setProducto(p);
 
         CarritoCompra c = new CarritoCompra();
-        c.setId(dto.getIdCarrito());
+        c.setIdCarrito(dto.getIdCarrito());
         producto.setCarrito(c);
 
         producto.setMontoTotal(dto.getMontoTotal());
@@ -65,11 +65,11 @@ public class CarritoCompraProductoController {
         producto.setStatus(dto.getStatus());
 
         Producto p = new Producto();
-        p.setId(dto.getIdProducto());
+        p.setIdProducto(dto.getIdProducto());
         producto.setProducto(p);
 
         CarritoCompra c = new CarritoCompra();
-        c.setId(dto.getIdCarrito());
+        c.setIdCarrito(dto.getIdCarrito());
         producto.setCarrito(c);
 
         producto.setMontoTotal(dto.getMontoTotal());
