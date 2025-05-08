@@ -1,5 +1,7 @@
 package pe.edu.upc.arquiweb.dtos;
 
+import pe.edu.upc.arquiweb.entities.Rol;
+
 public class UsuarioDTO {
 
     private int idUsuario;
@@ -23,7 +25,6 @@ public class UsuarioDTO {
 
     private boolean enabled;
 
-    /*
     private Rol rol;
 
     public Rol getRol() {
@@ -34,7 +35,6 @@ public class UsuarioDTO {
         this.rol = rol;
     }
 
-    */
     public int getIdUsuario() {
         return idUsuario;
     }
