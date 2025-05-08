@@ -11,4 +11,10 @@ public interface INotificacionService {
     public void update(Notificaciones a);
     public void delete(int id);
     public List<Notificaciones> search(String name);
+    public static void enviarNotificacion(String correo, String mensaje) {
+        System.out.println("Enviando notificación a: " + correo);
+        System.out.println("Mensaje: " + mensaje);
+    }
+
+    void sendNotificacion(String correo, String mensaje);
 }
