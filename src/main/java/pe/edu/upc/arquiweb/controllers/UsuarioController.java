@@ -2,6 +2,7 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.UsuarioDTO;
 import pe.edu.upc.arquiweb.entities.Usuario;
@@ -11,12 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/usuarios") //las rutas siempre en minúsculas
+@RequestMapping("/usuarios")
 public class UsuarioController {
     @Autowired
     private IUsuarioService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE')")
     public List<UsuarioDTO> listar(){
         return uS.list().stream().map(u ->{
             ModelMapper m= new ModelMapper();
