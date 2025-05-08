@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pe.edu.upc</groupId>
-	<artifactId>ARQUIWEB</artifactId>
+	<artifactId>arquiweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ARQUIWEB</name>
-	<description>ARQUIWEB</description>
+	<name>arquiweb</name>
+	<description>arquiweb</description>
 	<url/>
 	<licenses>
 		<license/>
