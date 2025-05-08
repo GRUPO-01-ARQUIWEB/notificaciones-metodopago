@@ -87,7 +87,6 @@ public class CarritoCompraController {
             dto.setFechaCreacion(LocalDate.parse(columna[4]));
             dtoLista.add(dto);
 
-
         }
         return dtoLista;
     }
