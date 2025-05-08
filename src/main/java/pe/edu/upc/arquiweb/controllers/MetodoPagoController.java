@@ -2,6 +2,7 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
@@ -58,4 +59,5 @@ public class MetodoPagoController {
             return m.map(h, MetodoPagoDTO.class);
         }).collect(Collectors.toList());
     }
+
 }
