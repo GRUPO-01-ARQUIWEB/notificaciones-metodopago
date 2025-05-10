@@ -28,41 +28,39 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-
         final String requestTokenHeader = request.getHeader("Authorization");
         String username = null;
         String jwtToken = null;
 
-        if (requestTokenHeader != null) {
-            if (requestTokenHeader.startsWith("Bearer ")) {
-                jwtToken = requestTokenHeader.substring(7);
-                try {
-                    username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-                } catch (IllegalArgumentException e) {
-                    System.out.println("No se puede encontrar el token JWT");
-                } catch (ExpiredJwtException e) {
-                    System.out.println("Token JWT ha expirado");
-                }
-            } else {
-                // OPCIONAL: Mostrar logs solo si estás en entorno local
-                String env = System.getenv("RENDER"); // Render define esta variable
-                boolean isRender = env != null;
-
-                if (!isRender) {
-                    System.out.println("Token inválido en desarrollo: " + requestTokenHeader);
-                }
-                // No hacer nada más si no es Bearer
-            }
+        // Si la URL es la de registro, no validamos el token
+        if (request.getRequestURI().contains("/registro")) {
+            chain.doFilter(request, response);
+            return;
         }
 
-        // Validar el token si se extrajo correctamente y el contexto aún no está autenticado
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        // JWT Token está en el formato "Bearer token"
+        if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
+            jwtToken = requestTokenHeader.substring(7);
+            try {
+                username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+            } catch (IllegalArgumentException e) {
+                System.out.println("No se puede encontrar el token JWT");
+            } catch (ExpiredJwtException e) {
+                System.out.println("Token JWT ha expirado");
+            }
+        } else {
+            logger.warn("JWT Token no inicia con la palabra Bearer");
+            System.out.println(requestTokenHeader);
+        }
 
+        // Si el username no es null y el contexto de seguridad está vacío, validamos el token
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
 
+            // Si el token es válido, configuramos Spring Security manualmente
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
