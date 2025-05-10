@@ -1,11 +1,11 @@
-package pe.edu.upc.arquiweb.servicesinterfaces;
+package pe.edu.upc.arquiweb.serviceinterfaces;
 
 import pe.edu.upc.arquiweb.dtos.MensajeChatDTO;
 import pe.edu.upc.arquiweb.dtos.MensajeTipoContadorDTO;
 
 import java.util.List;
 
-public interface MensajeChatService {
+public interface IMensajeChatService {
     public void insert(MensajeChatDTO dto);
     public List<MensajeChatDTO> list();
     public void delete(int id);

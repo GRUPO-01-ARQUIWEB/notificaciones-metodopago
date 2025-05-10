@@ -1,10 +1,10 @@
-package pe.edu.upc.arquiweb.servicesimplements;
+package pe.edu.upc.arquiweb.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.Notificaciones;
 import pe.edu.upc.arquiweb.repositories.INotificacionesRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.INotificacionService;
+import pe.edu.upc.arquiweb.serviceinterfaces.INotificacionService;
 
 import java.util.List;
 

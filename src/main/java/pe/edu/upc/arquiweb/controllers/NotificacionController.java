@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.NotificacionDTO;
 import pe.edu.upc.arquiweb.entities.Notificaciones;
-import pe.edu.upc.arquiweb.servicesinterfaces.INotificacionService;
+import pe.edu.upc.arquiweb.serviceinterfaces.INotificacionService;
 
 import java.util.List;
 import java.util.stream.Collectors;

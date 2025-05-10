@@ -8,7 +8,7 @@ import pe.edu.upc.arquiweb.dtos.CarritoCompraDTO;
 import pe.edu.upc.arquiweb.dtos.OrdenCarritoCompraDTO;
 import pe.edu.upc.arquiweb.dtos.OrdenarProductosPorFechaCreacionDTO;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
-import pe.edu.upc.arquiweb.servicesinterfaces.ICarritoCompraServices;
+import pe.edu.upc.arquiweb.serviceinterfaces.ICarritoCompraServices;
 
 
 import java.time.LocalDate;

@@ -1,10 +1,9 @@
-package pe.edu.upc.arquiweb.servicesinterfaces;
+package pe.edu.upc.arquiweb.serviceinterfaces;
 
-import pe.edu.upc.arquiweb.entities.CarritoCompra;
 import pe.edu.upc.arquiweb.entities.Descuento;
 import java.util.List;
 
-public interface DescuentoService {
+public interface IDescuentoService {
     public List<Descuento> list();
     public void insert(Descuento descuento);
 

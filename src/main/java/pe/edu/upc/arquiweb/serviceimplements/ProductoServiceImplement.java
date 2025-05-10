@@ -1,9 +1,9 @@
-package pe.edu.upc.arquiweb.servicesimplements;
+package pe.edu.upc.arquiweb.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.repositories.IProductoRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.IProductoService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IProductoService;
 import pe.edu.upc.arquiweb.entities.Producto;
 
 import java.util.Arrays;

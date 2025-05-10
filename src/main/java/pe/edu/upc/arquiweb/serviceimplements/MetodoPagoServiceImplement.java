@@ -1,9 +1,9 @@
-package pe.edu.upc.arquiweb.servicesimplements;
+package pe.edu.upc.arquiweb.serviceimplements;
 
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
 import pe.edu.upc.arquiweb.repositories.IMetodoPagoRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.IMetodoPagoService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IMetodoPagoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

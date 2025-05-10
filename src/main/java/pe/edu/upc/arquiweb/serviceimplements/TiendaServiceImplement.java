@@ -1,10 +1,10 @@
-package pe.edu.upc.arquiweb.servicesimplements;
+package pe.edu.upc.arquiweb.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.Tienda;
 import pe.edu.upc.arquiweb.repositories.ITiendaRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.ITiendaService;
+import pe.edu.upc.arquiweb.serviceinterfaces.ITiendaService;
 
 import java.util.List;
 

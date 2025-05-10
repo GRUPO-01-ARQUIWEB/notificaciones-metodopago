@@ -1,10 +1,10 @@
-package pe.edu.upc.arquiweb.servicesimplements;
+package pe.edu.upc.arquiweb.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.ChatProveedor;
 import pe.edu.upc.arquiweb.repositories.IChatProveedorRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.IChatProveedorService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IChatProveedorService;
 
 import java.util.List;
 

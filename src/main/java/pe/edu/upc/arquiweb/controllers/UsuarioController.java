@@ -6,7 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.UsuarioDTO;
 import pe.edu.upc.arquiweb.entities.Usuario;
-import pe.edu.upc.arquiweb.servicesinterfaces.IUsuarioService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IUsuarioService;
 
 import java.util.List;
 import java.util.stream.Collectors;

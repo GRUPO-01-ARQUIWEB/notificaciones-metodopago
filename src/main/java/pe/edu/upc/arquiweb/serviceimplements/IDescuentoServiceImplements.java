@@ -1,15 +1,15 @@
-package pe.edu.upc.arquiweb.servicesimplements;
+package pe.edu.upc.arquiweb.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.Descuento;
 import pe.edu.upc.arquiweb.repositories.IDescuentoRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.DescuentoService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 
 import java.util.List;
 
 @Service
-public class DescuentoServiceImplements implements DescuentoService {
+public class IDescuentoServiceImplements implements IDescuentoService {
     @Autowired
     private IDescuentoRepository dR;
     @Override

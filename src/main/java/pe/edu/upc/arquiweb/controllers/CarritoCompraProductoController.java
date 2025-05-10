@@ -7,7 +7,7 @@ import pe.edu.upc.arquiweb.dtos.ProductoCompradoDTO;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
 import pe.edu.upc.arquiweb.entities.CarritoCompraProducto;
 import pe.edu.upc.arquiweb.entities.Producto;
-import pe.edu.upc.arquiweb.servicesinterfaces.CarritoCompraProductoServices;
+import pe.edu.upc.arquiweb.serviceinterfaces.CarritoCompraProductoServices;
 
 import java.util.List;
 import java.util.stream.Collectors;

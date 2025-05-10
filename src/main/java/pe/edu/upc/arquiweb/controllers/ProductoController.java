@@ -7,7 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.*;
 import pe.edu.upc.arquiweb.entities.Producto;
-import pe.edu.upc.arquiweb.servicesinterfaces.IProductoService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IProductoService;
 
 import java.util.ArrayList;
 import java.util.List;

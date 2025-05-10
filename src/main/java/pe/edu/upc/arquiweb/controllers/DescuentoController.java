@@ -8,7 +8,7 @@ import pe.edu.upc.arquiweb.dtos.DescuentoDTO;
 import pe.edu.upc.arquiweb.dtos.ListarDescuentoVigentesDTO;
 import pe.edu.upc.arquiweb.dtos.ListarDescuentosOrdenadosPorPorcentajeDTO;
 import pe.edu.upc.arquiweb.entities.Descuento;
-import pe.edu.upc.arquiweb.servicesinterfaces.DescuentoService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 
 
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("descuentos")
 public class DescuentoController {
     @Autowired
-    private DescuentoService uS;
+    private IDescuentoService uS;
 
     @GetMapping
     public List<DescuentoDTO> listar() {

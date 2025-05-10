@@ -1,4 +1,4 @@
-package pe.edu.upc.arquiweb.servicesinterfaces;
+package pe.edu.upc.arquiweb.serviceinterfaces;
 
 import pe.edu.upc.arquiweb.entities.Notificaciones;
 
