@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.MensajeChatDTO;
 import pe.edu.upc.arquiweb.dtos.MensajeTipoContadorDTO;
+import pe.edu.upc.arquiweb.serviceinterfaces.IMensajeChatService;
 
 import java.util.List;
 
