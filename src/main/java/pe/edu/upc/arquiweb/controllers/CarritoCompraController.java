@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.CarritoCompraDTO;
 
 import pe.edu.upc.arquiweb.dtos.OrdenCarritoCompraDTO;
-import pe.edu.upc.arquiweb.dtos.OrdenarProductosPorFechaCreacionDTO;
+import pe.edu.upc.arquiweb.dtos.BuscarCarritoCompraIDDTO;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
 import pe.edu.upc.arquiweb.servicesinterfaces.ICarritoCompraServices;
 
@@ -74,12 +74,12 @@ public class CarritoCompraController {
         }
         return dtoLista;
     }
-    @GetMapping("/CarritoPorFechaOrden")
-    public List<OrdenarProductosPorFechaCreacionDTO> listarCarritoPorFechaOrden() {
-        List<String[]> filaLista = uS.ordenarCarritoCompraUsuarioxFechaCreacion();
-        List<OrdenarProductosPorFechaCreacionDTO> dtoLista=new ArrayList<>();
+    @GetMapping("/BuscarCarritoPorID")
+    public List<BuscarCarritoCompraIDDTO> buscarCarritoxID(@RequestParam("idUsuario") int idUsuario) {
+        List<String[]> filaLista = uS.BuscarCarritoCompraXID(idUsuario);
+        List<BuscarCarritoCompraIDDTO> dtoLista=new ArrayList<>();
         for (String[] columna : filaLista) {
-            OrdenarProductosPorFechaCreacionDTO dto = new OrdenarProductosPorFechaCreacionDTO();
+            BuscarCarritoCompraIDDTO dto = new BuscarCarritoCompraIDDTO();
             dto.setIdCarrito(Integer.parseInt(columna[0]));
             dto.setNombre(columna[1]);
             dto.setNombreProducto(columna[2]);
