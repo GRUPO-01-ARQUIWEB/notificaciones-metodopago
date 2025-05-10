@@ -45,7 +45,7 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "idTipoCategoria")
-    private TipoCategoria tipoCategoria;
+    private  TipoCategoria tipoCategoria;
 
     @ManyToOne
     @JoinColumn(name = "idResena")
@@ -136,8 +136,7 @@ public class Producto {
         return tipoCategoria;
     }
 
-    public void setTipoCategoria(TipoCategoria tipoCategoria) {
-        this.tipoCategoria = tipoCategoria;
+    public void setTipoCategoria(TipoCategoria tipoCategoria) {this.tipoCategoria = tipoCategoria;
     }
 
     public Resena getResena() {
