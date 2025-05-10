@@ -5,6 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.UsuarioDTO;
 import pe.edu.upc.arquiweb.dtos.UsuarioRegistroDTO;
@@ -21,6 +22,7 @@ public class UsuarioController {
     private IUsuarioService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE')")
     public List<UsuarioRegistroDTO> listar(){
         return uS.list().stream().map(u ->{
             ModelMapper m= new ModelMapper();
