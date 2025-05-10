@@ -60,6 +60,7 @@ pe\edu\upc\arquiweb\controllers\NotificacionController.class
 pe\edu\upc\arquiweb\entities\CarritoCompra.class
 pe\edu\upc\arquiweb\controllers\ChatProveedorController.class
 pe\edu\upc\arquiweb\servicesinterfaces\IProductoService.class
+pe\edu\upc\arquiweb\dtos\UsuarioRegistroDTO.class
 pe\edu\upc\arquiweb\servicesimplements\DescuentoServiceImplements.class
 pe\edu\upc\arquiweb\entities\MetodoPago.class
 pe\edu\upc\arquiweb\securities\JwtRequest.class
