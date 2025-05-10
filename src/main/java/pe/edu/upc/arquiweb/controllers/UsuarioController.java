@@ -28,12 +28,12 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/registro")
+    @PostMapping
     public ResponseEntity<String> registrar(@Valid @RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.insert(u);
-        String mensaje = "Aplicación registrada correctamente: " + dto.getUsername();
+        String mensaje = "Usuario registrado correctamente: " + dto.getUsername();
         return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
