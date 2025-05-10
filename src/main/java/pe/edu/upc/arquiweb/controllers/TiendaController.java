@@ -18,7 +18,6 @@ public class TiendaController {
     private ITiendaService iS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public List<TiendaDTO> listar(){
         return iS.list().stream().map(i ->{
             ModelMapper m= new ModelMapper();
