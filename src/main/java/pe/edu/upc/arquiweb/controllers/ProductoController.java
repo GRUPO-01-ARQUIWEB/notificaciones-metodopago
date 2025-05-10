@@ -21,7 +21,6 @@ public class ProductoController {
     private IProductoService pS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('GERENTE')")
     public List<ProductoDTO> listar() {
         return pS.list().stream().map(p -> {
             ModelMapper m = new ModelMapper();
@@ -49,7 +48,6 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public ProductoDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         ProductoDTO dto = m.map(pS.searchId(id), ProductoDTO.class);
@@ -98,7 +96,6 @@ public class ProductoController {
     }
 
     @GetMapping("/stockbajo")
-    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public List<Producto> listarProductosConStockBajo() {
         return pS.productsWithLowStock();
     }

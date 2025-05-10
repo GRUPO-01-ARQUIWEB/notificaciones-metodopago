@@ -21,7 +21,6 @@ public class ResenaController {
     private IResenaService rS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('GERENTE')")
     public List<Resena2DTO> listar() {
         return rS.list().stream().map(r->{
             ModelMapper m = new ModelMapper();
@@ -30,7 +29,6 @@ public class ResenaController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('PRESIDENTE')")
     public void insertar (@RequestBody ResenaDTO dto) {
         ModelMapper m = new ModelMapper();
         Resena r = m.map(dto, Resena.class);
