@@ -16,8 +16,6 @@ public class UsuarioDTO {
 
     private String telefono;
 
-    private String rolClAd;
-
     private double latitud;
 
     private double longitud;
@@ -85,13 +83,6 @@ public class UsuarioDTO {
         this.telefono = telefono;
     }
 
-    public String getRolClAd() {
-        return rolClAd;
-    }
-
-    public void setRolClAd(String rolClAd) {
-        this.rolClAd = rolClAd;
-    }
 
     public double getLatitud() {
         return latitud;

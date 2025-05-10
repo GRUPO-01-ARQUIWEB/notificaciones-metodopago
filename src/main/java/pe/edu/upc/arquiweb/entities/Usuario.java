@@ -30,9 +30,6 @@ public class Usuario implements Serializable {
     @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
 
-    @Column(name = "rolClAd", nullable = false, length = 20)
-    private String rolClAd;
-
     @Column(name = "latitud", nullable = false)
     private double latitud;
 
@@ -64,14 +61,13 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String username, String correo, String password, String direccion, String telefono, String rolClAd, double latitud, double longitud) {
+    public Usuario(int idUsuario, String username, String correo, String password, String direccion, String telefono, double latitud, double longitud) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.correo = correo;
         this.password = password;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.rolClAd = rolClAd;
         this.latitud = latitud;
         this.longitud = longitud;
     }
@@ -125,13 +121,6 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
-    public String getRolClAd() {
-        return rolClAd;
-    }
-
-    public void setRolClAd(String rolClAd) {
-        this.rolClAd = rolClAd;
-    }
 
     public double getLatitud() {
         return latitud;
