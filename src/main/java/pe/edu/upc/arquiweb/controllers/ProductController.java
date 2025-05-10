@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.ProductoDTO;
 import pe.edu.upc.arquiweb.entities.Producto;
-import pe.edu.upc.arquiweb.servicesinterfaces.ProductServices;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -6,7 +6,7 @@ import pe.edu.upc.arquiweb.entities.MensajeChat;
 
 import java.util.List;
 
-public interface MensajeChatRepository extends JpaRepository<MensajeChat, Integer> {
+public interface IMensajeChatRepository extends JpaRepository<MensajeChat, Integer> {
     @Query(value = "SELECT tipo, COUNT(*) AS cantidad FROM mensaje_chat GROUP BY tipo ORDER BY cantidad DESC", nativeQuery = true)
     List<Object[]> contarMensajesPorTipoRaw();
 

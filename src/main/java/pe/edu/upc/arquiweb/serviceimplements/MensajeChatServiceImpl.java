@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.dtos.MensajeChatDTO;
 import pe.edu.upc.arquiweb.dtos.MensajeTipoContadorDTO;
 import pe.edu.upc.arquiweb.entities.MensajeChat;
-import pe.edu.upc.arquiweb.repositories.MensajeChatRepository;
+import pe.edu.upc.arquiweb.repositories.IMensajeChatRepository;
 import pe.edu.upc.arquiweb.servicesinterfaces.MensajeChatService;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.List;
 public class MensajeChatServiceImpl implements MensajeChatService {
 
     @Autowired
-    private MensajeChatRepository mensajeChatRepository;
+    private IMensajeChatRepository IMensajeChatRepository;
 
     @Override
     public void insert(MensajeChatDTO dto) {
@@ -25,12 +25,12 @@ public class MensajeChatServiceImpl implements MensajeChatService {
         m.setTipo(dto.getTipo());
         m.setUrlVideo(dto.getUrlVideo());
         m.setFechaEnvio(dto.getFechaEnvio());
-        mensajeChatRepository.save(m);
+        IMensajeChatRepository.save(m);
     }
 
     @Override
     public List<MensajeChatDTO> list() {
-        List<MensajeChat> lista = mensajeChatRepository.findAll();
+        List<MensajeChat> lista = IMensajeChatRepository.findAll();
         List<MensajeChatDTO> dtoList = new ArrayList<>();
         for (MensajeChat m : lista) {
             MensajeChatDTO dto = new MensajeChatDTO();
@@ -47,7 +47,7 @@ public class MensajeChatServiceImpl implements MensajeChatService {
 
     @Override
     public void delete(int id) {
-        mensajeChatRepository.deleteById(id);
+        IMensajeChatRepository.deleteById(id);
     }
 
     @Override
@@ -59,12 +59,12 @@ public class MensajeChatServiceImpl implements MensajeChatService {
         m.setTipo(dto.getTipo());
         m.setUrlVideo(dto.getUrlVideo());
         m.setFechaEnvio(dto.getFechaEnvio());
-        mensajeChatRepository.save(m);
+        IMensajeChatRepository.save(m);
     }
 
     @Override
     public List<MensajeTipoContadorDTO> contarMensajesPorTipo() {
-        List<Object[]> data = mensajeChatRepository.contarMensajesPorTipoRaw();
+        List<Object[]> data = IMensajeChatRepository.contarMensajesPorTipoRaw();
         List<MensajeTipoContadorDTO> lista = new ArrayList<>();
         for (Object[] obj : data) {
             MensajeTipoContadorDTO dto = new MensajeTipoContadorDTO(

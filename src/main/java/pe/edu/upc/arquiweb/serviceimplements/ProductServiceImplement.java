@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.Producto;
 import pe.edu.upc.arquiweb.repositories.ProductRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.ProductServices;
 
 import java.util.List;
 @Service

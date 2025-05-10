@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.dtos.ProductoCompradoDTO;
 import pe.edu.upc.arquiweb.entities.CarritoCompraProducto;
-import pe.edu.upc.arquiweb.repositories.CarritoCompraProductoRepository;
 import pe.edu.upc.arquiweb.servicesinterfaces.CarritoCompraProductoServices;
 
 import java.util.ArrayList;

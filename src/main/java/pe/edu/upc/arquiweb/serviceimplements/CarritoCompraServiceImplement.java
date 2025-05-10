@@ -3,7 +3,6 @@ package pe.edu.upc.arquiweb.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
-import pe.edu.upc.arquiweb.repositories.CarritCompraRepository;
 import pe.edu.upc.arquiweb.servicesinterfaces.CarritoCompraServices;
 
 import java.util.List;
