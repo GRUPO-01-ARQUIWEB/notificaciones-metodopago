@@ -16,6 +16,7 @@ public class TipoCategoria {
     @Column(name ="nombre_categoria", nullable = false, length = 50)
     private String nombre_categoria;
 
+    //FK
     @ManyToOne
     @JoinColumn(name = "idTienda")
     private Tienda tienda;
