@@ -1,5 +1,6 @@
 package pe.edu.upc.arquiweb.dtos;
 
+
 import java.time.LocalDate;
 
 public class CarritoCompraDTO {
@@ -8,8 +9,7 @@ public class CarritoCompraDTO {
     private int idProducto; //PRODUCTO FK
     private LocalDate fechaCreacion;
     private int idMetodo; //METODO FK
-    private int idMontototal;
-
+    private double precioBase;
 
     public int getIdCarrito() {
         return idCarrito;
@@ -19,28 +19,12 @@ public class CarritoCompraDTO {
         this.idCarrito = idCarrito;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public double getPrecioBase() {
+        return precioBase;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
+    public void setPrecioBase(double precioBase) {
+        this.precioBase = precioBase;
     }
 
     public int getIdMetodo() {
@@ -51,11 +35,27 @@ public class CarritoCompraDTO {
         this.idMetodo = idMetodo;
     }
 
-    public int getIdMontototal() {
-        return idMontototal;
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setIdMontototal(int idMontototal) {
-        this.idMontototal = idMontototal;
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public int getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

@@ -1,6 +1,7 @@
 package pe.edu.upc.arquiweb.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
 import org.springframework.stereotype.Repository;
 
@@ -24,18 +25,18 @@ public interface ICarritoCompraRepository extends JpaRepository <CarritoCompra,I
             "  p.precio_base DESC", nativeQuery = true)
     public List<String[]> ordenarCarritoCompra();
 
-    @Query(value = " SELECT \n" +
-            "    c.id_carrito,\n" +
-            "    u.nombre AS nombre_usuario,\n" +
-            "    p.nombre AS nombre_producto,\n" +
-            "    p.precio_base,\n" +
-            "    c.fecha_creacion\n" +
-            " FROM carrito_compra c\n" +
-            " JOIN producto p ON c.id_producto = p.id_producto\n" +
-            " JOIN usuario u ON c.id_usuario = u.id_usuario\n" +
-            " WHERE c.id_usuario = 5\n" +
+    @Query(value =" SELECT " +
+            " c.id_carrito, " +
+            " u.nombre AS nombre_usuario, " +
+            " p.nombre AS nombre_producto, " +
+            " p.precio_base, " +
+            " c.fecha_creacion " +
+            " FROM carrito_compra c " +
+            " JOIN producto p ON c.id_producto = p.id_producto " +
+            " JOIN usuario u ON c.id_usuario = u.id_usuario " +
+            " WHERE c.id_usuario = :idUsuario " +
             " ORDER BY c.fecha_creacion DESC", nativeQuery = true)
-    public List<String[]> ordenarCarritoCompraUsuarioxFechaCreacion();
+    public List<String[]> BuscarCarritoCompraXID(@Param("idUsuario") int idUsuario);
 
 }
 

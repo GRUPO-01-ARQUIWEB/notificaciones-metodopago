@@ -57,4 +57,8 @@ public class NotificacionDTO {
     public void setLeido(boolean leido) {
         this.leido = leido;
     }
+
+    public String getCorreo() {
+        return "correo enviado";
+    }
 }

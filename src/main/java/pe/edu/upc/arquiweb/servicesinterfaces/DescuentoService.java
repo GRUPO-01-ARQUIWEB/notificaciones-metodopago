@@ -7,5 +7,8 @@ import java.util.List;
 public interface DescuentoService {
     public List<Descuento> list();
     public void insert(Descuento descuento);
+
     public void delete(int idProducto);
+    public List<String[]> ListarDescVigentes();
+    public List<Descuento>obtenerDescuentosOrdenados();
 }
