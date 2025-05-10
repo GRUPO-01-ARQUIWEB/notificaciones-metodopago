@@ -9,6 +9,6 @@ public interface ICarritoCompraServices {
     public void delete(int idProducto);
     public void update(CarritoCompra a);
     public List<String[]> ordenarCarritoCompra();
-    public List<String[]> ordenarCarritoCompraUsuarioxFechaCreacion();
+    public List<String[]> BuscarCarritoCompraXID(int idUsuario);
 
 }

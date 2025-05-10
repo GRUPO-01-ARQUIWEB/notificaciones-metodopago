@@ -41,6 +41,7 @@ public class DescuentoController {
     {
         uS.delete(idDescuento);
     }
+
     @GetMapping("/listarDescVigente")
     public List<ListarDescuentoVigentesDTO> listardescuentvigentes() {
         List<String[]> filaLista = uS.ListarDescVigentes();
