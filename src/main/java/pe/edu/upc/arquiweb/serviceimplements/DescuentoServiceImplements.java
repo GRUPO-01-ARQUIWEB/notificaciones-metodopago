@@ -9,7 +9,7 @@ import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 import java.util.List;
 
 @Service
-public class IDescuentoServiceImplements implements IDescuentoService {
+public class DescuentoServiceImplements implements IDescuentoService {
     @Autowired
     private IDescuentoRepository dR;
     @Override
