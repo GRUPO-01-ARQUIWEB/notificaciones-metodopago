@@ -16,13 +16,7 @@ public class UsuarioDTO {
 
     private String telefono;
 
-    private double latitud;
-
-    private double longitud;
-
-
     private boolean enabled;
-
 
     private Rol rol;
 
@@ -83,22 +77,6 @@ public class UsuarioDTO {
         this.telefono = telefono;
     }
 
-
-    public double getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public double getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
-    }
 
     public boolean isEnabled() {
         return enabled;
