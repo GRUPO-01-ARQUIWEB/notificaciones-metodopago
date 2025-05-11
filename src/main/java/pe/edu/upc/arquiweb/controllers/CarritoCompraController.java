@@ -1,6 +1,7 @@
 package pe.edu.upc.arquiweb.controllers;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,9 +59,8 @@ public class CarritoCompraController {
         return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") int idProducto)
-    {
+    @DeleteMapping("/eliminar{id}")
+    public void eliminar(@Valid @PathVariable("id") @Min(1) Integer idProducto) {
         uS.delete(idProducto);
     }
 
