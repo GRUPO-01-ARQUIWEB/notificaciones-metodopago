@@ -30,12 +30,6 @@ public class Usuario implements Serializable {
     @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
 
-    @Column(name = "latitud", nullable = false)
-    private double latitud;
-
-    @Column(name = "longitud", nullable = false)
-    private double longitud;
-
     //FK
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -61,15 +55,13 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String username, String correo, String password, String direccion, String telefono, double latitud, double longitud) {
+    public Usuario(int idUsuario, String username, String correo, String password, String direccion, String telefono) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.correo = correo;
         this.password = password;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.latitud = latitud;
-        this.longitud = longitud;
     }
 
 
@@ -122,19 +114,4 @@ public class Usuario implements Serializable {
     }
 
 
-    public double getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public double getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
-    }
 }
