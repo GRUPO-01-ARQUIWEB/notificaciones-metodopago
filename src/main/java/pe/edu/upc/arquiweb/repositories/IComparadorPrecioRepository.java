@@ -11,12 +11,9 @@ import java.util.List;
 
 @Repository
 public interface IComparadorPrecioRepository extends JpaRepository<ComparadorPrecio, Integer> {
-    @Query("SELECT NEW pe.edu.upc.arquiweb.dtos.ComparadorPrecioDTO(" +
-            "p.nombreProducto, t.nombre, cp.precio, cp.fechaActualizacion) \n" +
-            "FROM ComparadorPrecio cp \n" +
-            "JOIN cp.producto p \n" +
-            "JOIN cp.tienda t \n" +
-            "WHERE p.idProducto IN :productosIds \n" +
-            "ORDER BY p.nombreProducto, cp.precio ASC \n")
-    List<ComparadorPrecioDTO> compar(@Param("producID") List<Integer> producID);
+    @Query("SELECT cp FROM ComparadorPrecio cp " +
+            "JOIN FETCH cp.producto p " +
+            "JOIN FETCH cp.tienda t " +
+            "WHERE p.idProducto IN :productosIds")
+    List<ComparadorPrecio> findForComparison(@Param("productosIds") List<Integer> productosIds);
 }

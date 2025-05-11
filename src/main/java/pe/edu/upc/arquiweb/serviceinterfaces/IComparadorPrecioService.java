@@ -10,5 +10,5 @@ public interface IComparadorPrecioService {
     public void insert (ComparadorPrecio cp);
     public void delete (int id);
     public void update(ComparadorPrecio cp);
-    public List<ComparadorPrecioDTO> compararproductos(List<Integer> producID);
+    public List<ComparadorPrecioDTO> compararPrecio(List<Integer> prodID);
 }

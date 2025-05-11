@@ -8,13 +8,9 @@ import java.time.LocalDate;
 public class ComparadorPrecioDTO {
 
     private int idComparador;
-
     private double precio;
-
     private LocalDate fechaActualizacion;
-
     private Producto producto;
-
     private Tienda tienda;
 
     public int getIdComparador() {

@@ -45,8 +45,8 @@ public class ComparadorPrecioController {
     }
 
     @GetMapping("/CompararaProducto")
-    public ResponseEntity<List<ComparadorPrecioDTO>> compararProductos(
+    public ResponseEntity<List<ComparadorPrecioDTO>> compararPrecio(
             @RequestParam List<Integer> productosIds) {
-        return ResponseEntity.ok(cpS.compararproductos(productosIds));
+        return ResponseEntity.ok(cpS.compararPrecio(productosIds));
     }
 }
