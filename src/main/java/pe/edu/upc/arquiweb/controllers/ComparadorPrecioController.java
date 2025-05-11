@@ -2,6 +2,7 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.ComparadorPrecioDTO;
 import pe.edu.upc.arquiweb.entities.ComparadorPrecio;
@@ -41,5 +42,11 @@ public class ComparadorPrecioController {
     @DeleteMapping("/eliminar{id}")
     public void eliminar(@PathVariable("id") int id) {
         cpS.delete(id);
+    }
+
+    @GetMapping("/CompararaProducto")
+    public ResponseEntity<List<ComparadorPrecioDTO>> compararProductos(
+            @RequestParam List<Integer> productosIds) {
+        return ResponseEntity.ok(cpS.compararproductos(productosIds));
     }
 }
