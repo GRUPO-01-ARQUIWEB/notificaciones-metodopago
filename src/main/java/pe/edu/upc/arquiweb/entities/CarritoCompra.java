@@ -18,15 +18,16 @@ public class CarritoCompra {
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
-    @JoinColumn(name = "id_preciobase")
-    private double precioBase;
+
+    @JoinColumn(name = "precioBase")
+    private double  precioBase;
 
     @Column(name = "fecha_creacion", nullable = false)
     private LocalDate fechaCreacion;
 
     @ManyToOne
     @JoinColumn(name = "id_metodopago", nullable = false)
-    private MetodoPago idMetodo; // Si después tienes una entidad MetodoPago, puedes relacionarla igual con @ManyToOne
+    private MetodoPago idMetodo;
 
 
     public CarritoCompra() {
