@@ -43,14 +43,10 @@ public class Producto {
     @JoinColumn(name = "idTienda")
     private Tienda tienda;
 
-    @ManyToOne
-    @JoinColumn(name = "idTipoCategoria")
-    private  TipoCategoria tipoCategoria;
-
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombreProducto, String descripcion, double precioBase, int stock, String categoria, LocalDate fechaCreacion, Tienda tienda, TipoCategoria tipoCategoria) {
+    public Producto(int idProducto, String nombreProducto, String descripcion, double precioBase, int stock, String categoria, LocalDate fechaCreacion, Tienda tienda) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
@@ -59,7 +55,7 @@ public class Producto {
         this.categoria = categoria;
         this.fechaCreacion = fechaCreacion;
         this.tienda = tienda;
-        this.tipoCategoria = tipoCategoria;
+
     }
 
     public int getIdProducto() {
@@ -126,10 +122,4 @@ public class Producto {
         this.tienda = tienda;
     }
 
-    public TipoCategoria getTipoCategoria() {
-        return tipoCategoria;
-    }
-
-    public void setTipoCategoria(TipoCategoria tipoCategoria) {this.tipoCategoria = tipoCategoria;
-    }
 }
