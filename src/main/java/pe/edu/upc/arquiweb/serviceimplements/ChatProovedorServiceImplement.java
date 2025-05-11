@@ -17,4 +17,19 @@ public class ChatProovedorServiceImplement implements IChatProveedorService {
     public List<ChatProveedor> list() {
         return cR.findAll();
     }
+
+    @Override
+    public void insert(ChatProveedor cp) {
+        cR.save(cp);
+    }
+
+    @Override
+    public void update(ChatProveedor cp) {
+        cR.save(cp);
+    }
+
+    @Override
+    public void delete(int id) {
+        cR.deleteById(id);
+    }
 }
