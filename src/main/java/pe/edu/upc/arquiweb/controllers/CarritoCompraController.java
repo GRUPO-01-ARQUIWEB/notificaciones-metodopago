@@ -3,6 +3,7 @@ package pe.edu.upc.arquiweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.arquiweb.dtos.CarritoCompra2DTO;
 import pe.edu.upc.arquiweb.dtos.CarritoCompraDTO;
 
 import pe.edu.upc.arquiweb.dtos.OrdenCarritoCompraDTO;
@@ -24,12 +25,13 @@ public class CarritoCompraController {
 
 
     @GetMapping("/ListarProducto")
-    public List<CarritoCompraDTO> listar() {
+    public List<CarritoCompra2DTO> listar() {
         return uS.list().stream().map(carritoCompra -> {
-            CarritoCompraDTO dto = new CarritoCompraDTO();
+            CarritoCompra2DTO dto = new CarritoCompra2DTO();
             dto.setIdCarrito(carritoCompra.getIdCarrito());
             dto.setIdUsuario(carritoCompra.getUsuario().getIdUsuario());
             dto.setIdProducto(carritoCompra.getProducto().getIdProducto());
+            dto.setNombreproducto(carritoCompra.getProducto().getNombreProducto());
             dto.setFechaCreacion(carritoCompra.getFechaCreacion());
             dto.setIdMetodo(carritoCompra.getIdMetodo().getIdMetodo());
             dto.setPrecioBase(carritoCompra.getPrecioBase());
@@ -86,7 +88,6 @@ public class CarritoCompraController {
             dto.setPrecioBase(Double.parseDouble(columna[3]));
             dto.setFechaCreacion(LocalDate.parse(columna[4]));
             dtoLista.add(dto);
-
 
         }
         return dtoLista;
