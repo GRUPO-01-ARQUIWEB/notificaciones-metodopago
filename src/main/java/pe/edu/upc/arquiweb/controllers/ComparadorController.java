@@ -4,38 +4,39 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.arquiweb.dtos.ComparadorDTO;
 import pe.edu.upc.arquiweb.dtos.ComparadorPrecioDTO;
-import pe.edu.upc.arquiweb.entities.ComparadorPrecio;
-import pe.edu.upc.arquiweb.serviceinterfaces.IComparadorPrecioService;
+import pe.edu.upc.arquiweb.entities.Comparador;
+import pe.edu.upc.arquiweb.serviceinterfaces.IComparadorService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/comparadores")
-public class ComparadorPrecioController {
+public class ComparadorController {
     @Autowired
-    private IComparadorPrecioService cpS;
+    private IComparadorService cpS;
 
     @GetMapping
-    public List<ComparadorPrecioDTO> listar(){
+    public List<ComparadorDTO> listar(){
         return cpS.list().stream().map(c ->{
             ModelMapper m= new ModelMapper();
-            return m.map(c,ComparadorPrecioDTO.class);
+            return m.map(c,ComparadorDTO.class);
         }).collect(Collectors.toList());
     }
 
     @PostMapping
-    public void insertar(@RequestBody ComparadorPrecioDTO dto) {
+    public void insertar(@RequestBody ComparadorDTO dto) {
         ModelMapper m = new ModelMapper();
-        ComparadorPrecio c = m.map(dto, ComparadorPrecio.class);
+        Comparador c = m.map(dto, Comparador.class);
         cpS.insert(c);
     }
 
     @PutMapping
-    public void modificar(@RequestBody ComparadorPrecioDTO dto) {
+    public void modificar(@RequestBody ComparadorDTO dto) {
         ModelMapper m = new ModelMapper();
-        ComparadorPrecio c = m.map(dto, ComparadorPrecio.class);
+        Comparador c = m.map(dto, Comparador.class);
         cpS.update(c);
     }
 
@@ -44,9 +45,10 @@ public class ComparadorPrecioController {
         cpS.delete(id);
     }
 
-    @GetMapping("/CompararaProducto")
+
+    @GetMapping("/CompararPrecio")
     public ResponseEntity<List<ComparadorPrecioDTO>> compararPrecio(
-            @RequestParam List<Integer> productosIds) {
-        return ResponseEntity.ok(cpS.compararPrecio(productosIds));
+            @RequestParam List<Integer> productosId) {
+        return ResponseEntity.ok(cpS.compararPrecio(productosId));
     }
 }

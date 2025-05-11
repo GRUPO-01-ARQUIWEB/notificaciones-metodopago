@@ -7,9 +7,7 @@ import jakarta.persistence.*;
 public class MetodoPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMetodo;
-
-    private int idUsuario;
+    private int idMetodoPago;
 
     @Column(name = "tipo",nullable = false)
     private String tipo; // Tarjeta, Yape, Plin
@@ -23,32 +21,28 @@ public class MetodoPago {
     @Column(name = "vencimiento",nullable = false,length = 10)
     private String vencimiento;
 
+    @ManyToOne
+    @JoinColumn(name="idUsuario")
+    private Usuario usuario;
+
     public MetodoPago() {
     }
 
-    public MetodoPago(String vencimiento, String numeroTelefonico, String titular, String tipo, int idUsuario, int idMetodo) {
-        this.vencimiento = vencimiento;
-        this.numeroTelefonico = numeroTelefonico;
-        this.titular = titular;
+    public MetodoPago(int idMetodoPago, String tipo, String titular, String numeroTelefonico, String vencimiento, Usuario usuario) {
+        this.idMetodoPago = idMetodoPago;
         this.tipo = tipo;
-        this.idUsuario = idUsuario;
-        this.idMetodo = idMetodo;
+        this.titular = titular;
+        this.numeroTelefonico = numeroTelefonico;
+        this.vencimiento = vencimiento;
+        this.usuario = usuario;
     }
 
-    public int getIdMetodo() {
-        return idMetodo;
+    public int getIdMetodoPago() {
+        return idMetodoPago;
     }
 
-    public void setIdMetodo(int idMetodo) {
-        this.idMetodo = idMetodo;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdMetodoPago(int idMetodoPago) {
+        this.idMetodoPago = idMetodoPago;
     }
 
     public String getTipo() {
@@ -81,5 +75,13 @@ public class MetodoPago {
 
     public void setVencimiento(String vencimiento) {
         this.vencimiento = vencimiento;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -41,6 +41,7 @@ public class DescuentoController {
     {
         uS.delete(idDescuento);
     }
+
     @GetMapping("/listarDescVigente")
     public List<ListarDescuentoVigentesDTO> listardescuentvigentes() {
         List<String[]> filaLista = uS.ListarDescVigentes();
@@ -71,7 +72,6 @@ public class DescuentoController {
             dto.setFechaFin(d.getFechaFin());
             dtoLista.add(dto);
         }
-
         return dtoLista;
     }
 }

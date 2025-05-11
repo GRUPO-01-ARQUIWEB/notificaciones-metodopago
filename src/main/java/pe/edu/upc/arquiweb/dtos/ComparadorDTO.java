@@ -1,42 +1,17 @@
-package pe.edu.upc.arquiweb.entities;
+package pe.edu.upc.arquiweb.dtos;
 
-import jakarta.persistence.*;
+import pe.edu.upc.arquiweb.entities.Producto;
+import pe.edu.upc.arquiweb.entities.Tienda;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name="ComparadorPrecio")
-public class ComparadorPrecio {
+public class ComparadorDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idComparador;
-
-    @JoinColumn(name="precio",nullable = false)
     private double precio;
-
-    @JoinColumn(name="fechaActualizacion",nullable = false)
     private LocalDate fechaActualizacion;
-
-    @ManyToOne
-    @JoinColumn(name="idProducto")
     private Producto producto;
-
-    @ManyToOne
-    @JoinColumn(name="idTienda")
     private Tienda tienda;
-
-
-    public ComparadorPrecio() {
-    }
-
-    public ComparadorPrecio(int idComparador, double precio, LocalDate fechaActualizacion, Producto producto, Tienda tienda) {
-        this.idComparador = idComparador;
-        this.precio = precio;
-        this.fechaActualizacion = fechaActualizacion;
-        this.producto = producto;
-        this.tienda = tienda;
-    }
 
     public int getIdComparador() {
         return idComparador;
@@ -78,3 +53,4 @@ public class ComparadorPrecio {
         this.tienda = tienda;
     }
 }
+
