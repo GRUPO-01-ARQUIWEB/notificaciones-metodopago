@@ -8,6 +8,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -20,21 +23,27 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProducto;
 
+    @NotNull(message = "El nombre del producto es obligatorio")
     @Column(name = "nombreProducto", nullable = false, length = 40)
     private String nombreProducto;
 
+    @Size(max = 300, message = "La descripcion no puede tener más de 300 caracteres")
     @Column(name = "descripcion", nullable = false, length = 300)
     private String descripcion;
 
+    @Positive(message = "El precio base debe ser mayor que 0")
     @Column(name = "precioBase", nullable = false)
     private double precioBase;
 
+    @Positive(message = "El stock debe ser mayor que 0")
     @Column(name = "stock", nullable = false)
     private int stock;
 
+    @NotNull(message = "La categoria es obligatoria")
     @Column(name = "categoria", nullable = false, length = 50)
     private String categoria;
 
+    @NotNull(message = "La fecha de la creacion es obligatoria")
     @Column(name = "fechaCreacion", nullable = false)
     private LocalDate fechaCreacion;
 

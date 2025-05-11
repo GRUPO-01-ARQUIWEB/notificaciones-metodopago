@@ -1,6 +1,10 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,27 +16,36 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
+    @NotBlank(message = "El username no puede estar vacío")
+    @Size(max = 20, message = "El username no puede tener más de 20 caracteres")
     @Column(name = "username", nullable = false, length = 20)
     private String username;
 
+    @NotNull(message = "El password es obligatorio")
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
     @Column(length = 200)
     private Boolean enabled;
 
+    @NotBlank(message = "El correo no puede estar vacío")
+    @Size(max = 100, message = "El correo no puede tener más de 100 caracteres")
     @Column(name = "correo", nullable = false, length = 100)
     private String correo;
 
+    @Size(max = 100, message = "La direccion no puede tener más de 100 caracteres")
     @Column(name = "direccion", nullable = false, length = 100)
     private String direccion;
 
+    @Size(max = 9, message = "El telefono no puede tener más de 9 numeros")
     @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
 
+    @NotNull(message = "La latitud es obligatoria")
     @Column(name = "latitud", nullable = false)
     private double latitud;
 
+    @NotNull(message = "La longitud es obligatoria")
     @Column(name = "longitud", nullable = false)
     private double longitud;
 

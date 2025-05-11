@@ -1,6 +1,8 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 @Entity
@@ -10,9 +12,11 @@ public class Notificaciones {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idNotificacion;
 
+    @Size(max = 200, message = "El mensaje no puede tener más de 200 caracteres")
     @Column(name = "mensaje",nullable = false,length = 200)
     private String mensaje;
 
+    @NotNull(message = "La fecha de envio es obligatoria")
     @Column(name = "fechaEnvio",nullable = false)
     private LocalDateTime fechaEnvio;
 

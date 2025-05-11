@@ -1,5 +1,8 @@
 package pe.edu.upc.arquiweb.entities;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.time.LocalDate;
 
 @Entity
@@ -10,21 +13,25 @@ public class Descuento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDescuento;
 
-    @ManyToOne
-    @JoinColumn(name = "idProducto", nullable = false)
-    private Producto producto;
-
+    @Positive(message = "El porcentaje debe ser mayor que 0")
     @Column(name = "porcentaje", nullable = false)
     private double porcentaje;
 
+    @NotNull(message = "El codigo de descuento es obligatorio")
     @Column(name = "codDescuento", nullable = false, length = 20)
     private String codDescuento;
 
+    @NotNull(message = "La fecha de inicio es obligatoria")
     @Column(name = "fechaInicio", nullable = false)
     private LocalDate fechaInicio;
 
+    @NotNull(message = "La fecha de fin es obligatoria")
     @Column(name = "fechaFin", nullable = false)
     private LocalDate fechaFin;
+
+    @ManyToOne
+    @JoinColumn(name = "idProducto", nullable = false)
+    private Producto producto;
 
     // Constructor vacío
     public Descuento() {
