@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO2;
+import pe.edu.upc.arquiweb.dtos.NotificacionDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
 import pe.edu.upc.arquiweb.serviceinterfaces.IMetodoPagoService;
 
@@ -48,11 +49,10 @@ public class MetodoPagoController {
         return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
-
     @GetMapping("/{id}")
-    public MetodoPagoDTO listarID(@PathVariable("id") int id) {
-        ModelMapper m = new ModelMapper();
-        MetodoPagoDTO dto = m.map(mS.searchID(id), MetodoPagoDTO.class);
+    public MetodoPagoDTO listarID(@Valid @PathVariable("id") @Min(1) Integer id) {
+        ModelMapper m=new ModelMapper();
+        MetodoPagoDTO dto=m.map(mS.searchID(id),MetodoPagoDTO.class);
         return dto;
     }
 

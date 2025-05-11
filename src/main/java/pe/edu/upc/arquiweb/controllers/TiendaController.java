@@ -48,10 +48,11 @@ public class TiendaController {
         iS.delete(id);
     }
 
+
     @GetMapping("/{id}")
-    public TiendaDTO buscarId(@PathVariable("id") int id) {
-        ModelMapper m = new ModelMapper();
-        TiendaDTO dto = m.map(iS.searchId(id), TiendaDTO.class);
+    public TiendaDTO buscarId(@Valid @PathVariable("id") @Min(1) Integer id) {
+        ModelMapper m=new ModelMapper();
+        TiendaDTO dto=m.map(iS.searchId(id),TiendaDTO.class);
         return dto;
     }
 

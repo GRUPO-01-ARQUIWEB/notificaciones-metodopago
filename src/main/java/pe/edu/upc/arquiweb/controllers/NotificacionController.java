@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.NotificacionDTO;
+import pe.edu.upc.arquiweb.dtos.ProductoDTO;
 import pe.edu.upc.arquiweb.entities.Notificaciones;
 import pe.edu.upc.arquiweb.serviceinterfaces.INotificacionService;
 
@@ -47,11 +48,12 @@ public class NotificacionController {
 
 
     @GetMapping("/{id}")
-    public NotificacionDTO listarID(@PathVariable("id") int id){
+    public NotificacionDTO listarID(@Valid @PathVariable("id") @Min(1) Integer id) {
         ModelMapper m=new ModelMapper();
-        NotificacionDTO dto =m.map(nS.searchID(id),NotificacionDTO.class);
+        NotificacionDTO dto=m.map(nS.searchID(id),NotificacionDTO.class);
         return dto;
     }
+
     @PutMapping
     public void modificar(@RequestBody NotificacionDTO dto){
         ModelMapper m=new ModelMapper();

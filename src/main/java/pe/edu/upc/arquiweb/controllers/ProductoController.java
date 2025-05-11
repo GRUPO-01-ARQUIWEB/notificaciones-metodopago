@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pe.edu.upc.arquiweb.dtos.CantidadProductoDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoComparaDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoDTO2;
+import pe.edu.upc.arquiweb.dtos.*;
 import pe.edu.upc.arquiweb.entities.Producto;
 import pe.edu.upc.arquiweb.serviceinterfaces.IProductoService;
 
@@ -63,10 +60,11 @@ public class ProductoController {
         pS.delete(id);
     }
 
+
     @GetMapping("/{id}")
-    public ProductoDTO buscarId(@PathVariable("id") int id) {
-        ModelMapper m = new ModelMapper();
-        ProductoDTO dto = m.map(pS.searchId(id), ProductoDTO.class);
+    public ProductoDTO buscarId(@Valid @PathVariable("id") @Min(1) Integer id) {
+        ModelMapper m=new ModelMapper();
+        ProductoDTO dto=m.map(pS.searchId(id),ProductoDTO.class);
         return dto;
     }
 
