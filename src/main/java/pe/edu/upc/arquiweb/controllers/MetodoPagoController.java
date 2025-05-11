@@ -1,9 +1,19 @@
 package pe.edu.upc.arquiweb.controllers;
 
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
 import pe.edu.upc.arquiweb.servicesinterfaces.IMetodoPagoService;
@@ -28,11 +38,14 @@ public class MetodoPagoController {
     }
 
     @PostMapping
-    public void insertar(@RequestBody MetodoPagoDTO dto) {
+    public ResponseEntity<String> registrar(@Valid @RequestBody MetodoPagoDTO dto) {
         ModelMapper m = new ModelMapper();
         MetodoPago mp = m.map(dto, MetodoPago.class);
         mS.insert(mp);
+        String mensaje = "El metodo de pago fue registrado correctamente: " + dto.getTipo();
+        return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
+
 
     @GetMapping("/{id}")
     public MetodoPagoDTO listarID(@PathVariable("id") int id) {

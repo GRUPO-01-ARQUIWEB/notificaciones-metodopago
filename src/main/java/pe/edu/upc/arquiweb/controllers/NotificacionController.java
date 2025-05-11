@@ -1,8 +1,19 @@
 package pe.edu.upc.arquiweb.controllers;
 
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.NotificacionDTO;
 import pe.edu.upc.arquiweb.entities.Notificaciones;
 import pe.edu.upc.arquiweb.servicesinterfaces.INotificacionService;
@@ -23,12 +34,17 @@ public class NotificacionController {
             return m.map(x,NotificacionDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
-    public void insertar(@RequestBody NotificacionDTO dto){
-        ModelMapper m=new ModelMapper();
-        Notificaciones a=m.map(dto,Notificaciones.class);
+    public ResponseEntity<String> registrar(@Valid @RequestBody NotificacionDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Notificaciones a = m.map(dto, Notificaciones.class);
         nS.insert(a);
+        String mensaje = "Notificacion registrado correctamente: ";
+        return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
+
+
     @GetMapping("/{id}")
     public NotificacionDTO listarID(@PathVariable("id") int id){
         ModelMapper m=new ModelMapper();
