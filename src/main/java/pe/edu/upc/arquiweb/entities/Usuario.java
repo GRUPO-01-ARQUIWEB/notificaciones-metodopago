@@ -1,6 +1,17 @@
 package pe.edu.upc.arquiweb.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,21 +23,26 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
+    @NotNull(message = "El username es obligatorio")
     @Column(name = "username", nullable = false, length = 20)
     private String username;
 
+    @NotNull(message = "El password es obligatorio")
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
     @Column(length = 200)
     private Boolean enabled;
 
-    @Column(name = "correo", nullable = false, length = 100)
+    @Size(max = 60, message = "El correo no puede tener más de 60 caracteres")
+    @Column(name = "correo", nullable = false, length = 60)
     private String correo;
 
-    @Column(name = "direccion", nullable = false, length = 100)
+    @Size(max = 60, message = "La direccion no puede tener más de 60 caracteres")
+    @Column(name = "direccion", nullable = false, length = 60)
     private String direccion;
 
+    @Size(max = 9, message = "El telefono no puede tener más de 9 digitos")
     @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
 
