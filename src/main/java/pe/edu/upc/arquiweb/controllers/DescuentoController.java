@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ public class DescuentoController {
     private IDescuentoService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<DescuentoDTO> listar() {
         return uS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -41,6 +43,7 @@ public class DescuentoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO')")
     public ResponseEntity<String> aplicar(@Valid @RequestBody DescuentoDTO dto) {
         ModelMapper m = new ModelMapper();
         Descuento a = m.map(dto, Descuento.class);
@@ -50,11 +53,14 @@ public class DescuentoController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer idDescuento) {
         uS.delete(idDescuento);
     }
 
+
     @GetMapping("/listarDescVigente")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ListarDescuentoVigentesDTO> listardescuentvigentes() {
         List<String[]> filaLista = uS.ListarDescVigentes();
         List<ListarDescuentoVigentesDTO> dtoLista = new ArrayList<>();
@@ -71,6 +77,7 @@ public class DescuentoController {
         return dtoLista;
     }
     @GetMapping("/ListarDescuentosOrdenadosXPorcentaje")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ListarDescuentosOrdenadosPorPorcentajeDTO> listarDescuentosOrdenadosPorPorcentaje() {
         List<Descuento> listaDescuentos = uS.obtenerDescuentosOrdenados();
         List<ListarDescuentosOrdenadosPorPorcentajeDTO> dtoLista = new ArrayList<>();

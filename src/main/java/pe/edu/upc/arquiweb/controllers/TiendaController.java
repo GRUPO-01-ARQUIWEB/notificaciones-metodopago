@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class TiendaController {
     private ITiendaService iS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<TiendaDTO> listar(){
         return iS.list().stream().map(i ->{
             ModelMapper m= new ModelMapper();
@@ -35,6 +37,7 @@ public class TiendaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
     public ResponseEntity<String> registrar(@Valid @RequestBody TiendaDTO dto) {
         ModelMapper m = new ModelMapper();
         Tienda t = m.map(dto, Tienda.class);
@@ -44,12 +47,14 @@ public class TiendaController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('GERENTE')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         iS.delete(id);
     }
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public TiendaDTO buscarId(@Valid @PathVariable("id") @Min(1) Integer id) {
         ModelMapper m=new ModelMapper();
         TiendaDTO dto=m.map(iS.searchId(id),TiendaDTO.class);

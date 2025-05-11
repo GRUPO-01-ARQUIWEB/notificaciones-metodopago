@@ -2,6 +2,7 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.ComparadorPrecioDTO;
 import pe.edu.upc.arquiweb.entities.ComparadorPrecio;
@@ -17,6 +18,7 @@ public class ComparadorPrecioController {
     private IComparadorPrecioService cpS;
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('GERENTE', 'ADMNEGOCIO', 'CLIENTE')")
     public List<ComparadorPrecioDTO> listar(){
         return cpS.list().stream().map(c ->{
             ModelMapper m= new ModelMapper();
@@ -25,6 +27,7 @@ public class ComparadorPrecioController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMNEGOCIO', 'ADMAPLICACION')")
     public void insertar(@RequestBody ComparadorPrecioDTO dto) {
         ModelMapper m = new ModelMapper();
         ComparadorPrecio c = m.map(dto, ComparadorPrecio.class);
@@ -32,6 +35,7 @@ public class ComparadorPrecioController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyAuthority('ADMNEGOCIO', 'ADMAPLICACION')")
     public void modificar(@RequestBody ComparadorPrecioDTO dto) {
         ModelMapper m = new ModelMapper();
         ComparadorPrecio c = m.map(dto, ComparadorPrecio.class);
@@ -39,6 +43,7 @@ public class ComparadorPrecioController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAuthority('GERENTE')")
     public void eliminar(@PathVariable("id") int id) {
         cpS.delete(id);
     }
