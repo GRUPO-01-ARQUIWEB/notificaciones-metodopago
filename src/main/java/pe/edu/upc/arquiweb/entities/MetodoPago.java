@@ -8,7 +8,9 @@ public class MetodoPago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMetodo;
 
-    private int idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     @Column(name = "tipo",nullable = false)
     private String tipo; // Tarjeta, Yape, Plin
@@ -25,12 +27,12 @@ public class MetodoPago {
     public MetodoPago() {
     }
 
-    public MetodoPago(String vencimiento, String numeroTelefonico, String titular, String tipo, int idUsuario, int idMetodo) {
+    public MetodoPago(String vencimiento, String numeroTelefonico, String titular, String tipo, Usuario usuario, int idMetodo) {
         this.vencimiento = vencimiento;
         this.numeroTelefonico = numeroTelefonico;
         this.titular = titular;
         this.tipo = tipo;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
         this.idMetodo = idMetodo;
     }
 
@@ -40,14 +42,6 @@ public class MetodoPago {
 
     public void setIdMetodo(int idMetodo) {
         this.idMetodo = idMetodo;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getTipo() {
@@ -80,5 +74,13 @@ public class MetodoPago {
 
     public void setVencimiento(String vencimiento) {
         this.vencimiento = vencimiento;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
