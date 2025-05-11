@@ -1,14 +1,23 @@
 package pe.edu.upc.arquiweb.controllers;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.Resena2DTO;
 import pe.edu.upc.arquiweb.dtos.ResenaCalificaDTO;
 import pe.edu.upc.arquiweb.dtos.ResenaDTO;
 import pe.edu.upc.arquiweb.entities.Resena;
-import pe.edu.upc.arquiweb.servicesinterfaces.IResenaService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IResenaService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,14 +38,16 @@ public class ResenaController {
     }
 
     @PostMapping
-    public void insertar (@RequestBody ResenaDTO dto) {
+    public ResponseEntity<String> registrar(@Valid @RequestBody ResenaDTO dto) {
         ModelMapper m = new ModelMapper();
         Resena r = m.map(dto, Resena.class);
         rS.insert(r);
+        String mensaje = "La reseña fue registrada correctamente ";
+        return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/eliminar{id}")
-    public void eliminar(@PathVariable("id") int id){
+    public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         rS.delete(id);
     }
 

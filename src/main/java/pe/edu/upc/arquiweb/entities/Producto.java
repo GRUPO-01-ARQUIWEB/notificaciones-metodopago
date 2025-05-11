@@ -43,10 +43,15 @@ public class Producto {
     @JoinColumn(name = "idTienda")
     private Tienda tienda;
 
+    @ManyToOne
+    @JoinColumn(name = "idResena")
+    private Resena resena;
+
+
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombreProducto, String descripcion, double precioBase, int stock, String categoria, LocalDate fechaCreacion, Tienda tienda) {
+    public Producto(int idProducto, String nombreProducto, String descripcion, double precioBase, int stock, String categoria, LocalDate fechaCreacion, Tienda tienda, Resena resena) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
@@ -55,7 +60,7 @@ public class Producto {
         this.categoria = categoria;
         this.fechaCreacion = fechaCreacion;
         this.tienda = tienda;
-
+        this.resena = resena;
     }
 
     public int getIdProducto() {
@@ -120,6 +125,15 @@ public class Producto {
 
     public void setTienda(Tienda tienda) {
         this.tienda = tienda;
+    }
+
+
+    public Resena getResena() {
+        return resena;
+    }
+
+    public void setResena(Resena resena) {
+        this.resena = resena;
     }
 
 }

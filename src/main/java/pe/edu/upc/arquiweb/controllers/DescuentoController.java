@@ -1,14 +1,24 @@
 package pe.edu.upc.arquiweb.controllers;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.DescuentoDTO;
 
 import pe.edu.upc.arquiweb.dtos.ListarDescuentoVigentesDTO;
 import pe.edu.upc.arquiweb.dtos.ListarDescuentosOrdenadosPorPorcentajeDTO;
 import pe.edu.upc.arquiweb.entities.Descuento;
-import pe.edu.upc.arquiweb.servicesinterfaces.DescuentoService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 
 
 import java.time.LocalDate;
@@ -20,7 +30,7 @@ import java.util.stream.Collectors;
 @RequestMapping("descuentos")
 public class DescuentoController {
     @Autowired
-    private DescuentoService uS;
+    private IDescuentoService uS;
 
     @GetMapping
     public List<DescuentoDTO> listar() {
@@ -29,16 +39,18 @@ public class DescuentoController {
             return m.map(x, DescuentoDTO.class);
         }).collect(Collectors.toList());
     }
-    @PostMapping("/AplicarDescuento")
-    public void aplicar (@RequestBody DescuentoDTO dto)
-    {
-        ModelMapper m =new ModelMapper();
-        Descuento a =m.map(dto, Descuento.class);
+
+    @PostMapping
+    public ResponseEntity<String> aplicar(@Valid @RequestBody DescuentoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Descuento a = m.map(dto, Descuento.class);
         uS.insert(a);
+        String mensaje = "El codigo de descuento registrado correctamente: " + dto.getCodDescuento();
+        return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") int idDescuento)
-    {
+
+    @DeleteMapping("/eliminar{id}")
+    public void eliminar(@Valid @PathVariable("id") @Min(1) Integer idDescuento) {
         uS.delete(idDescuento);
     }
 

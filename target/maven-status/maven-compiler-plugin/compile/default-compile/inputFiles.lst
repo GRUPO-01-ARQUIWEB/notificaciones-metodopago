@@ -1,4 +1,5 @@
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\ArquiwebApplication.java
+C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\config\ModelMapperConfig.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\controllers\CarritoCompraController.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\controllers\ChatProveedorController.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\controllers\DescuentoController.java
@@ -9,14 +10,17 @@ C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\p
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\controllers\ResenaController.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\controllers\TiendaController.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\controllers\UsuarioController.java
+C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\BuscarCarritoCompraIDDTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\CantidadProductoDTO.java
+C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\CarritoCompra2DTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\CarritoCompraDTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\ChatProveedorDTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\DescuentoDTO.java
+C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\ListarDescuentosOrdenadosPorPorcentajeDTO.java
+C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\ListarDescuentoVigentesDTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\MetodoPagoDTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\NotificacionDTO.java
-C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\OrdenarCarritoCompraPRecioBaseDTO.java
-C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\OrdenarProductosFechaCreacionDTO.java
+C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\OrdenCarritoCompraDTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\ProductoComparaDTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\ProductoDTO.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\dtos\ProductoDTO2.java
@@ -35,7 +39,6 @@ C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\p
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\entities\Resena.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\entities\Rol.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\entities\Tienda.java
-C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\entities\TipoCategoria.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\entities\Usuario.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\repositories\ICarritoCompraRepository.java
 C:\Users\user\Desktop\Trbajao arquiweb\notificaciones-metodopago\src\main\java\pe\edu\upc\arquiweb\repositories\IChatProveedorRepository.java

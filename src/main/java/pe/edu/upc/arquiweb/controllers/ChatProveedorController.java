@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.ChatProveedorDTO;
-import pe.edu.upc.arquiweb.servicesinterfaces.IChatProveedorService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IChatProveedorService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,4 +25,6 @@ public class ChatProveedorController {
             return m.map(c,ChatProveedorDTO.class);
         }).collect(Collectors.toList());
     }
+
+    //agregar crud
 }

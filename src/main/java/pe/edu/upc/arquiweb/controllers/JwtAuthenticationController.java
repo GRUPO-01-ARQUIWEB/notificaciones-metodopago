@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.securities.JwtRequest;
 import pe.edu.upc.arquiweb.securities.JwtResponse;
 import pe.edu.upc.arquiweb.securities.JwtTokenUtil;
-import pe.edu.upc.arquiweb.servicesimplements.JwtUserDetailsService;
+import pe.edu.upc.arquiweb.serviceimplements.JwtUserDetailsService;
 
 
 //Clase 3

@@ -1,15 +1,26 @@
 package pe.edu.upc.arquiweb.controllers;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import pe.edu.upc.arquiweb.dtos.BuscarCarritoCompraIDDTO;
 import pe.edu.upc.arquiweb.dtos.CarritoCompra2DTO;
 import pe.edu.upc.arquiweb.dtos.CarritoCompraDTO;
-
 import pe.edu.upc.arquiweb.dtos.OrdenCarritoCompraDTO;
-import pe.edu.upc.arquiweb.dtos.BuscarCarritoCompraIDDTO;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
-import pe.edu.upc.arquiweb.servicesinterfaces.ICarritoCompraServices;
+import pe.edu.upc.arquiweb.serviceinterfaces.ICarritoCompraService;
 
 
 import java.time.LocalDate;
@@ -21,7 +32,7 @@ import java.util.stream.Collectors;
 @RequestMapping("CarritoCompra")
 public class CarritoCompraController {
   @Autowired
-    private ICarritoCompraServices uS;
+    private ICarritoCompraService uS;
 
 
     @GetMapping("/ListarProducto")
@@ -39,17 +50,17 @@ public class CarritoCompraController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping("/InsertarProducto")
-    public void agregarproduct (@RequestBody CarritoCompraDTO dto)
-    {
-        ModelMapper m =new ModelMapper();
-        CarritoCompra a =m.map(dto, CarritoCompra.class);
+    @PostMapping
+    public ResponseEntity<String> agregarproduct(@Valid @RequestBody CarritoCompraDTO dto) {
+        ModelMapper m = new ModelMapper();
+        CarritoCompra a = m.map(dto, CarritoCompra.class);
         uS.insert(a);
+        String mensaje = "Producto agregado al carrito correctamente: " ;
+        return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") int idProducto)
-    {
+    @DeleteMapping("/eliminar{id}")
+    public void eliminar(@Valid @PathVariable("id") @Min(1) Integer idProducto) {
         uS.delete(idProducto);
     }
 

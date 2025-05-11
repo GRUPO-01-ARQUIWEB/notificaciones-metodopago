@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import pe.edu.upc.arquiweb.servicesimplements.JwtUserDetailsService;
+import pe.edu.upc.arquiweb.serviceimplements.JwtUserDetailsService;
 
 import java.io.IOException;
 

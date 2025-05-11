@@ -121,6 +121,7 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
     }
 
+
     public double getLatitud() {
         return latitud;
     }

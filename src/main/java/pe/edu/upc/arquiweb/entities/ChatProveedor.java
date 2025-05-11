@@ -1,6 +1,7 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,7 @@ public class ChatProveedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idChat;
 
+    @NotNull(message = "La fecha de inicio del chat es obligatoria")
     @Column(name="fechainicio", nullable = false)
     private LocalDate fechainicio;
 
@@ -23,24 +25,6 @@ public class ChatProveedor {
     @JoinColumn(name = "idTienda")
     private Tienda tienda;
 
-
-    /*
-    public Chat getChat() {
-        return chat;
-    }
-
-    public void setChat(Chat chat) {
-        this.chat = chat;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "idChat")
-    private Chat chat;
-
-    public ChatProveedor(Chat chat) {
-        this.chat = chat;
-    }
-    */
 
     public ChatProveedor() {
     }
