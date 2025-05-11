@@ -25,4 +25,6 @@ public class ChatProveedorController {
             return m.map(c,ChatProveedorDTO.class);
         }).collect(Collectors.toList());
     }
+
+    //agregar crud
 }

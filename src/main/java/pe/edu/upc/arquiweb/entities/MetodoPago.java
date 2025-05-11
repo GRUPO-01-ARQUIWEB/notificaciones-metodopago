@@ -3,6 +3,7 @@ package pe.edu.upc.arquiweb.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="MetodoPago")
 public class MetodoPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
