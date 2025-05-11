@@ -43,8 +43,8 @@ public class Usuario implements Serializable {
     private String direccion;
 
     @Size(max = 9, message = "El telefono no puede tener más de 9 digitos")
-    @Column(name = "telefono", nullable = false, length = 9)
-    private String telefono;
+    @Column(name = "telefonoUsuario", nullable = false, length = 9)
+    private String telefonoUsuario;
 
     //FK
 
@@ -71,13 +71,13 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String username, String correo, String password, String direccion, String telefono) {
+    public Usuario(int idUsuario, String username, String correo, String password, String direccion, String telefonoUsuario) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.correo = correo;
         this.password = password;
         this.direccion = direccion;
-        this.telefono = telefono;
+        this.telefonoUsuario = telefonoUsuario;
     }
 
 
@@ -121,12 +121,12 @@ public class Usuario implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getTelefonoUsuario() {
+        return telefonoUsuario;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefonoUsuario(String telefonoUsuario) {
+        this.telefonoUsuario = telefonoUsuario;
     }
 
 

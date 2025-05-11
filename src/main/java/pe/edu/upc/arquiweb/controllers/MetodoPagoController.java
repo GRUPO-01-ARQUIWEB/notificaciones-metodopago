@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO;
+import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO2;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
 import pe.edu.upc.arquiweb.serviceinterfaces.IMetodoPagoService;
 
@@ -31,10 +32,10 @@ public class MetodoPagoController {
     //mdasindasbi
 
     @GetMapping
-    public List<MetodoPagoDTO> listar() {
+    public List<MetodoPagoDTO2> listar() {
         return mS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, MetodoPagoDTO.class);
+            return m.map(x, MetodoPagoDTO2.class);
         }).collect(Collectors.toList());
     }
 
