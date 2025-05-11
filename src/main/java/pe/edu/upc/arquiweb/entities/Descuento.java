@@ -11,19 +11,19 @@ public class Descuento {
     private int idDescuento;
 
     @ManyToOne
-    @JoinColumn(name = "id_producto", nullable = false)
+    @JoinColumn(name = "idProducto", nullable = false)
     private Producto producto;
 
     @Column(name = "porcentaje", nullable = false)
     private double porcentaje;
 
-    @Column(name = "cod_descuento", nullable = false, length = 20)
+    @Column(name = "codDescuento", nullable = false, length = 20)
     private String codDescuento;
 
-    @Column(name = "fecha_inicio", nullable = false)
+    @Column(name = "fechaInicio", nullable = false)
     private LocalDate fechaInicio;
 
-    @Column(name = "fecha_fin", nullable = false)
+    @Column(name = "fechaFin", nullable = false)
     private LocalDate fechaFin;
 
     // Constructor vacío

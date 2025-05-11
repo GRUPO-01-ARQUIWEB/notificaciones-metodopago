@@ -11,4 +11,10 @@ import java.util.List;
 public interface IMetodoPagoRepository extends JpaRepository<MetodoPago,Integer>{
 @Query("select m from MetodoPago m where m.titular like %:titular%")
 List<MetodoPago> buscarPorTitular(@Param("titular") String titular);
+
+@Query(value = "SELECT * FROM metodo_pago WHERE TO_DATE(vencimiento, 'YYYY-MM-DD') < CURRENT_DATE", nativeQuery = true)
+    List<MetodoPago> buscarMetodosPagoVencidos();
+
+@Query("SELECT m FROM MetodoPago m WHERE LOWER(m.tipo) = LOWER(:tipo)")
+    List<MetodoPago> buscarPorTipo(@Param("tipo") String tipo);
 }

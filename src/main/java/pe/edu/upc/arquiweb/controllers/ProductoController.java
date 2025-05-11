@@ -3,7 +3,6 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.*;
 import pe.edu.upc.arquiweb.entities.Producto;
@@ -21,7 +20,6 @@ public class ProductoController {
     private IProductoService pS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('GERENTE')")
     public List<ProductoDTO> listar() {
         return pS.list().stream().map(p -> {
             ModelMapper m = new ModelMapper();
@@ -49,7 +47,6 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public ProductoDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         ProductoDTO dto = m.map(pS.searchId(id), ProductoDTO.class);
@@ -98,7 +95,6 @@ public class ProductoController {
     }
 
     @GetMapping("/stockbajo")
-    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public List<Producto> listarProductosConStockBajo() {
         return pS.productsWithLowStock();
     }

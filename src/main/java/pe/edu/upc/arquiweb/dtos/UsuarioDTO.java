@@ -3,12 +3,12 @@ package pe.edu.upc.arquiweb.dtos;
 public class UsuarioDTO {
 
     private int idUsuario;
-    private String nombre;
+    private String username;
+    private String password;
+    private Boolean enabled;
     private String correo;
-    private String contrasenahash;
-    private String direccion;;
+    private String direccion;
     private String telefono;
-    private String rolClAd;
     private double latitud;
     private double longitud;
 
@@ -20,12 +20,28 @@ public class UsuarioDTO {
         this.idUsuario = idUsuario;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getCorreo() {
@@ -36,20 +52,13 @@ public class UsuarioDTO {
         this.correo = correo;
     }
 
-    public String getContrasenahash() {
-        return contrasenahash;
-    }
-
-    public void setContrasenahash(String contrasenahash) {
-        this.contrasenahash = contrasenahash;
-    }
-
     public String getDireccion() {
         return direccion;
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;}
+        this.direccion = direccion;
+    }
 
     public String getTelefono() {
         return telefono;
@@ -57,14 +66,6 @@ public class UsuarioDTO {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public String getRolClAd() {
-        return rolClAd;
-    }
-
-    public void setRolClAd(String rolClAd) {
-        this.rolClAd = rolClAd;
     }
 
     public double getLatitud() {
@@ -82,6 +83,4 @@ public class UsuarioDTO {
     public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
-
-
 }
