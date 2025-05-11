@@ -17,7 +17,7 @@ import pe.edu.upc.arquiweb.dtos.Resena2DTO;
 import pe.edu.upc.arquiweb.dtos.ResenaCalificaDTO;
 import pe.edu.upc.arquiweb.dtos.ResenaDTO;
 import pe.edu.upc.arquiweb.entities.Resena;
-import pe.edu.upc.arquiweb.servicesinterfaces.IResenaService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IResenaService;
 
 import java.util.List;
 import java.util.stream.Collectors;

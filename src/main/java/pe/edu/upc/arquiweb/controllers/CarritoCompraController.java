@@ -20,7 +20,7 @@ import pe.edu.upc.arquiweb.dtos.CarritoCompra2DTO;
 import pe.edu.upc.arquiweb.dtos.CarritoCompraDTO;
 import pe.edu.upc.arquiweb.dtos.OrdenCarritoCompraDTO;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
-import pe.edu.upc.arquiweb.servicesinterfaces.ICarritoCompraServices;
+import pe.edu.upc.arquiweb.serviceinterfaces.ICarritoCompraService;
 
 
 import java.time.LocalDate;
@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 @RequestMapping("CarritoCompra")
 public class CarritoCompraController {
   @Autowired
-    private ICarritoCompraServices uS;
+    private ICarritoCompraService uS;
 
 
     @GetMapping("/ListarProducto")

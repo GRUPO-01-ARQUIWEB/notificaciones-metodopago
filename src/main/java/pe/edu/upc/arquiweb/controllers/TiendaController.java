@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.TiendaDTO;
 import pe.edu.upc.arquiweb.entities.Tienda;
-import pe.edu.upc.arquiweb.servicesinterfaces.ITiendaService;
+import pe.edu.upc.arquiweb.serviceinterfaces.ITiendaService;
 
 import java.util.List;
 import java.util.stream.Collectors;

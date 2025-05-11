@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.NotificacionDTO;
 import pe.edu.upc.arquiweb.entities.Notificaciones;
-import pe.edu.upc.arquiweb.servicesinterfaces.INotificacionService;
+import pe.edu.upc.arquiweb.serviceinterfaces.INotificacionService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -77,3 +77,4 @@ public class NotificacionController {
         return "Notificación enviada correctamente";
     }
 }
+//aaaaa

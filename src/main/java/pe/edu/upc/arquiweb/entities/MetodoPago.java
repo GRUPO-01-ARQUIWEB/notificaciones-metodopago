@@ -14,6 +14,7 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
+@Table(name="MetodoPago")
 public class MetodoPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
