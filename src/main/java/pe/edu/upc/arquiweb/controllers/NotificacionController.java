@@ -53,4 +53,9 @@ public class NotificacionController {
             return m.map(h, NotificacionDTO.class);
         }).collect(Collectors.toList());
     }
+    @PostMapping("/producto-disponible")
+    public String notificarDisponibilidad(@RequestBody NotificacionDTO notificacion) {
+        INotificacionService.enviarNotificacion(notificacion.getCorreo(), notificacion.getMensaje());
+        return "Notificación enviada correctamente";
+    }
 }
