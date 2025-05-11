@@ -19,7 +19,6 @@ pe\edu\upc\arquiweb\entities\Usuario.class
 pe\edu\upc\arquiweb\config\ModelMapperConfig.class
 pe\edu\upc\arquiweb\servicesinterfaces\IMetodoPagoService.class
 pe\edu\upc\arquiweb\servicesinterfaces\DescuentoService.class
-pe\edu\upc\arquiweb\entities\TipoCategoria.class
 pe\edu\upc\arquiweb\entities\ChatProveedor.class
 pe\edu\upc\arquiweb\repositories\IDescuentoRepository.class
 pe\edu\upc\arquiweb\entities\Tienda.class
