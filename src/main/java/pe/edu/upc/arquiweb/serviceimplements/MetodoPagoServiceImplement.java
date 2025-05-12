@@ -39,9 +39,5 @@ public class MetodoPagoServiceImplement implements IMetodoPagoService {
         mR.deleteById(id);
     }
 
-    @Override
-    public List<MetodoPago> search(String titular) {
-        return mR.buscarPorTitular(titular);
-    }
 
 }
