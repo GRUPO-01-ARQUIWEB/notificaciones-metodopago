@@ -8,12 +8,17 @@ import java.time.LocalDate;
 public class ComparadorPrecioDTO {
 
     private int idComparador;
-
     private double precio;
-
     private LocalDate fechaActualizacion;
-
     private Producto producto;
+
+    public Tienda getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
+    }
 
     private Tienda tienda;
 
@@ -49,12 +54,5 @@ public class ComparadorPrecioDTO {
         this.producto = producto;
     }
 
-    public Tienda getTienda() {
-        return tienda;
-    }
-
-    public void setTienda(Tienda tienda) {
-        this.tienda = tienda;
-    }
 }
 

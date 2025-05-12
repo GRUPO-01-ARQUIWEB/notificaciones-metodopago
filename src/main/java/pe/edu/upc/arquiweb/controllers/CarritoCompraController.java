@@ -44,7 +44,7 @@ public class CarritoCompraController {
             dto.setIdProducto(carritoCompra.getProducto().getIdProducto());
             dto.setNombreproducto(carritoCompra.getProducto().getNombreProducto());
             dto.setFechaCreacion(carritoCompra.getFechaCreacion());
-            dto.setIdMetodo(carritoCompra.getIdMetodo().getIdMetodo());
+            dto.setIdMetodo(carritoCompra.getIdMetodo().getIdMetodoPago());
             dto.setPrecioBase(carritoCompra.getPrecioBase());
             return dto;
         }).collect(Collectors.toList());

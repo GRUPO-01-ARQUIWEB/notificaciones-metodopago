@@ -1,19 +1,8 @@
 package pe.edu.upc.arquiweb.controllers;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.DescuentoDTO;
 
 import pe.edu.upc.arquiweb.dtos.ListarDescuentoVigentesDTO;
@@ -34,33 +23,26 @@ public class DescuentoController {
     private IDescuentoService uS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<DescuentoDTO> listar() {
         return uS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DescuentoDTO.class);
         }).collect(Collectors.toList());
     }
-
-    @PostMapping
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO')")
-    public ResponseEntity<String> aplicar(@Valid @RequestBody DescuentoDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Descuento a = m.map(dto, Descuento.class);
+    @PostMapping("/AplicarDescuento")
+    public void aplicar (@RequestBody DescuentoDTO dto)
+    {
+        ModelMapper m =new ModelMapper();
+        Descuento a =m.map(dto, Descuento.class);
         uS.insert(a);
-        String mensaje = "El codigo de descuento registrado correctamente: " + dto.getCodDescuento();
-        return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
-
-    @DeleteMapping("/eliminar{id}")
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO')")
-    public void eliminar(@Valid @PathVariable("id") @Min(1) Integer idDescuento) {
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") int idDescuento)
+    {
         uS.delete(idDescuento);
     }
 
-
     @GetMapping("/listarDescVigente")
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ListarDescuentoVigentesDTO> listardescuentvigentes() {
         List<String[]> filaLista = uS.ListarDescVigentes();
         List<ListarDescuentoVigentesDTO> dtoLista = new ArrayList<>();
@@ -77,7 +59,6 @@ public class DescuentoController {
         return dtoLista;
     }
     @GetMapping("/ListarDescuentosOrdenadosXPorcentaje")
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ListarDescuentosOrdenadosPorPorcentajeDTO> listarDescuentosOrdenadosPorPorcentaje() {
         List<Descuento> listaDescuentos = uS.obtenerDescuentosOrdenados();
         List<ListarDescuentosOrdenadosPorPorcentajeDTO> dtoLista = new ArrayList<>();
@@ -91,7 +72,6 @@ public class DescuentoController {
             dto.setFechaFin(d.getFechaFin());
             dtoLista.add(dto);
         }
-
         return dtoLista;
     }
 }

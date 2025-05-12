@@ -1,15 +1,15 @@
 package pe.edu.upc.arquiweb.dtos;
 
-
-import java.time.LocalDate;
+import pe.edu.upc.arquiweb.entities.Usuario;
 
 public class MetodoPagoDTO {
-
     private int idMetodo;
-    private String tipo; // Tarjeta, Yape, Plin
+
+    private String tipo;
+    private String titular;
     private String numeroTelefonico;
-    private LocalDate vencimiento;
-    private int idUsuario;
+    private String vencimiento;
+    private Usuario usuario;
 
     public int getIdMetodo() {
         return idMetodo;
@@ -27,6 +27,14 @@ public class MetodoPagoDTO {
         this.tipo = tipo;
     }
 
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
     public String getNumeroTelefonico() {
         return numeroTelefonico;
     }
@@ -35,19 +43,19 @@ public class MetodoPagoDTO {
         this.numeroTelefonico = numeroTelefonico;
     }
 
-    public LocalDate getVencimiento() {
+    public String getVencimiento() {
         return vencimiento;
     }
 
-    public void setVencimiento(LocalDate vencimiento) {
+    public void setVencimiento(String vencimiento) {
         this.vencimiento = vencimiento;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

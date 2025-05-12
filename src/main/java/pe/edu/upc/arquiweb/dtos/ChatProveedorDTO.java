@@ -1,6 +1,4 @@
 package pe.edu.upc.arquiweb.dtos;
-
-import jakarta.persistence.*;
 import pe.edu.upc.arquiweb.entities.MensajeChat;
 import pe.edu.upc.arquiweb.entities.Tienda;
 import pe.edu.upc.arquiweb.entities.Usuario;

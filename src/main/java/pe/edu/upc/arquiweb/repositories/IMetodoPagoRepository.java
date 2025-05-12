@@ -15,6 +15,19 @@ List<MetodoPago> buscarPorTitular(@Param("titular") String titular);
 @Query(value = "SELECT * FROM metodo_pago WHERE TO_DATE(vencimiento, 'YYYY-MM-DD') < CURRENT_DATE", nativeQuery = true)
     List<MetodoPago> buscarMetodosPagoVencidos();
 
-@Query("SELECT m FROM MetodoPago m WHERE LOWER(m.tipo) = LOWER(:tipo)")
-    List<MetodoPago> buscarPorTipo(@Param("tipo") String tipo);
+    @Query(value = """
+        SELECT 
+            mp.id_metodo_pago as id,
+            mp.tipo,
+            mp.titular,
+            COUNT(cc.id_carrito) as totalUsos,
+            ROUND(COUNT(cc.id_carrito) * 100.0 / 
+                (SELECT COUNT(*) FROM carrito_compra WHERE id_metodopago IS NOT NULL), 1) as porcentaje
+        FROM metodo_pago mp
+        LEFT JOIN carrito_compra cc ON mp.id_metodo_pago = cc.id_metodopago
+        GROUP BY mp.id_metodo_pago, mp.tipo, mp.titular
+        ORDER BY totalUsos DESC
+        LIMIT 1""",
+            nativeQuery = true)
+    List<Object[]> buscarMetodoPagoMasUsado();
 }
