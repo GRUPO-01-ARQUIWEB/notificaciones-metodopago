@@ -41,4 +41,6 @@ public class MetodoPagoServiceImplement implements IMetodoPagoService {
 
 @Override
 public List<MetodoPago> search(String idUsuario) {
+    int id = Integer.parseInt(idUsuario);
+}
 }
