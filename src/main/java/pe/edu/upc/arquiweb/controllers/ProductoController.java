@@ -1,11 +1,25 @@
 package pe.edu.upc.arquiweb.controllers;
 
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.arquiweb.dtos.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import pe.edu.upc.arquiweb.dtos.CantidadProductoDTO;
+import pe.edu.upc.arquiweb.dtos.ProductoComparaDTO;
+import pe.edu.upc.arquiweb.dtos.ProductoDTO;
+import pe.edu.upc.arquiweb.dtos.ProductoDTO2;
 import pe.edu.upc.arquiweb.entities.Producto;
 import pe.edu.upc.arquiweb.serviceinterfaces.IProductoService;
 
@@ -21,7 +35,6 @@ public class ProductoController {
     private IProductoService pS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('GERENTE')")
     public List<ProductoDTO> listar() {
         return pS.list().stream().map(p -> {
             ModelMapper m = new ModelMapper();
@@ -30,10 +43,12 @@ public class ProductoController {
     }
 
     @PostMapping
-    public void insertar(@RequestBody ProductoDTO2 dto) {
+    public ResponseEntity<String> registrar(@Valid @RequestBody ProductoDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Producto p = m.map(dto, Producto.class);
         pS.insert(p);
+        String mensaje = "El producto" + dto.getNombreProducto() + "fue registrada correctamente";
+        return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
     @PutMapping
@@ -44,12 +59,11 @@ public class ProductoController {
     }
 
     @DeleteMapping("/eliminar{id}")
-    public void eliminar(@PathVariable("id") int id) {
+    public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         pS.delete(id);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public ProductoDTO buscarId(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
         ProductoDTO dto = m.map(pS.searchId(id), ProductoDTO.class);
@@ -98,7 +112,6 @@ public class ProductoController {
     }
 
     @GetMapping("/stockbajo")
-    @PreAuthorize("hasAuthority('VICEPRESIDENTE')")
     public List<Producto> listarProductosConStockBajo() {
         return pS.productsWithLowStock();
     }

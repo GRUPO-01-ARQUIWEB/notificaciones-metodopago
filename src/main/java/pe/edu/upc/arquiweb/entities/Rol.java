@@ -1,6 +1,8 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 
@@ -12,11 +14,14 @@ public class Rol implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRol;
 
+    @NotNull(message = "El rol es obligatorio")
     @Column(name = "nombre_rol", nullable = false, length = 25)
     private String nombre_rol;
 
+    @Size(max = 150, message = "La descripcion no puede tener más de 150 caracteres")
     @Column(name = "descripcion", nullable = false, length = 150)
     private String descripcion;
+
 
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)

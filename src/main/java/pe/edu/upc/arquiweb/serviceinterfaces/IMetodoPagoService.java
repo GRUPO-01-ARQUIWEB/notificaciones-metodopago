@@ -1,7 +1,7 @@
 package pe.edu.upc.arquiweb.serviceinterfaces;
 
-import pe.edu.upc.arquiweb.dtos.MetodoPagoPopularDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
+import pe.edu.upc.arquiweb.repositories.IMetodoPagoRepository;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public interface IMetodoPagoService {
     public void update(MetodoPago m);
     public void delete(int id);
     public List<MetodoPago> search(String titular);
-    public MetodoPagoPopularDTO buscarMetodoPagoMasUsado();
+
 }
