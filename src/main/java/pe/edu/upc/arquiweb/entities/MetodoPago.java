@@ -1,48 +1,53 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name="MetodoPago")
 public class MetodoPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMetodoPago;
+    private int idMetodo;
 
+    @NotNull(message = "El tipo de metodo de pago es obligatorio")
     @Column(name = "tipo",nullable = false)
     private String tipo; // Tarjeta, Yape, Plin
 
-    @Column(name = "titular",nullable = false,length = 20)
-    private String titular;
-
+    @NotBlank(message = "El número de telefono no puede estar vacío")
+    @Size(max = 9, message = "El telefono no puede tener más de 9 numeros")
     @Column(name = "numeroTelefonico",nullable = false,length = 9)
     private String numeroTelefonico;
 
-    @Column(name = "vencimiento",nullable = false,length = 10)
-    private String vencimiento;
+    @NotNull(message = "La fecha de vencimiento es obligatoria")
+    @Column(name = "vencimiento",nullable = false)
+    private LocalDate vencimiento;
 
     @ManyToOne
-    @JoinColumn(name="idUsuario")
+    @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
     public MetodoPago() {
     }
 
-    public MetodoPago(int idMetodoPago, String tipo, String titular, String numeroTelefonico, String vencimiento, Usuario usuario) {
-        this.idMetodoPago = idMetodoPago;
-        this.tipo = tipo;
-        this.titular = titular;
-        this.numeroTelefonico = numeroTelefonico;
+    public MetodoPago(LocalDate vencimiento, String numeroTelefonico, String tipo, Usuario usuario, int idMetodo) {
         this.vencimiento = vencimiento;
+        this.numeroTelefonico = numeroTelefonico;
+        this.tipo = tipo;
         this.usuario = usuario;
+        this.idMetodo = idMetodo;
     }
 
-    public int getIdMetodoPago() {
-        return idMetodoPago;
+    public int getIdMetodo() {
+        return idMetodo;
     }
 
-    public void setIdMetodoPago(int idMetodoPago) {
-        this.idMetodoPago = idMetodoPago;
+    public void setIdMetodo(int idMetodo) {
+        this.idMetodo = idMetodo;
     }
 
     public String getTipo() {
@@ -53,14 +58,6 @@ public class MetodoPago {
         this.tipo = tipo;
     }
 
-    public String getTitular() {
-        return titular;
-    }
-
-    public void setTitular(String titular) {
-        this.titular = titular;
-    }
-
     public String getNumeroTelefonico() {
         return numeroTelefonico;
     }
@@ -69,11 +66,11 @@ public class MetodoPago {
         this.numeroTelefonico = numeroTelefonico;
     }
 
-    public String getVencimiento() {
+    public LocalDate getVencimiento() {
         return vencimiento;
     }
 
-    public void setVencimiento(String vencimiento) {
+    public void setVencimiento(LocalDate vencimiento) {
         this.vencimiento = vencimiento;
     }
 
