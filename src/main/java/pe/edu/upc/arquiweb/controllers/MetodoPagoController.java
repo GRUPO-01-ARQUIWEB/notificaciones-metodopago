@@ -60,6 +60,7 @@ public class MetodoPagoController {
             return m.map(h, MetodoPagoDTO.class);
         }).collect(Collectors.toList());
     }
+
     @GetMapping("/mas-usado")
     public ResponseEntity<MetodoPagoPopularDTO> obtenerMetodoMasPopular() {
         MetodoPagoPopularDTO resultado = mS.buscarMetodoPagoMasUsado();

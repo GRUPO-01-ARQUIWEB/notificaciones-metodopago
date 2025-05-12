@@ -6,6 +6,7 @@ import pe.edu.upc.arquiweb.repositories.IMetodoPagoRepository;
 import java.util.List;
 
 public interface IMetodoPagoService {
+
     public List<MetodoPago> list();
     public void insert(MetodoPago m);
     public MetodoPago searchID(int id);

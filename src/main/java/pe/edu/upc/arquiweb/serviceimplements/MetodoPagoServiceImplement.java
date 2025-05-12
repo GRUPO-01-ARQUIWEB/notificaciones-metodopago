@@ -39,9 +39,10 @@ public class MetodoPagoServiceImplement implements IMetodoPagoService {
         mR.deleteById(id);
     }
 
-@Override
-public List<MetodoPago> search(String idUsuario) {
+
+    @Override
+    public List<MetodoPago> search(String idUsuario) {
     int id = Integer.parseInt(idUsuario);
     return mR.buscarPorUsuario(id);
-}
+    }
 }
