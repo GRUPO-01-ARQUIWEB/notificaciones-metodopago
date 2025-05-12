@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ public class ResenaController {
     private IResenaService rS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<Resena2DTO> listar() {
         return rS.list().stream().map(r->{
             ModelMapper m = new ModelMapper();
@@ -38,6 +40,7 @@ public class ResenaController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('CLIENTE')")
     public ResponseEntity<String> registrar(@Valid @RequestBody ResenaDTO dto) {
         ModelMapper m = new ModelMapper();
         Resena r = m.map(dto, Resena.class);
@@ -47,11 +50,13 @@ public class ResenaController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         rS.delete(id);
     }
 
     @GetMapping("/por_calificacion")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ResenaCalificaDTO> listarOrdenadasPorCalificacion() {
         return rS.listReviewsRating().stream().map(r -> {
             ResenaCalificaDTO dto = new ResenaCalificaDTO();

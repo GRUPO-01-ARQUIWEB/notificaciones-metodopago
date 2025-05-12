@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.NotificacionDTO;
+import pe.edu.upc.arquiweb.dtos.ProductoDTO;
 import pe.edu.upc.arquiweb.entities.Notificaciones;
 import pe.edu.upc.arquiweb.serviceinterfaces.INotificacionService;
 
@@ -28,7 +30,9 @@ import java.util.stream.Collectors;
 public class NotificacionController {
     @Autowired
     private INotificacionService nS;
+
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
     public List<NotificacionDTO> listar(){
         return nS.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
@@ -37,6 +41,7 @@ public class NotificacionController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
     public ResponseEntity<String> registrar(@Valid @RequestBody NotificacionDTO dto) {
         ModelMapper m = new ModelMapper();
         Notificaciones a = m.map(dto, Notificaciones.class);
@@ -47,12 +52,15 @@ public class NotificacionController {
 
 
     @GetMapping("/{id}")
-    public NotificacionDTO listarID(@PathVariable("id") int id){
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
+    public NotificacionDTO listarID(@Valid @PathVariable("id") @Min(1) Integer id) {
         ModelMapper m=new ModelMapper();
-        NotificacionDTO dto =m.map(nS.searchID(id),NotificacionDTO.class);
+        NotificacionDTO dto=m.map(nS.searchID(id),NotificacionDTO.class);
         return dto;
     }
+
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMAPLICACION')")
     public void modificar(@RequestBody NotificacionDTO dto){
         ModelMapper m=new ModelMapper();
         Notificaciones a=m.map(dto, Notificaciones.class);
@@ -60,11 +68,13 @@ public class NotificacionController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAuthority('ADMAPLICACION')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         nS.delete(id);
     }
 
     @GetMapping("/busquedas")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
     public List<NotificacionDTO> buscar(@RequestParam String n){
         return nS.search(n).stream().map(h->{
             ModelMapper m=new ModelMapper();
@@ -72,6 +82,7 @@ public class NotificacionController {
         }).collect(Collectors.toList());
     }
     @PostMapping("/producto-disponible")
+    @PreAuthorize("hasAuthority('CLIENTE')")
     public String notificarDisponibilidad(@RequestBody NotificacionDTO notificacion) {
         INotificacionService.enviarNotificacion(notificacion.getCorreo(), notificacion.getMensaje());
         return "Notificación enviada correctamente";
