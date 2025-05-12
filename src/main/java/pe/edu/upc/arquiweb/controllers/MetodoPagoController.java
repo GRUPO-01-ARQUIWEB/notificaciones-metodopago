@@ -62,7 +62,7 @@ public class MetodoPagoController {
     }
     @GetMapping("/mas-usado")
     public ResponseEntity<MetodoPagoPopularDTO> obtenerMetodoMasPopular() {
-        MetodoPagoPopularDTO resultado = mS.buscarMetodoPagoMasUsado();
+        MetodoPagoPopularDTO resultado = mS.buscarmetodoPagoMasUsado();
         return resultado != null ?
                 ResponseEntity.ok(resultado) :
                 ResponseEntity.noContent().build();
