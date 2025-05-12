@@ -11,6 +11,5 @@ public interface IMetodoPagoService {
     public MetodoPago searchID(int id);
     public void update(MetodoPago m);
     public void delete(int id);
-    public List<MetodoPago> search(String titular);
 
 }
