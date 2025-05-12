@@ -43,7 +43,7 @@ public class UsuarioController {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.insert(u);
-        String mensaje = "Usuario registrado correctamente: " + dto.get();
+        String mensaje = "Usuario registrado correctamente: " + dto.getUsername();
         return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
