@@ -2,12 +2,9 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.ChatProveedorDTO;
-import pe.edu.upc.arquiweb.dtos.UsuarioDTO;
 import pe.edu.upc.arquiweb.entities.ChatProveedor;
-import pe.edu.upc.arquiweb.entities.Usuario;
 import pe.edu.upc.arquiweb.serviceinterfaces.IChatProveedorService;
 
 import java.util.List;
