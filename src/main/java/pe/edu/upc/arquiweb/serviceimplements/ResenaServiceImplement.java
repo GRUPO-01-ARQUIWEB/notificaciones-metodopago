@@ -30,6 +30,9 @@ public class ResenaServiceImplement implements IResenaService {
     }
 
     @Override
+    public void update(Resena r) {rP.save(r);}
+
+    @Override
     public List<Resena> listReviewsRating() {
         return rP.listarResenasCalificacion();
     }

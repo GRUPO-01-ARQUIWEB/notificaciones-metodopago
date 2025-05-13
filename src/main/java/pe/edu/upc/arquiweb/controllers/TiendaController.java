@@ -7,14 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO;
 import pe.edu.upc.arquiweb.dtos.TiendaDTO;
+import pe.edu.upc.arquiweb.entities.MetodoPago;
 import pe.edu.upc.arquiweb.entities.Tienda;
 import pe.edu.upc.arquiweb.serviceinterfaces.ITiendaService;
 
@@ -59,6 +55,14 @@ public class TiendaController {
         ModelMapper m=new ModelMapper();
         TiendaDTO dto=m.map(iS.searchId(id),TiendaDTO.class);
         return dto;
+    }
+
+    @PutMapping("/modificar")
+    @PreAuthorize("hasAuthority('ADMNEGOCIO')")
+    public void modificar(@RequestBody TiendaDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Tienda t = m.map(dto, Tienda.class);
+        iS.update(t);
     }
 
 }

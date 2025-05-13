@@ -3,6 +3,7 @@ package pe.edu.upc.arquiweb.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.Descuento;
+import pe.edu.upc.arquiweb.entities.Tienda;
 import pe.edu.upc.arquiweb.repositories.IDescuentoRepository;
 import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 
@@ -19,6 +20,10 @@ public class DescuentoServiceImplements implements IDescuentoService {
     @Override
     public void insert(Descuento descuento) {
         dR.save(descuento);
+    }
+    @Override
+    public void update(Descuento d) {
+        dR.save(d);
     }
     @Override
     public void delete(int idDescuento) {

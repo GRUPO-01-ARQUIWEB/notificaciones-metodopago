@@ -10,5 +10,6 @@ public interface ITiendaService {
     public List<Tienda> list();
     public void insert (Tienda t);
     public void delete (int id);
+    public void update (Tienda t);
     public Tienda searchId(int id);
 }

@@ -2,12 +2,15 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.DescuentoDTO;
 
 import pe.edu.upc.arquiweb.dtos.ListarDescuentoVigentesDTO;
 import pe.edu.upc.arquiweb.dtos.ListarDescuentosOrdenadosPorPorcentajeDTO;
+import pe.edu.upc.arquiweb.dtos.ResenaDTO;
 import pe.edu.upc.arquiweb.entities.Descuento;
+import pe.edu.upc.arquiweb.entities.Resena;
 import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 
 
@@ -58,6 +61,15 @@ public class DescuentoController {
         }
         return dtoLista;
     }
+
+    @PutMapping("/modificar")
+    @PreAuthorize("hasAuthority('A')")
+    public void modificar(@RequestBody DescuentoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Descuento d = m.map(dto, Descuento.class);
+        uS.update(d);
+    }
+
     @GetMapping("/ListarDescuentosOrdenadosXPorcentaje")
     public List<ListarDescuentosOrdenadosPorPorcentajeDTO> listarDescuentosOrdenadosPorPorcentaje() {
         List<Descuento> listaDescuentos = uS.obtenerDescuentosOrdenados();
