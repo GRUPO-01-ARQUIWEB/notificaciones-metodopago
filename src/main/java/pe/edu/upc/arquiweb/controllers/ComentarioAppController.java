@@ -2,6 +2,7 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.ComentarioAppDTO;
 import pe.edu.upc.arquiweb.entities.ComentarioApp;
@@ -17,6 +18,7 @@ public class ComentarioAppController {
     private IComentarioAppService caS;
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('GERENTE', 'ADMAPLICACION', 'ADMNEGOCIO', 'CLIENTE')")
     public List<ComentarioAppDTO> listar(){
         return caS.list().stream().map(c ->{
             ModelMapper m= new ModelMapper();
@@ -25,6 +27,7 @@ public class ComentarioAppController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('CLIENTE', 'ADMNEGOCIO')")
     public void insertar(@RequestBody ComentarioAppDTO dto) {
         ModelMapper m = new ModelMapper();
         ComentarioApp c = m.map(dto, ComentarioApp.class);
@@ -32,6 +35,7 @@ public class ComentarioAppController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyAuthority('GERENTE', 'ADMAPLICACION')")
     public void modificar(@RequestBody ComentarioAppDTO dto) {
         ModelMapper m = new ModelMapper();
         ComentarioApp c = m.map(dto, ComentarioApp.class);
@@ -39,6 +43,7 @@ public class ComentarioAppController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAnyAuthority('GERENTE', 'ADMAPLICACION')")
     public void eliminar(@PathVariable("id") int id) {
         caS.delete(id);
     }

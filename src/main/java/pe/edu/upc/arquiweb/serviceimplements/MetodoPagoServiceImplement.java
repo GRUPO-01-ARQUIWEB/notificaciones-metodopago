@@ -1,6 +1,7 @@
 package pe.edu.upc.arquiweb.serviceimplements;
 
 import org.springframework.stereotype.Service;
+import pe.edu.upc.arquiweb.dtos.MetodoPagoPopularDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
 import pe.edu.upc.arquiweb.repositories.IMetodoPagoRepository;
 import pe.edu.upc.arquiweb.serviceinterfaces.IMetodoPagoService;
@@ -44,4 +45,20 @@ public List<MetodoPago> search(String idUsuario) {
     int id = Integer.parseInt(idUsuario);
     return mR.buscarPorUsuario(id);
 }
+    @Override
+    public MetodoPagoPopularDTO buscarmetodoPagoMasUsado() {
+        List<Object[]> resultados = mR.findMetodoPagoMasUsado();
+        if (resultados == null || resultados.isEmpty()) {
+            return null;
+        }
+
+        Object[] data = resultados.get(0);
+        return new MetodoPagoPopularDTO(
+                ((Number) data[0]).intValue(),  // id
+                (String) data[1],              // tipo
+                (String) data[2],              // titular
+                ((Number) data[3]).longValue(), // totalUsos
+                ((Number) data[4]).doubleValue() // porcentaje
+        );
+    }
 }
