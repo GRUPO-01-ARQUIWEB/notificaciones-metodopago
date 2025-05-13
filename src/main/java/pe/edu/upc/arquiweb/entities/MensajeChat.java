@@ -28,6 +28,8 @@ public class MensajeChat {
     @Column(name = "fecha_envio", nullable = false)
     private LocalDateTime fechaEnvio;
 
+
+
     public MensajeChat() {
     }
 

@@ -15,4 +15,5 @@ public interface INotificacionesRepository extends JpaRepository<Notificaciones,
 
    @Query(value = "SELECT * FROM notificaciones WHERE fecha_envio >= CURRENT_DATE - INTERVAL :intervalo", nativeQuery = true)
    List<Notificaciones> buscarNotificacionesPorIntervalo(@Param("intervalo") String intervalo);
+
 }

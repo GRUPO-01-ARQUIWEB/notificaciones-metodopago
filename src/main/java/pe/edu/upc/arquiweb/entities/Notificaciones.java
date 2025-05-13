@@ -1,32 +1,38 @@
 package pe.edu.upc.arquiweb.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 @Entity
-
+@Table(name="Notificaciones")
 public class Notificaciones {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idNotificacion;
 
-    private int idUsuario;
-
+    @Size(max = 200, message = "El mensaje no puede tener más de 200 caracteres")
     @Column(name = "mensaje",nullable = false,length = 200)
     private String mensaje;
 
+    @NotNull(message = "La fecha de envio es obligatoria")
     @Column(name = "fechaEnvio",nullable = false)
     private LocalDateTime fechaEnvio;
 
     @Column(name = "leido",nullable = false)
     private boolean leido;
 
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
     public Notificaciones() {
     }
 
-    public Notificaciones(int idNotificacion, int idUsuario, String mensaje, LocalDateTime fechaEnvio, boolean leido) {
+    public Notificaciones(int idNotificacion, Usuario usuario, String mensaje, LocalDateTime fechaEnvio, boolean leido) {
         this.idNotificacion = idNotificacion;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
         this.mensaje = mensaje;
         this.fechaEnvio = fechaEnvio;
         this.leido = leido;
@@ -40,12 +46,12 @@ public class Notificaciones {
         this.idNotificacion = idNotificacion;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getMensaje() {

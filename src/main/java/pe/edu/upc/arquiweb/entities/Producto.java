@@ -8,6 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -20,21 +24,28 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProducto;
 
+    @NotBlank(message = "El nombre del producto no puede estar vacío")
+    @Size(max = 40, message = "El nombre del producto no puede tener más de 40 caracteres")
     @Column(name = "nombreProducto", nullable = false, length = 40)
     private String nombreProducto;
 
+    @Size(max = 300, message = "La descripcion no puede tener más de 300 caracteres")
     @Column(name = "descripcion", nullable = false, length = 300)
     private String descripcion;
 
+    @Positive(message = "El precio base debe ser mayor que 0")
     @Column(name = "precioBase", nullable = false)
     private double precioBase;
 
+    @Positive(message = "El stock debe ser mayor que 0")
     @Column(name = "stock", nullable = false)
     private int stock;
 
-    @Column(name = "categoria", nullable = false, length = 50)
+    @Size(max = 30, message = "La categoria no puede tener más de 30 caracteres")
+    @Column(name = "categoria", nullable = false, length = 30)
     private String categoria;
 
+    @NotNull(message = "La fecha de creacion es obligatoria")
     @Column(name = "fechaCreacion", nullable = false)
     private LocalDate fechaCreacion;
 
@@ -44,10 +55,6 @@ public class Producto {
     private Tienda tienda;
 
     @ManyToOne
-    @JoinColumn(name = "idTipoCategoria")
-    private  TipoCategoria tipoCategoria;
-
-    @ManyToOne
     @JoinColumn(name = "idResena")
     private Resena resena;
 
@@ -55,7 +62,7 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombreProducto, String descripcion, double precioBase, int stock, String categoria, LocalDate fechaCreacion, Tienda tienda, TipoCategoria tipoCategoria, Resena resena) {
+    public Producto(int idProducto, String nombreProducto, String descripcion, double precioBase, int stock, String categoria, LocalDate fechaCreacion, Tienda tienda, Resena resena) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
@@ -64,7 +71,6 @@ public class Producto {
         this.categoria = categoria;
         this.fechaCreacion = fechaCreacion;
         this.tienda = tienda;
-        this.tipoCategoria = tipoCategoria;
         this.resena = resena;
     }
 
@@ -132,12 +138,6 @@ public class Producto {
         this.tienda = tienda;
     }
 
-    public TipoCategoria getTipoCategoria() {
-        return tipoCategoria;
-    }
-
-    public void setTipoCategoria(TipoCategoria tipoCategoria) {this.tipoCategoria = tipoCategoria;
-    }
 
     public Resena getResena() {
         return resena;

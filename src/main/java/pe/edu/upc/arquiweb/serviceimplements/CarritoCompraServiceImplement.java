@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
 import pe.edu.upc.arquiweb.repositories.ICarritoCompraRepository;
-import pe.edu.upc.arquiweb.serviceinterfaces.ICarritoCompraServices;
+import pe.edu.upc.arquiweb.serviceinterfaces.ICarritoCompraService;
 
 import java.util.List;
 
 @Service
-public class CarritoCompraServiceImplements implements ICarritoCompraServices {
+public class CarritoCompraServiceImplement implements ICarritoCompraService {
     @Autowired
     private ICarritoCompraRepository ccR;
     @Autowired
@@ -43,8 +43,8 @@ public class CarritoCompraServiceImplements implements ICarritoCompraServices {
         return ccR.ordenarCarritoCompra();
     }
     @Override
-    public List<String[]> ordenarCarritoCompraUsuarioxFechaCreacion() {
-        return ccR.ordenarCarritoCompraUsuarioxFechaCreacion();
+    public List<String[]> BuscarCarritoCompraXID(int idUsuario) {
+        return ccR.BuscarCarritoCompraXID(idUsuario);
     }
 }
 

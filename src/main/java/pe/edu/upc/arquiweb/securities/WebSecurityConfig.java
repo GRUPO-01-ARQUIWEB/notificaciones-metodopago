@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -56,6 +57,7 @@ public class WebSecurityConfig {
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         //Desde Spring Boot 3.1+
@@ -67,7 +69,9 @@ public class WebSecurityConfig {
                                 antMatcher("/swagger-ui/**"),
                                 antMatcher("/swagger-ui.html"),
                                 antMatcher("/swagger-resources/**"),
-                                antMatcher("/webjars/**")).permitAll()
+                                antMatcher("/webjars/**")
+                        ).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
@@ -76,7 +80,6 @@ public class WebSecurityConfig {
                 .sessionManagement(Customizer.withDefaults());
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
-
     }
 
 }

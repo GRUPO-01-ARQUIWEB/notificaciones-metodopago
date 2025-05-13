@@ -2,8 +2,10 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO;
+import pe.edu.upc.arquiweb.dtos.MetodoPagoPopularDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
 import pe.edu.upc.arquiweb.serviceinterfaces.IMetodoPagoService;
 
@@ -58,4 +60,12 @@ public class MetodoPagoController {
             return m.map(h, MetodoPagoDTO.class);
         }).collect(Collectors.toList());
     }
+    @GetMapping("/mas-usado")
+    public ResponseEntity<MetodoPagoPopularDTO> obtenerMetodoMasPopular() {
+        MetodoPagoPopularDTO resultado = mS.buscarmetodoPagoMasUsado();
+        return resultado != null ?
+                ResponseEntity.ok(resultado) :
+                ResponseEntity.noContent().build();
+    }
+
 }
