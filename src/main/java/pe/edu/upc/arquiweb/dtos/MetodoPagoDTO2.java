@@ -12,13 +12,7 @@ public class MetodoPagoDTO2 {
     private String correo;
     private String telefonoUsuario;
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public int getIdMetodo() {
         return idMetodo;
@@ -50,6 +44,14 @@ public class MetodoPagoDTO2 {
 
     public void setVencimiento(LocalDate vencimiento) {
         this.vencimiento = vencimiento;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getCorreo() {
