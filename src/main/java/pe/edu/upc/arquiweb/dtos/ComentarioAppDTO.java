@@ -13,7 +13,6 @@ public class ComentarioAppDTO {
 
     private LocalDate fecha;
 
-    private Usuario usuario;
 
     public int getIdComentarioApp() {
         return idComentarioApp;
@@ -39,11 +38,4 @@ public class ComentarioAppDTO {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }

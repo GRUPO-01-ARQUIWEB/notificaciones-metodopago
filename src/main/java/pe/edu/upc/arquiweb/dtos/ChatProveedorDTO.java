@@ -10,11 +10,8 @@ public class ChatProveedorDTO {
 
     private LocalDate fechainicio;
 
-    private Usuario usuario;
+    private MensajeChat MensajeChat;
 
-    private Tienda tienda;
-
-    private MensajeChat mensaje;
 
     public int getIdChat() {
         return idChat;
@@ -32,27 +29,11 @@ public class ChatProveedorDTO {
         this.fechainicio = fechainicio;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public MensajeChat getMensajeChat() {
+        return MensajeChat;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Tienda getTienda() {
-        return tienda;
-    }
-
-    public void setTienda(Tienda tienda) {
-        this.tienda = tienda;
-    }
-
-    public MensajeChat getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(MensajeChat mensaje) {
-        this.mensaje = mensaje;
+    public void setMensajeChat(MensajeChat mensajeChat) {
+        MensajeChat = mensajeChat;
     }
 }

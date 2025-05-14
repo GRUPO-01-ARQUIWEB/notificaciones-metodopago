@@ -13,9 +13,6 @@ public class MensajeChat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMensaje;
 
-    @Column(name = "id_chat", nullable = false)
-    private int idChat;
-
     @Column(name = "contenido", nullable = false)
     private String contenido;
 
@@ -29,10 +26,30 @@ public class MensajeChat {
     private LocalDateTime fechaEnvio;
 
 
+    @ManyToOne
+    @JoinColumn(name = "id_chat")
+    private MensajeChat MensajeChat;
+
 
     public MensajeChat() {
     }
 
+    public MensajeChat(int idMensaje, String contenido, String urlVideo, String tipo, LocalDateTime fechaEnvio, MensajeChat mensajeChat) {
+        this.idMensaje = idMensaje;
+        this.contenido = contenido;
+        this.urlVideo = urlVideo;
+        this.tipo = tipo;
+        this.fechaEnvio = fechaEnvio;
+        MensajeChat = mensajeChat;
+    }
+
+    public MensajeChat getMensajeChat() {
+        return MensajeChat;
+    }
+
+    public void setMensajeChat(MensajeChat mensajeChat) {
+        MensajeChat = mensajeChat;
+    }
 
     public int getIdMensaje() {
         return idMensaje;
@@ -42,13 +59,6 @@ public class MensajeChat {
         this.idMensaje = idMensaje;
     }
 
-    public int getIdChat() {
-        return idChat;
-    }
-
-    public void setIdChat(int idChat) {
-        this.idChat = idChat;
-    }
 
     public String getContenido() {
         return contenido;

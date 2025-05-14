@@ -1,15 +1,12 @@
 package pe.edu.upc.arquiweb.dtos;
 
-import pe.edu.upc.arquiweb.entities.Usuario;
-
 public class MetodoPagoDTO {
-    private int idMetodo;
 
+    private int idMetodo;
     private String tipo;
-    private String titular;
     private String numeroTelefonico;
     private String vencimiento;
-    private Usuario usuario;
+
 
     public int getIdMetodo() {
         return idMetodo;
@@ -27,13 +24,6 @@ public class MetodoPagoDTO {
         this.tipo = tipo;
     }
 
-    public String getTitular() {
-        return titular;
-    }
-
-    public void setTitular(String titular) {
-        this.titular = titular;
-    }
 
     public String getNumeroTelefonico() {
         return numeroTelefonico;
@@ -51,11 +41,4 @@ public class MetodoPagoDTO {
         this.vencimiento = vencimiento;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }

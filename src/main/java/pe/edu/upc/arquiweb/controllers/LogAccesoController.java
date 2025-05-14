@@ -27,7 +27,7 @@ public class LogAccesoController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION')")
+    @PreAuthorize("hasAuthority('ADMAPLICACION')or hasAuthority('GERENTE')")
     public void insertar(@RequestBody LogAccesoDTO dto) {
         ModelMapper m = new ModelMapper();
         LogAcceso l = m.map(dto, LogAcceso.class);
@@ -35,7 +35,7 @@ public class LogAccesoController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION')")
+    @PreAuthorize("hasAuthority('ADMAPLICACION')or hasAuthority('GERENTE')")
     public void modificar(@RequestBody LogAccesoDTO dto) {
         ModelMapper m = new ModelMapper();
         LogAcceso l = m.map(dto, LogAcceso.class);
@@ -43,7 +43,7 @@ public class LogAccesoController {
     }
 
     @DeleteMapping("/eliminar{id}")
-    @PreAuthorize("hasAuthority('ADMAPLICACION')")
+    @PreAuthorize("hasAuthority('ADMAPLICACION')or hasAuthority('GERENTE')")
     public void eliminar(@PathVariable("id") int id) {
         laS.delete(id);
     }

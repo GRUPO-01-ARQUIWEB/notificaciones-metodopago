@@ -1,8 +1,8 @@
 package pe.edu.upc.arquiweb.dtos;
 
-public class TiendaDTO {
+public class TiendaDTO2 {
 
-
+    private int idTienda;
     private String nombre;
     private String descripcion;
     private String ubicacion;
@@ -11,6 +11,13 @@ public class TiendaDTO {
     private Double latitud;
     private Double longitud;
 
+    public int getIdTienda() {
+        return idTienda;
+    }
+
+    public void setIdTienda(int idTienda) {
+        this.idTienda = idTienda;
+    }
 
     public String getNombre() {
         return nombre;

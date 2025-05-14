@@ -63,7 +63,7 @@ public class MetodoPagoController {
     }
     @GetMapping("/busquedas")
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
-    public List<MetodoPagoDTO> buscar(@RequestParam String n){
+    public List<MetodoPagoDTO> buscar(String n){
         return mS.search(n).stream().map(h -> {
             ModelMapper m = new ModelMapper();
             return m.map(h, MetodoPagoDTO.class);

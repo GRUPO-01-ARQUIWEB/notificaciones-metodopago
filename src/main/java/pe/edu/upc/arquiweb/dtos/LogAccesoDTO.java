@@ -1,6 +1,6 @@
 package pe.edu.upc.arquiweb.dtos;
 
-import pe.edu.upc.arquiweb.entities.Usuario;
+
 
 import java.time.LocalDate;
 
@@ -16,7 +16,6 @@ public class LogAccesoDTO {
 
     private LocalDate fechaAcceso;
 
-    private Usuario usuario;
 
     public int getIdLog() {
         return idLog;
@@ -58,12 +57,5 @@ public class LogAccesoDTO {
         this.fechaAcceso = fechaAcceso;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }
 

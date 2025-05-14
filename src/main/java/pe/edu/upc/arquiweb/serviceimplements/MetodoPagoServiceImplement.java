@@ -3,6 +3,7 @@ package pe.edu.upc.arquiweb.serviceimplements;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoPopularDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
+import pe.edu.upc.arquiweb.entities.Producto;
 import pe.edu.upc.arquiweb.repositories.IMetodoPagoRepository;
 import pe.edu.upc.arquiweb.serviceinterfaces.IMetodoPagoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,8 @@ public class MetodoPagoServiceImplement implements IMetodoPagoService {
     }
 
     @Override
-    public List<MetodoPago> search(String idUsuario) {
-    int id = Integer.parseInt(idUsuario);
-    return mR.buscarPorUsuario(id);
+    public List<MetodoPago> search(String name) {
+        return mR.buscarPorTipo(name);
     }
 
     @Override

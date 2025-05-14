@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.edu.upc.arquiweb.dtos.ProductoDTO;
 import pe.edu.upc.arquiweb.dtos.UsuarioDTO;
 import pe.edu.upc.arquiweb.dtos.UsuarioDTO2;
 import pe.edu.upc.arquiweb.dtos.UsuarioRegistroDTO;
@@ -40,7 +41,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<String> registrar(@Valid @RequestBody UsuarioDTO dto) {
+    public ResponseEntity<String> registrar(@Valid @RequestBody UsuarioDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.insert(u);
@@ -50,7 +51,7 @@ public class UsuarioController {
 
     @PutMapping
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
-    public void modificar(@RequestBody UsuarioDTO2 dto) {
+    public void modificar(@RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.update(u);
@@ -61,4 +62,13 @@ public class UsuarioController {
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         uS.delete(id);
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
+    public UsuarioRegistroDTO buscarId(@Valid @PathVariable("id") @Min(1) Integer id) {
+        ModelMapper m=new ModelMapper();
+        UsuarioRegistroDTO dto=m.map(uS.searchId(id),UsuarioRegistroDTO.class);
+        return dto;
+    }
+
 }

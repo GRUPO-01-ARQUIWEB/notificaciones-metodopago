@@ -3,6 +3,7 @@ package pe.edu.upc.arquiweb.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.arquiweb.entities.Producto;
 import pe.edu.upc.arquiweb.entities.Usuario;
 import pe.edu.upc.arquiweb.repositories.IUsuarioRepository;
 import pe.edu.upc.arquiweb.serviceinterfaces.IUsuarioService;
@@ -29,12 +30,18 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Override
     public void update(Usuario u) {
+        u.setPassword(passwordEncoder.encode(u.getPassword()));
         uR.save(u);
     }
 
     @Override
     public void delete(int id) {
         uR.deleteById(id);
+    }
+
+    @Override
+    public Usuario searchId(int id) {
+        return uR.findById(id).orElse(new Usuario());
     }
 
 }

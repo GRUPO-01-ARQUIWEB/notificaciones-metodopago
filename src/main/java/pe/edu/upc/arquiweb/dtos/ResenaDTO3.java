@@ -1,24 +1,15 @@
 package pe.edu.upc.arquiweb.dtos;
 
+
+
 import java.time.LocalDate;
 
-public class ResenaCalificaDTO {
+public class ResenaDTO3 {
 
-    private int idResena;
     private double calificacion;
     private String comentario;
     private LocalDate fecha;
 
-    private String username;
-    private String nombreProducto;
-
-    public int getIdResena() {
-        return idResena;
-    }
-
-    public void setIdResena(int idResena) {
-        this.idResena = idResena;
-    }
 
     public double getCalificacion() {
         return calificacion;
@@ -44,19 +35,5 @@ public class ResenaCalificaDTO {
         this.fecha = fecha;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
-    }
 }

@@ -74,6 +74,8 @@ public class CarritoCompraController {
         CarritoCompra a =m.map(dto, CarritoCompra.class);
         uS.update(a);
     }
+
+
     @GetMapping("/carrito-ordenado-porPrecio")
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<OrdenCarritoCompraDTO> listarCarritoOrdenado() {
@@ -92,6 +94,8 @@ public class CarritoCompraController {
         }
         return dtoLista;
     }
+
+
     @GetMapping("/BuscarCarritoPorID")
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<BuscarCarritoCompraIDDTO> buscarCarritoxID(@RequestParam("idUsuario") int idUsuario) {

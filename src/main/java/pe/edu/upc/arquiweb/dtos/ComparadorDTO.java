@@ -10,8 +10,6 @@ public class ComparadorDTO {
     private int idComparador;
     private double precio;
     private LocalDate fechaActualizacion;
-    private Producto producto;
-    private Tienda tienda;
 
     public int getIdComparador() {
         return idComparador;
@@ -37,20 +35,6 @@ public class ComparadorDTO {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public Producto getProducto() {
-        return producto;
-    }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
-    public Tienda getTienda() {
-        return tienda;
-    }
-
-    public void setTienda(Tienda tienda) {
-        this.tienda = tienda;
-    }
 }
 

@@ -12,7 +12,7 @@ public interface IMetodoPagoService {
     public MetodoPago searchID(int id);
     public void update(MetodoPago m);
     public void delete(int id);
-    List<MetodoPago> search(String idUsuario);
+    List<MetodoPago> search(String n);
     List<MetodoPagoPopularDTO> obtenerMetodosPagoMasUsados();
 
 }

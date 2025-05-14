@@ -30,24 +30,20 @@ public class Descuento {
     private LocalDate fechaFin;
 
     @ManyToOne
-    @JoinColumn(name = "idProducto", nullable = false)
+    @JoinColumn(name = "idProducto")
     private Producto producto;
 
-    // Constructor vacío
     public Descuento() {
     }
 
-    // Constructor con parámetros
-    public Descuento(int idDescuento, Producto producto, double porcentaje, String codDescuento, LocalDate fechaInicio, LocalDate fechaFin) {
+    public Descuento(int idDescuento, double porcentaje, String codDescuento, LocalDate fechaInicio, LocalDate fechaFin, Producto producto) {
         this.idDescuento = idDescuento;
-        this.producto = producto;
         this.porcentaje = porcentaje;
         this.codDescuento = codDescuento;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.producto = producto;
     }
-
-    // Getters y Setters
 
     public int getIdDescuento() {
         return idDescuento;
@@ -55,14 +51,6 @@ public class Descuento {
 
     public void setIdDescuento(int idDescuento) {
         this.idDescuento = idDescuento;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
     }
 
     public double getPorcentaje() {
@@ -95,5 +83,13 @@ public class Descuento {
 
     public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }

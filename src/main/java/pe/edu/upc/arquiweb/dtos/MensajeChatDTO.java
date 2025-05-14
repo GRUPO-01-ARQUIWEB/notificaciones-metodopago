@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 public class MensajeChatDTO {
     private int idMensaje;
-    private int idChat;
     private String contenido;
     private String tipo;
     private String urlVideo;
@@ -16,14 +15,6 @@ public class MensajeChatDTO {
 
     public void setIdMensaje(int idMensaje) {
         this.idMensaje = idMensaje;
-    }
-
-    public int getIdChat() {
-        return idChat;
-    }
-
-    public void setIdChat(int idChat) {
-        this.idChat = idChat;
     }
 
     public String getContenido() {

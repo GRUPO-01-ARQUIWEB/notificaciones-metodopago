@@ -1,6 +1,7 @@
 package pe.edu.upc.arquiweb.serviceinterfaces;
 
 
+
 import pe.edu.upc.arquiweb.entities.Usuario;
 
 import java.util.List;
@@ -10,5 +11,6 @@ public interface IUsuarioService {
     public void insert (Usuario u);
     public void update(Usuario u);
     public void delete (int id);
+    public Usuario searchId(int id);
 }
 

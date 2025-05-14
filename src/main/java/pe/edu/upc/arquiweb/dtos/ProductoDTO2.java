@@ -12,15 +12,6 @@ public class ProductoDTO2 {
     private String categoria;
     private LocalDate fechaCreacion;
 
-    private int idTienda;
-
-    /*public int getIdProducto() {
-        return idProducto;
-    }*/
-
-    /*public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }*/
 
     public String getNombreProducto() {
         return nombreProducto;
@@ -68,13 +59,5 @@ public class ProductoDTO2 {
 
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
-    }
-
-    public int getIdTienda() {
-        return idTienda;
-    }
-
-    public void setIdTienda(int idTienda) {
-        this.idTienda = idTienda;
     }
 }

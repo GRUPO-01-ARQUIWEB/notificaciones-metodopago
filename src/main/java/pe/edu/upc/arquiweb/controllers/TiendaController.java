@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.TiendaDTO;
+import pe.edu.upc.arquiweb.dtos.TiendaDTO2;
 import pe.edu.upc.arquiweb.entities.Tienda;
 import pe.edu.upc.arquiweb.serviceinterfaces.ITiendaService;
 
@@ -23,10 +24,10 @@ public class TiendaController {
 
     @GetMapping
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
-    public List<TiendaDTO> listar(){
+    public List<TiendaDTO2> listar(){
         return iS.list().stream().map(i ->{
             ModelMapper m= new ModelMapper();
-            return m.map(i,TiendaDTO.class);
+            return m.map(i,TiendaDTO2.class);
         }).collect(Collectors.toList());
     }
 
@@ -42,7 +43,7 @@ public class TiendaController {
 
     @PutMapping
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
-    public void modificar(@RequestBody TiendaDTO dto) {
+    public void modificar(@RequestBody TiendaDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Tienda t = m.map(dto, Tienda.class);
         iS.update(t);
@@ -57,9 +58,9 @@ public class TiendaController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
-    public TiendaDTO buscarId(@Valid @PathVariable("id") @Min(1) Integer id) {
+    public TiendaDTO2 buscarId(@Valid @PathVariable("id") @Min(1) Integer id) {
         ModelMapper m=new ModelMapper();
-        TiendaDTO dto=m.map(iS.searchId(id),TiendaDTO.class);
+        TiendaDTO2 dto=m.map(iS.searchId(id),TiendaDTO2.class);
         return dto;
     }
 

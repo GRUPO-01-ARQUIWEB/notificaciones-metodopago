@@ -4,13 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.arquiweb.dtos.DescuentoDTO;
+import pe.edu.upc.arquiweb.dtos.*;
 
-import pe.edu.upc.arquiweb.dtos.ListarDescuentoVigentesDTO;
-import pe.edu.upc.arquiweb.dtos.ListarDescuentosOrdenadosPorPorcentajeDTO;
-import pe.edu.upc.arquiweb.dtos.ResenaDTO;
 import pe.edu.upc.arquiweb.entities.Descuento;
-import pe.edu.upc.arquiweb.entities.Resena;
 import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 
 
@@ -35,7 +31,7 @@ public class DescuentoController {
     }
     @PostMapping("/AplicarDescuento")
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
-    public void aplicar (@RequestBody DescuentoDTO dto)
+    public void aplicar (@RequestBody DescuentoDTO2 dto)
     {
         ModelMapper m =new ModelMapper();
         Descuento a =m.map(dto, Descuento.class);

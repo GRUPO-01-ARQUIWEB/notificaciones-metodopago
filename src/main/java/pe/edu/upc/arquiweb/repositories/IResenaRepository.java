@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface IResenaRepository extends JpaRepository<Resena, Integer> {
 
-    @Query("select r from Resena r order by r.calificacion desc")
+    @Query("SELECT r FROM Resena r JOIN FETCH r.usuario u JOIN FETCH r.producto p ORDER BY r.calificacion DESC")
     public List<Resena> listarResenasCalificacion();
+
 }

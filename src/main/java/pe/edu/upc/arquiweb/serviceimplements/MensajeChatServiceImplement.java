@@ -20,7 +20,6 @@ public class MensajeChatServiceImplement implements IMensajeChatService {
     @Override
     public void insert(MensajeChatDTO dto) {
         MensajeChat m = new MensajeChat();
-        m.setIdChat(dto.getIdChat());
         m.setContenido(dto.getContenido());
         m.setTipo(dto.getTipo());
         m.setUrlVideo(dto.getUrlVideo());
@@ -35,7 +34,6 @@ public class MensajeChatServiceImplement implements IMensajeChatService {
         for (MensajeChat m : lista) {
             MensajeChatDTO dto = new MensajeChatDTO();
             dto.setIdMensaje(m.getIdMensaje());
-            dto.setIdChat(m.getIdChat());
             dto.setContenido(m.getContenido());
             dto.setTipo(m.getTipo());
             dto.setUrlVideo(m.getUrlVideo());
@@ -54,7 +52,6 @@ public class MensajeChatServiceImplement implements IMensajeChatService {
     public void update(MensajeChatDTO dto) {
         MensajeChat m = new MensajeChat();
         m.setIdMensaje(dto.getIdMensaje());
-        m.setIdChat(dto.getIdChat());
         m.setContenido(dto.getContenido());
         m.setTipo(dto.getTipo());
         m.setUrlVideo(dto.getUrlVideo());

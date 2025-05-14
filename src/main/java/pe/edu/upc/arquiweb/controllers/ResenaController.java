@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.Resena2DTO;
 import pe.edu.upc.arquiweb.dtos.ResenaCalificaDTO;
 import pe.edu.upc.arquiweb.dtos.ResenaDTO;
+import pe.edu.upc.arquiweb.dtos.ResenaDTO3;
 import pe.edu.upc.arquiweb.entities.Resena;
 import pe.edu.upc.arquiweb.serviceinterfaces.IResenaService;
 
@@ -34,8 +35,8 @@ public class ResenaController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CLIENTE')")
-    public ResponseEntity<String> registrar(@Valid @RequestBody ResenaDTO dto) {
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
+    public ResponseEntity<String> registrar(@Valid @RequestBody ResenaDTO3 dto) {
         ModelMapper m = new ModelMapper();
         Resena r = m.map(dto, Resena.class);
         rS.insert(r);
@@ -44,7 +45,7 @@ public class ResenaController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
     public void modificar(@RequestBody ResenaDTO dto) {
         ModelMapper m = new ModelMapper();
         Resena r = m.map(dto, Resena.class);
@@ -55,6 +56,14 @@ public class ResenaController {
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         rS.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
+    public Resena2DTO buscarId(@Valid @PathVariable("id") @Min(1) Integer id) {
+        ModelMapper m=new ModelMapper();
+        Resena2DTO dto=m.map(rS.searchId(id),Resena2DTO.class);
+        return dto;
     }
 
     @GetMapping("/por_calificacion")

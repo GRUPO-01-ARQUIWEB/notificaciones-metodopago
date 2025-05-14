@@ -18,7 +18,7 @@ public class MensajeChatController {
     private IMensajeChatService IMensajeChatService;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')or hasAuthority('GERENTE')")
     public void insertar(@RequestBody MensajeChatDTO dto) {
         IMensajeChatService.insert(dto);
     }
@@ -30,13 +30,13 @@ public class MensajeChatController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMAPLICACION')")
+    @PreAuthorize("hasAuthority('ADMAPLICACION')or hasAuthority('GERENTE')")
     public void eliminar(@PathVariable("id") Integer id) {
         IMensajeChatService.delete(id);
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('CLIENTE')or hasAuthority('GERENTE')")
     public void modificar(@RequestBody MensajeChatDTO dto) {
         IMensajeChatService.update(dto);
     }
