@@ -3,11 +3,11 @@ package pe.edu.upc.arquiweb.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.CarritoCompraProductoDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoCompradoDTO;
+import pe.edu.upc.arquiweb.dtos.ProductoMasCompradoDTO;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
 import pe.edu.upc.arquiweb.entities.CarritoCompraProducto;
 import pe.edu.upc.arquiweb.entities.Producto;
-import pe.edu.upc.arquiweb.servicesinterfaces.CarritoCompraProductoServices;
+import pe.edu.upc.arquiweb.serviceinterfaces.CarritoCompraProductoServices;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class CarritoCompraProductoController {
 
     @Autowired
-    private ICarritoCompraProductoServices service;
+    private CarritoCompraProductoServices service;
 
     @GetMapping
     public List<CarritoCompraProductoDTO> listar() {
@@ -78,7 +78,7 @@ public class CarritoCompraProductoController {
     }
 
     @GetMapping("/top-productos")
-    public List<ProductoCompradoDTO> productosMasComprados() {
+    public List<ProductoMasCompradoDTO> productosMasComprados() {
         return service.productosMasComprados();
     }
 }

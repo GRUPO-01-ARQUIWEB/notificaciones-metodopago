@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.Usuario;
 import pe.edu.upc.arquiweb.repositories.IUsuarioRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.IUsuarioService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IUsuarioService;
 
 import java.util.List;
 
