@@ -2,7 +2,9 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.arquiweb.dtos.ChatProovedorTiempoDTO;
 import pe.edu.upc.arquiweb.dtos.ChatProveedorDTO;
 import pe.edu.upc.arquiweb.entities.ChatProveedor;
 import pe.edu.upc.arquiweb.serviceinterfaces.IChatProveedorService;
@@ -42,5 +44,11 @@ public class ChatProveedorController {
     @DeleteMapping("/eliminar{id}")
     public void eliminar(@PathVariable("id") int id) {
         cS.delete(id);
+    }
+
+    @GetMapping("/por-tiempo")
+    public ResponseEntity<List<ChatProovedorTiempoDTO>> obtenerEstadisticasChatsPorMes() {
+        List<ChatProovedorTiempoDTO> resultado = cS.obtenerChatsPorTiempo();
+        return ResponseEntity.ok(resultado);
     }
 }

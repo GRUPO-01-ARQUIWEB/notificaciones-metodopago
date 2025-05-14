@@ -2,11 +2,13 @@ package pe.edu.upc.arquiweb.serviceimplements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.edu.upc.arquiweb.dtos.ChatProovedorTiempoDTO;
 import pe.edu.upc.arquiweb.entities.ChatProveedor;
 import pe.edu.upc.arquiweb.repositories.IChatProveedorRepository;
 import pe.edu.upc.arquiweb.serviceinterfaces.IChatProveedorService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ChatProovedorServiceImplement implements IChatProveedorService {
@@ -31,5 +33,16 @@ public class ChatProovedorServiceImplement implements IChatProveedorService {
     @Override
     public void delete(int id) {
         cR.deleteById(id);
+    }
+
+    @Override
+    public List<ChatProovedorTiempoDTO> obtenerChatsPorTiempo() {
+        return cR.cantidadChatXTiempo().stream()
+                .map(result -> new ChatProovedorTiempoDTO(
+                        ((Number) result[1]).intValue(),
+                        ((Number) result[0]).intValue(),
+                        ((Number) result[2]).longValue()
+                ))
+                .collect(Collectors.toList());
     }
 }
