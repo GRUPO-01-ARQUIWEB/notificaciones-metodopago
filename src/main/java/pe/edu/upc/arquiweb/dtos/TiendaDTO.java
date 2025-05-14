@@ -2,7 +2,6 @@ package pe.edu.upc.arquiweb.dtos;
 
 public class TiendaDTO {
 
-    private int idTienda;
 
     private String nombre;
 
@@ -18,13 +17,6 @@ public class TiendaDTO {
 
     private Double longitud;
 
-    public int getIdTienda() {
-        return idTienda;
-    }
-
-    public void setIdTienda(int idTienda) {
-        this.idTienda = idTienda;
-    }
 
     public String getNombre() {
         return nombre;
@@ -49,6 +41,7 @@ public class TiendaDTO {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
     public String getTelefono() {
         return telefono;
     }
@@ -78,5 +71,6 @@ public class TiendaDTO {
     }
 
     public void setLongitud(Double longitud) {
-        this.longitud = longitud;}
+        this.longitud = longitud;
+    }
 }

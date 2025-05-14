@@ -1,14 +1,18 @@
 package pe.edu.upc.arquiweb.controllers;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.Resena2DTO;
 import pe.edu.upc.arquiweb.dtos.ResenaCalificaDTO;
 import pe.edu.upc.arquiweb.dtos.ResenaDTO;
 import pe.edu.upc.arquiweb.entities.Resena;
-import pe.edu.upc.arquiweb.servicesinterfaces.IResenaService;
+import pe.edu.upc.arquiweb.serviceinterfaces.IResenaService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +25,7 @@ public class ResenaController {
     private IResenaService rS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<Resena2DTO> listar() {
         return rS.list().stream().map(r->{
             ModelMapper m = new ModelMapper();
@@ -29,18 +34,31 @@ public class ResenaController {
     }
 
     @PostMapping
-    public void insertar (@RequestBody ResenaDTO dto) {
+    @PreAuthorize("hasAuthority('CLIENTE')")
+    public ResponseEntity<String> registrar(@Valid @RequestBody ResenaDTO dto) {
         ModelMapper m = new ModelMapper();
         Resena r = m.map(dto, Resena.class);
         rS.insert(r);
+        String mensaje = "La reseña fue registrada correctamente ";
+        return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    @PreAuthorize("hasAuthority('CLIENTE')")
+    public void modificar(@RequestBody ResenaDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Resena r = m.map(dto, Resena.class);
+        rS.update(r);
     }
 
     @DeleteMapping("/eliminar{id}")
-    public void eliminar(@PathVariable("id") int id){
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
+    public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         rS.delete(id);
     }
 
     @GetMapping("/por_calificacion")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ResenaCalificaDTO> listarOrdenadasPorCalificacion() {
         return rS.listReviewsRating().stream().map(r -> {
             ResenaCalificaDTO dto = new ResenaCalificaDTO();

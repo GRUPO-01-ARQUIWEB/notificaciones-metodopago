@@ -1,17 +1,22 @@
 package pe.edu.upc.arquiweb.serviceimplements;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.arquiweb.entities.CarritoCompra;
-import pe.edu.upc.arquiweb.repositories.CarritCompraRepository;
-import pe.edu.upc.arquiweb.servicesinterfaces.CarritoCompraServices;
+import pe.edu.upc.arquiweb.repositories.ICarritoCompraRepository;
+import pe.edu.upc.arquiweb.serviceinterfaces.ICarritoCompraService;
 
 import java.util.List;
 
 @Service
-public class CarritoCompraServiceImplement implements CarritoCompraServices {
+public class CarritoCompraServiceImplement implements ICarritoCompraService {
     @Autowired
-    private CarritCompraRepository ccR;
+    private ICarritoCompraRepository ccR;
+    @Autowired
+    private ModelMapper modelMapper;
+
+
     @Override
     public List<CarritoCompra> list(){
         return ccR.findAll();
@@ -20,12 +25,12 @@ public class CarritoCompraServiceImplement implements CarritoCompraServices {
 
     @Override
     public void insert(CarritoCompra carritoCompra) {
-ccR.save(carritoCompra);
+        ccR.save(carritoCompra);
     }
 
     @Override
     public void delete(int idProducto) {
-ccR.deleteById(idProducto);
+        ccR.deleteById(idProducto);
     }
 
     @Override
@@ -33,5 +38,13 @@ ccR.deleteById(idProducto);
         ccR.save(a);
     }
 
-
+    @Override
+    public List<String[]> ordenarCarritoCompra() {
+        return ccR.ordenarCarritoCompra();
+    }
+    @Override
+    public List<String[]> BuscarCarritoCompraXID(int idUsuario) {
+        return ccR.BuscarCarritoCompraXID(idUsuario);
+    }
 }
+

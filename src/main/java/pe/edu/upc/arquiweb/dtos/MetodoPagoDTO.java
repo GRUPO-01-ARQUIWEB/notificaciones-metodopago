@@ -1,57 +1,61 @@
 package pe.edu.upc.arquiweb.dtos;
 
+import pe.edu.upc.arquiweb.entities.Usuario;
+
 public class MetodoPagoDTO {
     private int idMetodo;
-    private int idUsuario;
-    private String tipo; // Tarjeta, Yape, Plin
+
+    private String tipo;
     private String titular;
     private String numeroTelefonico;
     private String vencimiento;
+    private Usuario usuario;
 
-public int getIdMetodo() {
-    return idMetodo;
-}
+    public int getIdMetodo() {
+        return idMetodo;
+    }
 
-public void setIdMetodo(int idMetodo) {
-    this.idMetodo = idMetodo;
-}
+    public void setIdMetodo(int idMetodo) {
+        this.idMetodo = idMetodo;
+    }
 
-public int getIdUsuario() {
-    return idUsuario;
-}
+    public String getTipo() {
+        return tipo;
+    }
 
-public void setIdUsuario(int idUsuario) {
-    this.idUsuario = idUsuario;
-}
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
-public String getTipo() {
-    return tipo;
-}
+    public String getTitular() {
+        return titular;
+    }
 
-public void setTipo(String tipo) {
-    this.tipo = tipo;
-}
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
 
-public String getTitular() {
-    return titular;
-}
+    public String getNumeroTelefonico() {
+        return numeroTelefonico;
+    }
 
-public void setTitular(String titular) {
-    this.titular = titular;
-}
+    public void setNumeroTelefonico(String numeroTelefonico) {
+        this.numeroTelefonico = numeroTelefonico;
+    }
 
-public String getNumeroTelefonico() {
-    return numeroTelefonico;
-}
+    public String getVencimiento() {
+        return vencimiento;
+    }
 
-public void setNumeroTelefonico(String numeroTelefonico) {
-    this.numeroTelefonico = numeroTelefonico;
-}
+    public void setVencimiento(String vencimiento) {
+        this.vencimiento = vencimiento;
+    }
 
-public String getVencimiento() {
-    return vencimiento;
-}
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-public void setVencimiento(String vencimiento) {
-    this.vencimiento = vencimiento;}
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

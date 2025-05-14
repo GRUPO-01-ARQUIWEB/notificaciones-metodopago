@@ -2,13 +2,16 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.DescuentoDTO;
 
 import pe.edu.upc.arquiweb.dtos.ListarDescuentoVigentesDTO;
 import pe.edu.upc.arquiweb.dtos.ListarDescuentosOrdenadosPorPorcentajeDTO;
+import pe.edu.upc.arquiweb.dtos.ResenaDTO;
 import pe.edu.upc.arquiweb.entities.Descuento;
-import pe.edu.upc.arquiweb.servicesinterfaces.DescuentoService;
+import pe.edu.upc.arquiweb.entities.Resena;
+import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 
 
 import java.time.LocalDate;
@@ -20,9 +23,10 @@ import java.util.stream.Collectors;
 @RequestMapping("descuentos")
 public class DescuentoController {
     @Autowired
-    private DescuentoService uS;
+    private IDescuentoService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<DescuentoDTO> listar() {
         return uS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -30,6 +34,7 @@ public class DescuentoController {
         }).collect(Collectors.toList());
     }
     @PostMapping("/AplicarDescuento")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void aplicar (@RequestBody DescuentoDTO dto)
     {
         ModelMapper m =new ModelMapper();
@@ -37,12 +42,14 @@ public class DescuentoController {
         uS.insert(a);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void eliminar(@PathVariable("id") int idDescuento)
     {
         uS.delete(idDescuento);
     }
 
     @GetMapping("/listarDescVigente")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ListarDescuentoVigentesDTO> listardescuentvigentes() {
         List<String[]> filaLista = uS.ListarDescVigentes();
         List<ListarDescuentoVigentesDTO> dtoLista = new ArrayList<>();
@@ -58,7 +65,17 @@ public class DescuentoController {
         }
         return dtoLista;
     }
+
+    @PutMapping("/modificar")
+    @PreAuthorize("hasAuthority('A')")
+    public void modificar(@RequestBody DescuentoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Descuento d = m.map(dto, Descuento.class);
+        uS.update(d);
+    }
+
     @GetMapping("/ListarDescuentosOrdenadosXPorcentaje")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ListarDescuentosOrdenadosPorPorcentajeDTO> listarDescuentosOrdenadosPorPorcentaje() {
         List<Descuento> listaDescuentos = uS.obtenerDescuentosOrdenados();
         List<ListarDescuentosOrdenadosPorPorcentajeDTO> dtoLista = new ArrayList<>();
@@ -72,7 +89,6 @@ public class DescuentoController {
             dto.setFechaFin(d.getFechaFin());
             dtoLista.add(dto);
         }
-
         return dtoLista;
     }
 }

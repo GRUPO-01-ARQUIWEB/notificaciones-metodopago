@@ -4,12 +4,9 @@ import java.time.LocalDateTime;
 
 public class NotificacionDTO {
 
-    private int idNotificacion;
 
 
     private int idUsuario;
-
-
     private String mensaje;
 
 
@@ -18,13 +15,6 @@ public class NotificacionDTO {
 
     private boolean leido;
 
-    public int getIdNotificacion() {
-        return idNotificacion;
-    }
-
-    public void setIdNotificacion(int idNotificacion) {
-        this.idNotificacion = idNotificacion;
-    }
 
     public int getIdUsuario() {
         return idUsuario;

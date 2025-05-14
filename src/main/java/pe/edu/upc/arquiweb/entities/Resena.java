@@ -2,6 +2,8 @@ package pe.edu.upc.arquiweb.entities;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -13,14 +15,18 @@ public class Resena {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idResena;
 
+    @NotNull(message = "La calificacion es obligatoria")
     @Column(name = "calificacion", nullable = false, length = 15)
     private double calificacion;
 
+    @Size(max = 300, message = "El comentario no puede tener más de 300 caracteres")
     @Column(name = "comentario", nullable = false, length = 300)
     private String comentario;
 
+    @NotNull(message = "La fecha de la reseña es obligatoria")
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
+
 
     @ManyToOne
     @JoinColumn(name = "idUsuario")

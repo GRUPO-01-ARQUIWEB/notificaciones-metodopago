@@ -2,23 +2,14 @@ package pe.edu.upc.arquiweb.dtos;
 
 public class UsuarioDTO {
 
-    private int idUsuario;
     private String username;
     private String password;
     private Boolean enabled;
     private String correo;
     private String direccion;
     private String telefono;
-    private double latitud;
-    private double longitud;
 
-    public int getIdUsuario() {
-        return idUsuario;
-    }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
 
     public String getUsername() {
         return username;
@@ -66,21 +57,5 @@ public class UsuarioDTO {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public double getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public double getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
     }
 }
