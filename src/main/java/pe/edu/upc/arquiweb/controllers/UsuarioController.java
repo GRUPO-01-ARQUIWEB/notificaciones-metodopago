@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.UsuarioDTO;
+import pe.edu.upc.arquiweb.dtos.UsuarioDTO2;
 import pe.edu.upc.arquiweb.dtos.UsuarioRegistroDTO;
 import pe.edu.upc.arquiweb.entities.Usuario;
 import pe.edu.upc.arquiweb.serviceinterfaces.IUsuarioService;
@@ -39,11 +40,11 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<String> registrar(@Valid @RequestBody UsuarioDTO dto) {
+    public ResponseEntity<String> registrar(@Valid @RequestBody UsuarioDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.insert(u);
-        String mensaje = "Usuario registrado correctamente: " + dto.getUsername();
+        String mensaje = "Usuario registrado correctamente: ";
         return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 

@@ -24,6 +24,11 @@ public class TiendaServiceImplement implements ITiendaService {
     }
 
     @Override
+    public void update(Tienda t) {
+        tR.save(t);
+    }
+
+    @Override
     public void delete(int id) {
         tR.deleteById(id);
     }

@@ -47,13 +47,13 @@ public class ProductoController {
         ModelMapper m = new ModelMapper();
         Producto p = m.map(dto, Producto.class);
         pS.insert(p);
-        String mensaje = "El producto" + dto.getNombreProducto() + "fue registrada correctamente";
+        String mensaje = "El producto fue registrada correctamente";
         return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
     @PutMapping
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
-    public void modificar(@RequestBody ProductoDTO2 dto) {
+    public void modificar(@RequestBody ProductoDTO dto) {
         ModelMapper m = new ModelMapper();
         Producto p = m.map(dto, Producto.class);
         pS.update(p);

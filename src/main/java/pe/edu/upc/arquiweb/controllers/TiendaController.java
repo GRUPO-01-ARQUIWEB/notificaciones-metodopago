@@ -7,13 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.TiendaDTO;
 import pe.edu.upc.arquiweb.entities.Tienda;
 import pe.edu.upc.arquiweb.serviceinterfaces.ITiendaService;
@@ -28,7 +22,7 @@ public class TiendaController {
     private ITiendaService iS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<TiendaDTO> listar(){
         return iS.list().stream().map(i ->{
             ModelMapper m= new ModelMapper();
@@ -44,6 +38,14 @@ public class TiendaController {
         iS.insert(t);
         String mensaje = "Tienda registrada correctamente: " + dto.getNombre();
         return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
+    public void modificar(@RequestBody TiendaDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Tienda t = m.map(dto, Tienda.class);
+        iS.update(t);
     }
 
     @DeleteMapping("/eliminar{id}")
