@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class CarritoCompraProductoController {
 
     @Autowired
-    private CarritoCompraProductoServices service;
+    private ICarritoCompraProductoServices service;
 
     @GetMapping
     public List<CarritoCompraProductoDTO> listar() {
