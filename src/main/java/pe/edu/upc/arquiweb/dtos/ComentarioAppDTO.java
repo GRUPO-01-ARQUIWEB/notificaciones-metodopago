@@ -1,8 +1,5 @@
 package pe.edu.upc.arquiweb.dtos;
 
-
-import pe.edu.upc.arquiweb.entities.Usuario;
-
 import java.time.LocalDate;
 
 public class ComentarioAppDTO {
@@ -13,7 +10,7 @@ public class ComentarioAppDTO {
 
     private LocalDate fecha;
 
-    private Usuario usuario;
+    private int idUsuario;
 
     public int getIdComentarioApp() {
         return idComentarioApp;
@@ -39,11 +36,11 @@ public class ComentarioAppDTO {
         this.fecha = fecha;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
