@@ -1,27 +1,12 @@
 package pe.edu.upc.arquiweb.dtos;
 
 public class MetodoPagoPopularDTO {
-    private int idMetodo;
     private String tipo;
-    private String titular;
-    private long totalUsos;
-    private double porcentaje;
+    private Long cantidad;
 
-
-    public MetodoPagoPopularDTO(int idMetodo, String tipo, String titular, long totalUsos, double porcentaje) {
-        this.idMetodo = idMetodo;
+    public MetodoPagoPopularDTO(String tipo, Long cantidad) {
         this.tipo = tipo;
-        this.titular = titular;
-        this.totalUsos = totalUsos;
-        this.porcentaje = porcentaje;
-    }
-
-    public int getIdMetodo() {
-        return idMetodo;
-    }
-
-    public void setIdMetodo(int idMetodo) {
-        this.idMetodo = idMetodo;
+        this.cantidad = cantidad;
     }
 
     public String getTipo() {
@@ -32,27 +17,11 @@ public class MetodoPagoPopularDTO {
         this.tipo = tipo;
     }
 
-    public String getTitular() {
-        return titular;
+    public Long getCantidad() {
+        return cantidad;
     }
 
-    public void setTitular(String titular) {
-        this.titular = titular;
-    }
-
-    public long getTotalUsos() {
-        return totalUsos;
-    }
-
-    public void setTotalUsos(long totalUsos) {
-        this.totalUsos = totalUsos;
-    }
-
-    public double getPorcentaje() {
-        return porcentaje;
-    }
-
-    public void setPorcentaje(double porcentaje) {
-        this.porcentaje = porcentaje;
+    public void setCantidad(Long cantidad) {
+        this.cantidad = cantidad;
     }
 }

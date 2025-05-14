@@ -3,6 +3,7 @@ package pe.edu.upc.arquiweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.ComparadorDTO;
 import pe.edu.upc.arquiweb.dtos.ComparadorPrecioDTO;
@@ -19,6 +20,7 @@ public class ComparadorController {
     private IComparadorService cpS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ComparadorDTO> listar(){
         return cpS.list().stream().map(c ->{
             ModelMapper m= new ModelMapper();
@@ -27,6 +29,7 @@ public class ComparadorController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void insertar(@RequestBody ComparadorDTO dto) {
         ModelMapper m = new ModelMapper();
         Comparador c = m.map(dto, Comparador.class);
@@ -34,6 +37,7 @@ public class ComparadorController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void modificar(@RequestBody ComparadorDTO dto) {
         ModelMapper m = new ModelMapper();
         Comparador c = m.map(dto, Comparador.class);
@@ -41,12 +45,14 @@ public class ComparadorController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void eliminar(@PathVariable("id") int id) {
         cpS.delete(id);
     }
 
 
     @GetMapping("/CompararPrecio")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public ResponseEntity<List<ComparadorPrecioDTO>> compararPrecio(
             @RequestParam List<Integer> productosId) {
         return ResponseEntity.ok(cpS.compararPrecio(productosId));

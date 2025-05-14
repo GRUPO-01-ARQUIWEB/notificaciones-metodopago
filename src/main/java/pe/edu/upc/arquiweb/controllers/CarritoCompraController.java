@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class CarritoCompraController {
 
 
     @GetMapping("/ListarProducto")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<CarritoCompra2DTO> listar() {
         return uS.list().stream().map(carritoCompra -> {
             CarritoCompra2DTO dto = new CarritoCompra2DTO();
@@ -51,6 +53,7 @@ public class CarritoCompraController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public ResponseEntity<String> agregarproduct(@Valid @RequestBody CarritoCompraDTO dto) {
         ModelMapper m = new ModelMapper();
         CarritoCompra a = m.map(dto, CarritoCompra.class);
@@ -60,6 +63,7 @@ public class CarritoCompraController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer idProducto) {
         uS.delete(idProducto);
     }
@@ -71,6 +75,7 @@ public class CarritoCompraController {
         uS.update(a);
     }
     @GetMapping("/carrito-ordenado-porPrecio")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<OrdenCarritoCompraDTO> listarCarritoOrdenado() {
         List<String[]> filaLista = uS.ordenarCarritoCompra();
         List<OrdenCarritoCompraDTO> dtoLista = new ArrayList<>();
@@ -88,6 +93,7 @@ public class CarritoCompraController {
         return dtoLista;
     }
     @GetMapping("/BuscarCarritoPorID")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<BuscarCarritoCompraIDDTO> buscarCarritoxID(@RequestParam("idUsuario") int idUsuario) {
         List<String[]> filaLista = uS.BuscarCarritoCompraXID(idUsuario);
         List<BuscarCarritoCompraIDDTO> dtoLista=new ArrayList<>();

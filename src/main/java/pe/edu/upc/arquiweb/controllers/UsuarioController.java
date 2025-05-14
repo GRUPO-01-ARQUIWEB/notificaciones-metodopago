@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.UsuarioDTO;
+import pe.edu.upc.arquiweb.dtos.UsuarioDTO2;
 import pe.edu.upc.arquiweb.dtos.UsuarioRegistroDTO;
 import pe.edu.upc.arquiweb.entities.Usuario;
 import pe.edu.upc.arquiweb.serviceinterfaces.IUsuarioService;
@@ -43,20 +44,20 @@ public class UsuarioController {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.insert(u);
-        String mensaje = "Usuario registrado correctamente: " + dto.getUsername();
+        String mensaje = "Usuario registrado correctamente: ";
         return new ResponseEntity<>(mensaje, HttpStatus.CREATED);
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION')")
-    public void modificar(@RequestBody UsuarioDTO dto) {
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
+    public void modificar(@RequestBody UsuarioDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.update(u);
     }
 
     @DeleteMapping("/eliminar{id}")
-    @PreAuthorize("hasAuthority('ADMAPLICACION')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         uS.delete(id);
     }

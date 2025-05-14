@@ -25,6 +25,11 @@ public class ResenaServiceImplement implements IResenaService {
     }
 
     @Override
+    public void update(Resena r) {
+        rP.save(r);
+    }
+
+    @Override
     public void delete(int id) {
         rP.deleteById(id);
     }

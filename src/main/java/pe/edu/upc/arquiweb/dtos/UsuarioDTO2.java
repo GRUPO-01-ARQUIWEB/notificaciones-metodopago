@@ -1,7 +1,8 @@
 package pe.edu.upc.arquiweb.dtos;
 
-public class UsuarioDTO {
+public class UsuarioDTO2 {
 
+    private int idUsuario;
     private String username;
     private String password;
     private Boolean enabled;
@@ -9,7 +10,13 @@ public class UsuarioDTO {
     private String direccion;
     private String telefono;
 
+    public int getIdUsuario() {
+        return idUsuario;
+    }
 
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     public String getUsername() {
         return username;

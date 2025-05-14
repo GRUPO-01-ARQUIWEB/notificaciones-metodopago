@@ -8,6 +8,7 @@ import pe.edu.upc.arquiweb.serviceinterfaces.IMetodoPagoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MetodoPagoServiceImplement implements IMetodoPagoService {
@@ -40,25 +41,22 @@ public class MetodoPagoServiceImplement implements IMetodoPagoService {
         mR.deleteById(id);
     }
 
-@Override
-public List<MetodoPago> search(String idUsuario) {
+    @Override
+    public List<MetodoPago> search(String idUsuario) {
     int id = Integer.parseInt(idUsuario);
     return mR.buscarPorUsuario(id);
-}
-    @Override
-    public MetodoPagoPopularDTO buscarmetodoPagoMasUsado() {
-        List<Object[]> resultados = mR.findMetodoPagoMasUsado();
-        if (resultados == null || resultados.isEmpty()) {
-            return null;
-        }
-
-        Object[] data = resultados.get(0);
-        return new MetodoPagoPopularDTO(
-                ((Number) data[0]).intValue(),  // id
-                (String) data[1],              // tipo
-                (String) data[2],              // titular
-                ((Number) data[3]).longValue(), // totalUsos
-                ((Number) data[4]).doubleValue() // porcentaje
-        );
     }
+
+    @Override
+    public List<MetodoPagoPopularDTO> obtenerMetodosPagoMasUsados() {
+        List<Object[]> resultados = mR.contMetodoPagoUsado();
+
+        return resultados.stream()
+                .map(result -> new MetodoPagoPopularDTO(
+                        (String) result[0],
+                        (Long) result[1]
+                ))
+                .collect(Collectors.toList());
+    }
+
 }
