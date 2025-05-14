@@ -49,7 +49,7 @@ public class UsuarioController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
     public void modificar(@RequestBody UsuarioDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
@@ -57,7 +57,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/eliminar{id}")
-    @PreAuthorize("hasAuthority('ADMAPLICACION')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         uS.delete(id);
     }

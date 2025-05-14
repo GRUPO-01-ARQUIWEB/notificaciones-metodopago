@@ -22,7 +22,7 @@ public class TiendaController {
     private ITiendaService iS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<TiendaDTO> listar(){
         return iS.list().stream().map(i ->{
             ModelMapper m= new ModelMapper();
@@ -31,7 +31,7 @@ public class TiendaController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
     public ResponseEntity<String> registrar(@Valid @RequestBody TiendaDTO dto) {
         ModelMapper m = new ModelMapper();
         Tienda t = m.map(dto, Tienda.class);
@@ -41,7 +41,7 @@ public class TiendaController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO')")
     public void modificar(@RequestBody TiendaDTO dto) {
         ModelMapper m = new ModelMapper();
         Tienda t = m.map(dto, Tienda.class);
@@ -49,7 +49,7 @@ public class TiendaController {
     }
 
     @DeleteMapping("/eliminar{id}")
-    @PreAuthorize("hasAuthority('ADMAPLICACION') or hasAuthority('GERENTE')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('GERENTE')")
     public void eliminar(@Valid @PathVariable("id") @Min(1) Integer id) {
         iS.delete(id);
     }
