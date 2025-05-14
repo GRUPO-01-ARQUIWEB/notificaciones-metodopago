@@ -1,20 +1,29 @@
 package pe.edu.upc.arquiweb.dtos;
-import pe.edu.upc.arquiweb.entities.MensajeChat;
-import pe.edu.upc.arquiweb.entities.Tienda;
-import pe.edu.upc.arquiweb.entities.Usuario;
+
 
 import java.time.LocalDate;
 
 public class ChatProveedorDTO {
     private int idChat;
-
     private LocalDate fechainicio;
+    private int idUsuario;
+    private int idTienda;
 
-    private Usuario usuario;
+    public int getIdUsuario() {
+        return idUsuario;
+    }
 
-    private Tienda tienda;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-    private MensajeChat mensaje;
+    public int getIdTienda() {
+        return idTienda;
+    }
+
+    public void setIdTienda(int idTienda) {
+        this.idTienda = idTienda;
+    }
 
     public int getIdChat() {
         return idChat;
@@ -32,27 +41,4 @@ public class ChatProveedorDTO {
         this.fechainicio = fechainicio;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Tienda getTienda() {
-        return tienda;
-    }
-
-    public void setTienda(Tienda tienda) {
-        this.tienda = tienda;
-    }
-
-    public MensajeChat getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(MensajeChat mensaje) {
-        this.mensaje = mensaje;
-    }
 }
