@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.Resena2DTO;
 import pe.edu.upc.arquiweb.dtos.ResenaCalificaDTO;
 import pe.edu.upc.arquiweb.dtos.ResenaDTO;
-import pe.edu.upc.arquiweb.dtos.TiendaDTO;
 import pe.edu.upc.arquiweb.entities.Resena;
-import pe.edu.upc.arquiweb.entities.Tienda;
 import pe.edu.upc.arquiweb.serviceinterfaces.IResenaService;
 
 import java.util.List;
@@ -68,14 +66,5 @@ public class ResenaController {
             return m.map(r, ResenaCalificaDTO.class);
         }).collect(Collectors.toList());
     }
-
-    @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('CLIENTE')")
-    public void modificar(@RequestBody ResenaDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Resena r = m.map(dto, Resena.class);
-        rS.update(r);
-    }
-
 
 }

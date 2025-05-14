@@ -35,11 +35,6 @@ public class TiendaServiceImplement implements ITiendaService {
     }
 
     @Override
-    public void update(Tienda t) {
-        tR.save(t);
-    }
-
-    @Override
     public Tienda searchId(int id) {
         return tR.findById(id).orElse(new Tienda());
     }

@@ -12,6 +12,5 @@ public interface ITiendaService {
     public void insert (Tienda t);
     public void update(Tienda t);
     public void delete (int id);
-    public void update (Tienda t);
     public Tienda searchId(int id);
 }
