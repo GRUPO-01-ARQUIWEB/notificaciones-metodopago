@@ -67,7 +67,7 @@ public class DescuentoController {
     }
 
     @PutMapping("/modificar")
-    @PreAuthorize("hasAuthority('A')")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void modificar(@RequestBody DescuentoDTO dto) {
         ModelMapper m = new ModelMapper();
         Descuento d = m.map(dto, Descuento.class);
@@ -87,6 +87,7 @@ public class DescuentoController {
             dto.setPorcentaje(d.getPorcentaje());
             dto.setFechaInicio(d.getFechaInicio());
             dto.setFechaFin(d.getFechaFin());
+            dto.setIdProducto(d.getProducto().getIdProducto());
             dtoLista.add(dto);
         }
         return dtoLista;

@@ -10,33 +10,19 @@ import java.util.List;
 @Repository
 public interface ICarritoCompraRepository extends JpaRepository <CarritoCompra,Integer> {
 
-    @Query(value = " SELECT \n" +
-            "  cc.id_carrito,\n" +
-            "  cc.id_usuario,\n" +
-            "  cc.id_producto,\n" +
-            "  p.nombre AS nombre_producto,\n" +
-            "  p.precio_base,\n" +
-            "  cc.fecha_creacion\n" +
-            " FROM \n" +
-            "  carrito_compra cc\n" +
-            " JOIN \n" +
-            "  producto p ON cc.id_producto = p.id_producto\n" +
-            " ORDER BY \n" +
-            "  p.precio_base DESC", nativeQuery = true)
+    @Query(value = " SELECT "+
+    " cc.id_carrito," +
+    " cc.id_usuario, " +
+            " cc.id_producto,"+
+            " p.nombre_producto,"+
+            " p.precio_base, "+
+            " cc.fecha_creacion "+
+            " FROM carrito_compra cc " +
+            " JOIN producto p ON cc.id_producto = p.id_producto"+
+            " ORDER BY p.precio_base DESC ", nativeQuery = true)
     public List<String[]> ordenarCarritoCompra();
 
-    @Query(value =" SELECT " +
-            " c.id_carrito, " +
-            " u.nombre AS nombre_usuario, " +
-            " p.nombre AS nombre_producto, " +
-            " p.precio_base, " +
-            " c.fecha_creacion " +
-            " FROM carrito_compra c " +
-            " JOIN producto p ON c.id_producto = p.id_producto " +
-            " JOIN usuario u ON c.id_usuario = u.id_usuario " +
-            " WHERE c.id_usuario = :idUsuario " +
-            " ORDER BY c.fecha_creacion DESC", nativeQuery = true)
-    public List<String[]> BuscarCarritoCompraXID(@Param("idUsuario") int idUsuario);
-
+    @Query(value = "SELECT c.id_carrito, u.username AS nombre_usuario, p.nombre_producto AS nombre_producto, p.precio_base, c.fecha_creacion FROM carrito_compra c JOIN producto p ON c.id_producto = p.id_producto JOIN usuario u ON c.id_usuario = u.id_usuario WHERE c.id_usuario = :idUsuario ORDER BY c.fecha_creacion DESC", nativeQuery = true)
+    List<String[]> BuscarCarritoCompraXID(@Param("idUsuario") int idUsuario);
 }
 
