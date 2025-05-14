@@ -92,6 +92,7 @@ public class CarritoCompraController {
         }
         return dtoLista;
     }
+
     @GetMapping("/BuscarCarritoPorID")
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<BuscarCarritoCompraIDDTO> buscarCarritoxID(@RequestParam("idUsuario") int idUsuario) {
