@@ -8,7 +8,9 @@ import pe.edu.upc.arquiweb.dtos.DescuentoDTO;
 
 import pe.edu.upc.arquiweb.dtos.ListarDescuentoVigentesDTO;
 import pe.edu.upc.arquiweb.dtos.ListarDescuentosOrdenadosPorPorcentajeDTO;
+import pe.edu.upc.arquiweb.dtos.ResenaDTO;
 import pe.edu.upc.arquiweb.entities.Descuento;
+import pe.edu.upc.arquiweb.entities.Resena;
 import pe.edu.upc.arquiweb.serviceinterfaces.IDescuentoService;
 
 
@@ -63,6 +65,15 @@ public class DescuentoController {
         }
         return dtoLista;
     }
+
+    @PutMapping("/modificar")
+    @PreAuthorize("hasAuthority('A')")
+    public void modificar(@RequestBody DescuentoDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Descuento d = m.map(dto, Descuento.class);
+        uS.update(d);
+    }
+
     @GetMapping("/ListarDescuentosOrdenadosXPorcentaje")
     @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ListarDescuentosOrdenadosPorPorcentajeDTO> listarDescuentosOrdenadosPorPorcentaje() {

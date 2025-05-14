@@ -9,5 +9,6 @@ public interface IResenaService {
     public void insert (Resena r);
     public void update (Resena r);
     public void delete (int id);
+    public void update (Resena r);
     public List<Resena> listReviewsRating();
 }

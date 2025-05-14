@@ -69,4 +69,13 @@ public class ResenaController {
         }).collect(Collectors.toList());
     }
 
+    @PutMapping("/modificar")
+    @PreAuthorize("hasAuthority('CLIENTE')")
+    public void modificar(@RequestBody ResenaDTO dto) {
+        ModelMapper m = new ModelMapper();
+        Resena r = m.map(dto, Resena.class);
+        rS.update(r);
+    }
+
+
 }
