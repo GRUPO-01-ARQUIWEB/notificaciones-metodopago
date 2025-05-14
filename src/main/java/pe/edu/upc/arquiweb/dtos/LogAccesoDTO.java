@@ -16,7 +16,7 @@ public class LogAccesoDTO {
 
     private LocalDate fechaAcceso;
 
-    private Usuario usuario;
+    private int idUsuario;
 
     public int getIdLog() {
         return idLog;
@@ -58,12 +58,12 @@ public class LogAccesoDTO {
         this.fechaAcceso = fechaAcceso;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }
 
