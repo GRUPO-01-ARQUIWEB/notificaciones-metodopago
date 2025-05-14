@@ -2,10 +2,11 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO;
+import pe.edu.upc.arquiweb.dtos.MetodoPagoDTO2;
 import pe.edu.upc.arquiweb.dtos.MetodoPagoPopularDTO;
 import pe.edu.upc.arquiweb.entities.MetodoPago;
 import pe.edu.upc.arquiweb.serviceinterfaces.IMetodoPagoService;
@@ -22,32 +23,28 @@ public class MetodoPagoController {
     //mdasindasbi
 
     @GetMapping
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
-    public List<MetodoPagoDTO> listar() {
+    public List<MetodoPagoDTO2> listar() {
         return mS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, MetodoPagoDTO.class);
+            return m.map(x, MetodoPagoDTO2.class);
         }).collect(Collectors.toList());
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
-    public void insertar(@RequestBody MetodoPagoDTO dto) {
+    public void insertar(@RequestBody MetodoPagoDTO2 dto) {
         ModelMapper m = new ModelMapper();
         MetodoPago mp = m.map(dto, MetodoPago.class);
         mS.insert(mp);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
-    public MetodoPagoDTO listarID(@PathVariable("id") int id) {
+    public MetodoPagoDTO2 listarID(@PathVariable("id") int id) {
         ModelMapper m = new ModelMapper();
-        MetodoPagoDTO dto = m.map(mS.searchID(id), MetodoPagoDTO.class);
+        MetodoPagoDTO2 dto = m.map(mS.searchID(id), MetodoPagoDTO2.class);
         return dto;
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void modificar(@RequestBody MetodoPagoDTO dto) {
         ModelMapper m = new ModelMapper();
         MetodoPago mp = m.map(dto, MetodoPago.class);
@@ -55,7 +52,6 @@ public class MetodoPagoController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void eliminar(@PathVariable int id) {
         mS.delete(id);
     }
@@ -67,13 +63,10 @@ public class MetodoPagoController {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/mas-usado")
-    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
-    public ResponseEntity<MetodoPagoPopularDTO> obtenerMetodoMasPopular() {
-        MetodoPagoPopularDTO resultado = mS.buscarmetodoPagoMasUsado();
-        return resultado != null ?
-                ResponseEntity.ok(resultado) :
-                ResponseEntity.noContent().build();
+    @GetMapping("/mas-usados")
+    public ResponseEntity<List<MetodoPagoPopularDTO>> listarMetodosPagoMasUsados() {
+        List<MetodoPagoPopularDTO> metodos = mS.obtenerMetodosPagoMasUsados();
+        return new ResponseEntity<>(metodos, HttpStatus.OK);
     }
 
 }
