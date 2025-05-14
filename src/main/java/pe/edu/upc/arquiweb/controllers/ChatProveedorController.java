@@ -2,6 +2,7 @@ package pe.edu.upc.arquiweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.arquiweb.dtos.ChatProveedorDTO;
 import pe.edu.upc.arquiweb.entities.ChatProveedor;
@@ -18,6 +19,7 @@ public class ChatProveedorController {
     private IChatProveedorService cS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public List<ChatProveedorDTO> listar(){
         return cS.list().stream().map(c ->{
             ModelMapper m= new ModelMapper();
@@ -26,6 +28,7 @@ public class ChatProveedorController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void insertar(@RequestBody ChatProveedorDTO dto) {
         ModelMapper m = new ModelMapper();
         ChatProveedor c = m.map(dto, ChatProveedor.class);
@@ -33,6 +36,7 @@ public class ChatProveedorController {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void modificar(@RequestBody ChatProveedorDTO dto) {
         ModelMapper m = new ModelMapper();
         ChatProveedor c = m.map(dto, ChatProveedor.class);
@@ -40,6 +44,7 @@ public class ChatProveedorController {
     }
 
     @DeleteMapping("/eliminar{id}")
+    @PreAuthorize("hasAuthority('GERENTE') or hasAuthority('ADMAPLICACION') or hasAuthority('ADMNEGOCIO') or hasAuthority('CLIENTE')")
     public void eliminar(@PathVariable("id") int id) {
         cS.delete(id);
     }

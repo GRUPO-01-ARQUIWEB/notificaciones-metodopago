@@ -40,7 +40,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<String> registrar(@Valid @RequestBody UsuarioDTO2 dto) {
+    public ResponseEntity<String> registrar(@Valid @RequestBody UsuarioDTO dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.insert(u);
@@ -50,7 +50,7 @@ public class UsuarioController {
 
     @PutMapping
     @PreAuthorize("hasAuthority('ADMAPLICACION')")
-    public void modificar(@RequestBody UsuarioDTO dto) {
+    public void modificar(@RequestBody UsuarioDTO2 dto) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(dto, Usuario.class);
         uS.update(u);
