@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pe.edu.upc.arquiweb.dtos.NotificacionDTO;
-import pe.edu.upc.arquiweb.dtos.ProductoDTO;
 import pe.edu.upc.arquiweb.entities.Notificaciones;
 import pe.edu.upc.arquiweb.serviceinterfaces.INotificacionService;
 

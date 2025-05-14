@@ -8,9 +8,17 @@ public class MetodoPagoDTO2 {
     private String tipo; // Tarjeta, Yape, Plin
     private String numeroTelefonico;
     private LocalDate vencimiento;
-    private String username;
+    private int idUsuario;
     private String correo;
     private String telefonoUsuario;
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     public int getIdMetodo() {
         return idMetodo;
@@ -42,14 +50,6 @@ public class MetodoPagoDTO2 {
 
     public void setVencimiento(LocalDate vencimiento) {
         this.vencimiento = vencimiento;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getCorreo() {
